@@ -1,8 +1,8 @@
-module qis-reusable {
+module qis {
     yang-version 1;
        
     namespace
-      "qis:reusable:1_1";
+      "qis:1_1";
 
     prefix r;
 
@@ -10,7 +10,7 @@ module qis-reusable {
       “pascal.heus@gmail.com”;
 
     description
-      "This module is a YANG version of the QIS-XML reusable module specification.";
+      "This module is a YANG version of the QIS-XML 1.1 specification.";
 
     revision 2016-09-03 { description "Draft version"; }
 

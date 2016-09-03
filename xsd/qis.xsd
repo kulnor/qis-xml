@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by Pascal Heus (Open Data Foundation) -->
+<xs:schema xmlns="qis:1_1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="qis:1_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Input" type="InputType">
+		<xs:annotation>
+			<xs:documentation>Description of the gate/circuit input</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="InputType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="qubit" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The input number. Must be lessof equalt to gate size.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Output" type="OutputType">
+		<xs:annotation>
+			<xs:documentation>Description of the gate/circuit output</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OutputType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="qubit" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The input number. Must be lessof equalt to gate size.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Qubit" type="QubitType"/>
+	<xs:complexType name="QubitType">
+		<xs:sequence>
+			<xs:element name="Zero" type="ComplexNumberType"/>
+			<xs:element name="One" type="ComplexNumberType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Common elements-->
+	<xs:element name="ProprietaryData">
+		<xs:annotation>
+			<xs:documentation>Generic element to hold application specific data or metadata </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="xs:anyType">
+					<xs:attribute name="type" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Identification and Reference-->
+	<xs:element name="Identification" type="IdentificationType"/>
+	<xs:complexType name="IdentificationType">
+		<xs:sequence>
+			<xs:element name="ID" type="xs:NCName"/>
+			<xs:element name="Agency" type="xs:NCName" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+			<xs:element name="VersionDescription" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Reference" type="ReferenceType"/>
+	<xs:complexType name="ReferenceType">
+		<xs:sequence>
+			<xs:element name="ID" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>Object identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LibraryID" type="xs:NCName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Library identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AgencyID" minOccurs="0"/>
+			<xs:element name="Version" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="URI" type="xs:anyURI"/>
+	</xs:complexType>
+	<!--Math structures-->
+	<xs:complexType name="ComplexNumberType">
+		<xs:sequence>
+			<xs:element name="Symbolic" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be used to describe a symbolic expression for this value.
+When the @r and @i attributes are not specified, this can be used to evaluate to an expression. 
+To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="syntax">
+								<xs:annotation>
+									<xs:documentation>The language/syntax used for this symbolic representation (TeX, OpenOffice, XPath,  etc.)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="r" type="xs:double">
+			<xs:annotation>
+				<xs:documentation>Real component.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="i" type="xs:double">
+			<xs:annotation>
+				<xs:documentation>Imaginary component.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MatrixType">
+		<xs:sequence>
+			<xs:element name="Cell" type="MatrixCellType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="rows" type="xs:integer"/>
+		<xs:attribute name="cols" type="xs:integer"/>
+	</xs:complexType>
+	<xs:complexType name="MatrixCellType">
+		<xs:annotation>
+			<xs:documentation>A Matrix Cell is a complex number with a row and column</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ComplexNumberType">
+				<xs:attribute name="row" type="xs:positiveInteger" use="required"/>
+				<xs:attribute name="col" type="xs:positiveInteger" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Transformation" type="TransformationType"/>
+	<xs:complexType name="TransformationType">
+		<xs:annotation>
+			<xs:documentation>A unitary Transformation is a square matrix of complex numbers. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Multiplier" type="ComplexNumberType" minOccurs="0"/>
+			<xs:element name="Cell" type="MatrixCellType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="size" type="xs:int" use="required"/>
+	</xs:complexType>
+	<!-- 
+		GATE 
+	-->
+	<xs:element name="GateLibrary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Identification"/>
+				<xs:element name="Name" type="xs:string" minOccurs="0"/>
+				<xs:element name="Gate" type="GateType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="GateType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="Identification"/>
+				<xs:element name="Name" type="xs:string"/>
+				<xs:element name="Nickname" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+				<xs:element name="Input" type="InputType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Output" type="OutputType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix. Value can be specified as xs:double.
+							This is similar to the xsl:param element</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name" type="xs:string"/>
+							<xs:element name="Description" type="xs:string" minOccurs="0"/>
+							<xs:element name="Value" type="ComplexNumberType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Transformation"/>
+				<xs:element name="Image" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:anyURI">
+								<xs:attribute name="format"/>
+								<xs:attribute name="width"/>
+								<xs:attribute name="height"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+	<!-- CIRCUIT -->
+	<xs:element name="CircuitLibrary" type="CircuitLibraryType"/>
+	<xs:complexType name="CircuitLibraryType">
+		<xs:sequence>
+			<xs:element ref="Identification"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Circuit" type="CircuitType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GateEquivalentCircuit" type="GateEquivalentCircuitType" minOccurs="0"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Circuit" type="CircuitType"/>
+	<xs:complexType name="CircuitType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="Identification" minOccurs="0"/>
+				<xs:element name="Name" type="xs:string" minOccurs="0"/>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+				<xs:element ref="Input" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Output" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Step" type="StepType" maxOccurs="unbounded"/>
+				<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="size" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:element name="GateEquivalentCircuit">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="GateEquivalentCircuitType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="GateEquivalentCircuitType">
+		<xs:sequence>
+			<xs:element name="GateReference" type="ReferenceType">
+				<xs:annotation>
+					<xs:documentation>The Gate this equivalence is for</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Map" type="MapType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Optional mappings of gate inputs to cirtuit inputs or use to fix value of circuit inputs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Circuit"/>
+		</xs:sequence>
+		<xs:attribute name="Model">
+			<xs:annotation>
+				<xs:documentation>Use to identify a set of universal gates</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MapType">
+		<xs:attribute name="qubit" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Use to map a qubit to this input</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="value" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Use to set input to a specific value</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OperationType">
+		<xs:sequence>
+			<xs:element name="Map" type="MapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Maps registry qubits to gate inputs [COULD BE OPTIONAL? IF NOT SPECIFED, USE NATURAL ORDER MAPPING?]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="GateRef" type="ReferenceType"/>
+				<xs:element name="CircuitRef" type="ReferenceType"/>
+				<xs:element name="Measurement">
+					<xs:annotation>
+						<xs:documentation>Multiple Map elements can be associated with a single measurement operation.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="reverse">
+			<xs:annotation>
+				<xs:documentation>If true, indicates that the unitary transformation for this operation should be reversed (dagger/ complex conjugate transform)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="StepType">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Operation" type="OperationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gat or Circuit inputs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<!-- 
+		PROGRAM
+	-->
+	<xs:element name="ProgramLibrary" type="ProgramLibraryType"/>
+	<xs:complexType name="ProgramLibraryType">
+		<xs:sequence>
+			<xs:element ref="Identification"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Program" type="ProgramType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Program" type="ProgramType"/>
+	<xs:complexType name="ProgramType">
+		<xs:sequence>
+			<xs:element ref="Identification" minOccurs="0"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element ref="Memory">
+				<xs:annotation>
+					<xs:documentation>Program memory pool used be Registry (inspired by QCL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Register" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A global register that can be refered from Execute elements. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by idnex value). This is a bit equivalent of a global variable.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>On or more circuit followed by optional measurement (if not specified, assumes the whole memeory is measured and returned)</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Execute">
+					<xs:annotation>
+						<xs:documentation>Circuit to execute</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice minOccurs="0">
+								<xs:element ref="Register">
+									<xs:annotation>
+										<xs:documentation>A subset of qubits from the main program memory to use for this circuit. If not specified, assume that the whole memory is used. This is a bit equivalent ot a local variable.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="RegisterRef" type="ReferenceType"/>
+							</xs:choice>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation>Provides reference to the Circuit or an inline Circuit</xs:documentation>
+								</xs:annotation>
+								<xs:element name="CircuitRef" type="ReferenceType">
+									<xs:annotation>
+										<xs:documentation>Reference to a circuit in a library</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="Circuit"/>
+								<xs:element ref="Program">
+									<xs:annotation>
+										<xs:documentation>EXPERIMENTAL: calls a subprogram
+											Need to think how this might work memory wise. May need to wrap in a SubProgram element and add a register (like Exeecute).</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ProgramRef" type="ReferenceType">
+									<xs:annotation>
+										<xs:documentation>Reference to a Program in a ProgramLibrary</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Measure">
+					<xs:annotation>
+						<xs:documentation>Can be used to cause a measurement of a specific set of qubit in the memory
+							This allows to ((1) run a ciruit, measure, and then run another circuit, (2) when this is the last element, to measure and return only a subset of the memory.
+							In case (1), this should cause  a "returned" value to be sent to the classicial world</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Register"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Memory" type="MemoryType"/>
+	<xs:complexType name="MemoryType">
+		<xs:sequence>
+			<xs:element ref="Identification" minOccurs="0"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element ref="Prepare" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Prepares the memory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Qubit" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be use to actually store memory values. Note that this element extends the Qubit type by adding an index attribute.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="QubitType">
+							<xs:attribute name="index" use="required"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="size" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Number of qubits</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Register" type="RegisterType"/>
+	<xs:complexType name="RegisterType">
+		<xs:annotation>
+			<xs:documentation>A collection of references to Memory location. If not specific qubits are reference, the Register is assumed to use all available Memory qubits</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Identification" minOccurs="0"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="MemoryReference" type="ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>May be used in the future to reference global memory or memory in another program</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="QubitIndex" type="xs:positiveInteger">
+					<xs:annotation>
+						<xs:documentation>A single qubit location</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="QubitRange">
+					<xs:annotation>
+						<xs:documentation>A range of qubits</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="StartQubit" type="xs:positiveInteger"/>
+							<xs:element name="EndQubit" type="xs:positiveInteger"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RegisterReference">
+					<xs:annotation>
+						<xs:documentation>Includes another Register's qubits</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element ref="Prepare" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Prepares the register</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="size" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:element name="Prepare" type="PrepareType"/>
+	<xs:complexType name="PrepareType">
+		<xs:sequence>
+			<xs:element name="QubitSet" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set the value of qubit(s)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="QubitIndex" type="xs:positiveInteger">
+								<xs:annotation>
+									<xs:documentation>A single qubit location</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="QubitRange">
+								<xs:annotation>
+									<xs:documentation>A range of qubits</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="StartQubit" type="xs:positiveInteger"/>
+										<xs:element name="EndQubit" type="xs:positiveInteger"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:element name="Value" type="ComplexNumberType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="reset" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Resets all qubits to zero</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- 
+		INSTANCE 
+	-->
+	<xs:element name="QIS" type="QISType">
+		<xs:annotation>
+			<xs:documentation>The root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="QISType">
+		<xs:sequence>
+			<xs:element ref="Identification"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="GateLibrary"/>
+				<xs:element name="GateLibraryRef" type="ReferenceType"/>
+				<xs:element ref="CircuitLibrary"/>
+				<xs:element name="CircuitLibraryRef" type="ReferenceType"/>
+				<xs:element ref="ProgramLibrary"/>
+				<xs:element name="ProgramLibraryRef" type="ReferenceType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+</xs:schema>

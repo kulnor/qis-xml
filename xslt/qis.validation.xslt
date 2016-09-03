@@ -21,15 +21,11 @@ License:
     The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1" 
-	xmlns:c="qis:circuit:1_1" 
-	xmlns:p="qis:program:1_1" 
-	xmlns:r="qis:reusable:1_1" 
+	xmlns:qis="qis:1_1" 
 	xmlns:svg="http://www.w3.org/2000/svg"
 	xmlns:math="http://exslt.org/math" 
 	extension-element-prefixes="math"
-	exclude-result-prefixes="i g c p r svg math"
+	exclude-result-prefixes="qis svg math"
 	>
 	<xsl:import href="qis.exslt.xslt"/>
 
@@ -38,87 +34,87 @@ License:
 	<xsl:variable name="validation-error-style">color:red;font-weight:bold;<xsl:value-of select="$validation-indent"/></xsl:variable>
 	
 	<xsl:template match="/" >
-		<xsl:apply-templates select="//g:Gate" mode="validation"/>
-		<xsl:apply-templates select="//c:Circuit" mode="validation"/>
-		<xsl:apply-templates select="//p:Program" mode="validation"/>
+		<xsl:apply-templates select="//qis:Gate" mode="validation"/>
+		<xsl:apply-templates select="//qis:Circuit" mode="validation"/>
+		<xsl:apply-templates select="//qis:Program" mode="validation"/>
 	</xsl:template>
 
 	<!-- Gate -->
-	<xsl:template match="g:Gate" mode="validation">
+	<xsl:template match="qis:Gate" mode="validation">
 		<!-- Gate - Initialization -->
 		<xsl:variable name="gate-max-rowcol">
 			<xsl:call-template name="math:power">
 				<xsl:with-param name="base" select="2"/>
-				<xsl:with-param name="power" select="r:Transformation/@size"/>
+				<xsl:with-param name="power" select="qis:Transformation/@size"/>
 			</xsl:call-template>
 		</xsl:variable>
 		
 		<!-- Gate - Information -->
 		<hr/>
 		<div>
-			Gate <xsl:value-of select="r:Identification/r:ID"/>, Size <xsl:value-of select="r:Transformation/@size"/>
+			Gate <xsl:value-of select="qis:Identification/qis:ID"/>, Size <xsl:value-of select="qis:Transformation/@size"/>
 		</div>
-		<xsl:if test="g:Name">
-			<div><xsl:value-of select="g:Name"/></div>
+		<xsl:if test="qis:Name">
+			<div><xsl:value-of select="qis:Name"/></div>
 		</xsl:if>
-		<xsl:if test="g:Description">
-			<div><xsl:value-of select="g:Description"/></div>
+		<xsl:if test="qis:Description">
+			<div><xsl:value-of select="qis:Description"/></div>
 		</xsl:if>
 
 		<!-- Gate - Check Transformation row/col range -->
-		<xsl:for-each select="r:Transformation/r:Cell[ (@row > $gate-max-rowcol) or @col > $gate-max-rowcol ]">
+		<xsl:for-each select="qis:Transformation/qis:Cell[ (@row > $gate-max-rowcol) or @col > $gate-max-rowcol ]">
 			<div style="{$validation-error-style}">ERROR: Transformation Cell <xsl:value-of select="position()"/> row=<xsl:value-of select="@row"/>/col=<xsl:value-of select="@col"/> out of Gate range.</div>
 		</xsl:for-each>
 	</xsl:template>
 
 	<!-- Circuit -->
-	<xsl:template match="c:Circuit" mode="validation">
+	<xsl:template match="qis:Circuit" mode="validation">
 		<hr/>
 		<div>
 			<xsl:variable name="ID">
 				<xsl:choose>
-					<xsl:when test="r:Identification"><xsl:value-of select="r:Identification/r:ID"/></xsl:when>
+					<xsl:when test="qis:Identification"><xsl:value-of select="qis:Identification/qis:ID"/></xsl:when>
 					<xsl:otherwise><xsl:value-of select="generate-id()"/></xsl:otherwise>
 				</xsl:choose>	
 			</xsl:variable>
-			Circuit <xsl:value-of select="$ID"/>, Size <xsl:value-of select="@size"/>, <xsl:value-of select="count(c:Step)"/> step(s)
+			Circuit <xsl:value-of select="$ID"/>, Size <xsl:value-of select="@size"/>, <xsl:value-of select="count(qis:Step)"/> step(s)
 		</div>
-		<xsl:if test="c:Name">
-			<div><xsl:value-of select="c:Name"/></div>
+		<xsl:if test="qis:Name">
+			<div><xsl:value-of select="qis:Name"/></div>
 		</xsl:if>
-		<xsl:if test="c:Description">
-			<div><xsl:value-of select="c:Description"/></div>
+		<xsl:if test="qis:Description">
+			<div><xsl:value-of select="qis:Description"/></div>
 		</xsl:if>
 		<div style="{$validation-indent}">
-			<xsl:apply-templates select="c:Step" mode="validation"/>
+			<xsl:apply-templates select="qis:Step" mode="validation"/>
 		</div>
 	</xsl:template>
 
 	<!-- Circuit Step -->
-	<xsl:template match="c:Step" mode="validation">
+	<xsl:template match="qis:Step" mode="validation">
 		<!-- Step - Initiliatzaion -->
 		<xsl:variable name="circuit-size" select="../@size"/>
 
 		<!-- Step - Information -->
-		<div>Step <xsl:value-of select="position()"/>, <xsl:value-of select="count(c:Operation)"/> operation(s)</div>
+		<div>Step <xsl:value-of select="position()"/>, <xsl:value-of select="count(qis:Operation)"/> operation(s)</div>
 		<xsl:if test="Description">
 			<div><xsl:value-of select="Description"/></div>
 		</xsl:if>
 
 		<!-- Operation - Check qubit range -->
-		<xsl:for-each select="c:Operation/c:Map[@qubit > $circuit-size ]">
+		<xsl:for-each select="qis:Operation/qis:Map[@qubit > $circuit-size ]">
 			<div style="{$validation-error-style}">ERROR: Map <xsl:value-of select="position()"/> qubit=<xsl:value-of select="@qubit"/> is out of Circuit range.</div>
 		</xsl:for-each>
 
 		<!-- Step - Check qubit count -->
-		<xsl:if test="$circuit-size > count(c:Operation/c:Map)">
+		<xsl:if test="$circuit-size > count(qis:Operation/qis:Map)">
 			<div style="{$validation-warning-style}">Warning: Not all qubits have been mapped.</div>
 		</xsl:if>
 
 		<!-- Step - Check duplicate qubit mapping -->
-		<xsl:for-each select="c:Operation/c:Map">
+		<xsl:for-each select="qis:Operation/qis:Map">
 			<xsl:variable name="qubit" select="@qubit"/>
-			<xsl:variable name="qubit-count" select="count(../../c:Operation/c:Map[@qubit=$qubit])"/>
+			<xsl:variable name="qubit-count" select="count(../../qis:Operation/qis:Map[@qubit=$qubit])"/>
 			<xsl:if test="$qubit-count>1">
 				<div style="{$validation-error-style}">ERROR: Qubit <xsl:value-of select="$qubit"/> is ampped <xsl:value-of select="$qubit-count"/> times.</div>
 			</xsl:if>
@@ -126,15 +122,15 @@ License:
 		
 		<!-- Validate Operation -->
 		<div style="{$validation-indent}">
-			<xsl:apply-templates select="c:Operation" mode="validation"/>
+			<xsl:apply-templates select="qis:Operation" mode="validation"/>
 		</div>
 	</xsl:template>
 
 	<!-- Circuit Step Operation -->
-	<xsl:template match="c:Operation" mode="validation">
+	<xsl:template match="qis:Operation" mode="validation">
 
 		<!-- Operation - Check duplicate input mapping -->
-		<xsl:for-each select="c:Map">
+		<xsl:for-each select="qis:Map">
 			<xsl:variable name="input" select="@input"/>
 			<xsl:variable name="input-count" select="count(../Map[@input=$input])"/>
 			<xsl:if test="$input-count > 1">
@@ -144,31 +140,31 @@ License:
 	
 		<xsl:choose>
 			<!-- Gate based Operation -->
-			<xsl:when test="c:GateRef">
+			<xsl:when test="qis:GateRef">
 				<!-- Operation init -->
-				<xsl:variable name="gate-id" select="c:GateRef/r:ID"/>
-				<xsl:variable name="gate" select="//g:GateLibrary/g:Gate[r:Identification/r:ID = $gate-id]"/>
+				<xsl:variable name="gate-id" select="qis:GateRef/qis:ID"/>
+				<xsl:variable name="gate" select="//qis:GateLibrary/qis:Gate[qis:Identification/qis:ID = $gate-id]"/>
 				<xsl:choose>
 					<!-- check if Gate has been found -->
 					<xsl:when test="$gate">
-						<xsl:variable name="gate-size" select="$gate/r:Transformation/@size"/>
+						<xsl:variable name="gate-size" select="$gate/qis:Transformation/@size"/>
 						<!-- Display Gate Operation Info -->
 						<div>
 							<xsl:value-of select="position()"/>:
-							<xsl:value-of select="$gate/g:Name"/> (<xsl:value-of select="$gate-id"/>)
+							<xsl:value-of select="$gate/qis:Name"/> (<xsl:value-of select="$gate-id"/>)
 							<xsl:text>[</xsl:text>
-							<xsl:for-each select="c:Map">
+							<xsl:for-each select="qis:Map">
 								<xsl:if test="position()>1">,</xsl:if>
 								<xsl:value-of select="@qubit"/>=<xsl:value-of select="@input"/>
 							</xsl:for-each>
 							<xsl:text>]</xsl:text>
 						</div>
 						<!-- Operation - Check Gate size and Map count -->
-						<xsl:if test="not( $gate-size = count(c:Map) )">
-							<div style="{$validation-error-style}">ERROR: Gate size and mappings do not match. Gate has <xsl:value-of select="$gate-size"/> input(s), Operation specified <xsl:value-of select="count(c:Map)"/> mapping(s).</div>
+						<xsl:if test="not( $gate-size = count(qis:Map) )">
+							<div style="{$validation-error-style}">ERROR: Gate size and mappings do not match. Gate has <xsl:value-of select="$gate-size"/> input(s), Operation specified <xsl:value-of select="count(qis:Map)"/> mapping(s).</div>
 						</xsl:if>
 						<!-- Operation - Check Map input range -->
-						<xsl:for-each select="c:Map[@input > $gate-size ]">
+						<xsl:for-each select="qis:Map[@input > $gate-size ]">
 							<div style="{$validation-error-style}">ERROR: Map <xsl:value-of select="position()"/> input=<xsl:value-of select="@input"/> is out of Gate range.</div>
 						</xsl:for-each>
 					</xsl:when>
@@ -178,32 +174,32 @@ License:
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:when>
-			<xsl:when test="c:CircuitRef">
+			<xsl:when test="qis:CircuitRef">
 				<div style="{$validation-warning-style}">Warning: Circuit based Operation validation not yet implemented.</div>
 			</xsl:when>
-			<xsl:when test="c:Measurement">
+			<xsl:when test="qis:Measurement">
 				<div style="{$validation-warning-style}">Warning: Measurement based Operation validation not yet implemented.</div>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
 
 	<!-- Program -->
-	<xsl:template match="p:Program" mode="validation">
+	<xsl:template match="qis:Program" mode="validation">
 		<hr/>
 		<div>
 			<xsl:variable name="ID">
 				<xsl:choose>
-					<xsl:when test="r:Identification"><xsl:value-of select="r:Identification/r:ID"/></xsl:when>
+					<xsl:when test="qis:Identification"><xsl:value-of select="qis:Identification/qis:ID"/></xsl:when>
 					<xsl:otherwise><xsl:value-of select="generate-id()"/></xsl:otherwise>
 				</xsl:choose>	
 			</xsl:variable>
-			Program <xsl:value-of select="$ID"/>, Size <xsl:value-of select="@size"/>, <xsl:value-of select="count(c:Step)"/> step(s)
+			Program <xsl:value-of select="$ID"/>, Size <xsl:value-of select="@size"/>, <xsl:value-of select="count(qis:Step)"/> step(s)
 		</div>
-		<xsl:if test="c:Name">
-			<div><xsl:value-of select="c:Name"/></div>
+		<xsl:if test="qis:Name">
+			<div><xsl:value-of select="qis:Name"/></div>
 		</xsl:if>
-		<xsl:if test="c:Description">
-			<div><xsl:value-of select="c:Description"/></div>
+		<xsl:if test="qis:Description">
+			<div><xsl:value-of select="qis:Description"/></div>
 		</xsl:if>
 		<div style="{$validation-warning-style}">Warning: Program validation not yet implemented.</div>
 	</xsl:template>

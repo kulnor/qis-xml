@@ -34,10 +34,7 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
+	xmlns:qis="qis:1_1" 
 	xmlns="http://www.w3.org/2000/svg"
     >
 
@@ -55,45 +52,45 @@ OF SUCH DAMAGE.
 
 	<xsl:template name="svg-circuits">
 		<h2>Quantum Circuits</h2>
-		<xsl:for-each select="//c:CircuitLibrary/c:Circuit">
-			<xsl:if test="c:Name">
-				<h4><xsl:value-of select="c:Name"/></h4>
+		<xsl:for-each select="//qis:CircuitLibrary/qis:Circuit">
+			<xsl:if test="qis:Name">
+				<h4><xsl:value-of select="qis:Name"/></h4>
 			</xsl:if>
-			<xsl:if test="c:Description">
-				<div><xsl:value-of select="c:Description"/></div>
+			<xsl:if test="qis:Description">
+				<div><xsl:value-of select="qis:Description"/></div>
 			</xsl:if>
-			<svg width="{ (count(c:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
+			<svg width="{ (count(qis:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
 				<xsl:apply-templates select="." mode="svg"/>
 			</svg>
 		</xsl:for-each>
 		
 		<h2>Gate Equivalent Circuits</h2>
-		<xsl:for-each select="//g:GateLibrary/g:Gate/g:EquivalentCircuit/c:Circuit">
-			<xsl:if test="../../g:Name">
-				<h4><xsl:value-of select="../../g:Name"/></h4>
+		<xsl:for-each select="//qis:GateLibrary/qis:Gate/qis:EquivalentCircuit/qis:Circuit">
+			<xsl:if test="../../qis:Name">
+				<h4><xsl:value-of select="../../qis:Name"/></h4>
 			</xsl:if>
-			<xsl:if test="c:Description">
-				<div><xsl:value-of select="c:Description"/></div>
+			<xsl:if test="qis:Description">
+				<div><xsl:value-of select="qis:Description"/></div>
 			</xsl:if>
-			<svg width="{ (count(c:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
+			<svg width="{ (count(qis:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
 				<xsl:apply-templates select="." mode="svg"/>
 			</svg>
 		</xsl:for-each>
 	</xsl:template>
 
 	<!-- CIRCUIT -->
-	<xsl:template match="c:Circuit" mode="svg">
+	<xsl:template match="qis:Circuit" mode="svg">
 		<!-- 
 			The circuit goes from left to right, with each step
 			The height of the circuit is the number of size
 		 -->
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
-		<xsl:apply-templates select="c:Step" mode="svg"/>
+		<xsl:apply-templates select="qis:Step" mode="svg"/>
 	</xsl:template>
 
 	<!-- Circuit Step -->
-	<xsl:template match="c:Step" mode="svg">
+	<xsl:template match="qis:Step" mode="svg">
 		<!-- 
 			The circuit goes from left to right, with each step
 			The height of the circuit is the number of size
@@ -102,7 +99,7 @@ OF SUCH DAMAGE.
 		<xsl:param name="y" select="0"/>
 		<xsl:variable name="step-offset-x" select="(position()-1) * $svg-cell-width"/>
 		<!-- draw all operation -->
-		<xsl:apply-templates select="c:Operation" mode="svg">
+		<xsl:apply-templates select="qis:Operation" mode="svg">
 			<xsl:with-param name="x" select="$step-offset-x"/>
 			<xsl:with-param name="y" select="$y"/>
 		</xsl:apply-templates>
@@ -110,20 +107,20 @@ OF SUCH DAMAGE.
 		<g transform="translate({$step-offset-x},{$y})">
 			<xsl:call-template name="svg-circuit-step-carry-over">
 				<xsl:with-param name="qubit-number" select="../@size"/>
-				<xsl:with-param name="map" select=".//c:Map"/>
+				<xsl:with-param name="map" select=".//qis:Map"/>
 			</xsl:call-template>
 		</g>
 	</xsl:template>
 
 	<!-- Circuit Step Operation -->
-	<xsl:template match="c:Operation" mode="svg">
+	<xsl:template match="qis:Operation" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:choose>
-			<xsl:when test="c:GateRef">
+			<xsl:when test="qis:GateRef">
 				<!-- this is a standard gate -->
-				<xsl:variable name="gate-id" select="c:GateRef/r:ID"/>
-				<xsl:variable name="gate" select="//g:Gate[r:Identification/r:ID = $gate-id]"/>
+				<xsl:variable name="gate-id" select="qis:GateRef/qis:ID"/>
+				<xsl:variable name="gate" select="//qis:Gate[qis:Identification/qis:ID = $gate-id]"/>
 				<xsl:choose>
 					<xsl:when test="$gate">
 						<xsl:apply-templates select="$gate" mode="svg">
@@ -131,7 +128,7 @@ OF SUCH DAMAGE.
 							<xsl:with-param name="x" select="$x + ($svg-element-width div 2) + $svg-element-sep-x"/>
 							<!--  Gate must be shifted down to the center of the cell -->
 							<xsl:with-param name="y" select="$y + ($svg-element-height div 2)"/>
-							<xsl:with-param name="map" select="./c:Map"/>
+							<xsl:with-param name="map" select="./qis:Map"/>
 							<xsl:with-param name="reverse" select="./@reverse"/>
 						</xsl:apply-templates>
 					</xsl:when>
@@ -140,10 +137,10 @@ OF SUCH DAMAGE.
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:when>
-			<xsl:when test="c:Measurement">
+			<xsl:when test="qis:Measurement">
 				<!-- make a measurement for each c:Map -->
-				<xsl:for-each select="c:Map">
-					<xsl:apply-templates select="../c:Measurement" mode="svg">
+				<xsl:for-each select="qis:Map">
+					<xsl:apply-templates select="../qis:Measurement" mode="svg">
 						<!--  Gate must be shifted right to the center of the cell and allow for connectros to be drawn on the left -->
 						<xsl:with-param name="x" select="$x + ($svg-element-width div 2) + $svg-element-sep-x"/>
 						<!--  Gate must be shifted down to the center of the cell -->
@@ -163,7 +160,7 @@ OF SUCH DAMAGE.
 	<!-- 
 		MEASURE 
 	 -->
-	<xsl:template match="c:Measurement" name="svg-measurement" mode="svg">
+	<xsl:template match="qis:Measurement" name="svg-measurement" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -197,7 +194,7 @@ OF SUCH DAMAGE.
 	-->
 
 	<!-- C-NOT / Controlled-NOT -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='C-NOT']" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='C-NOT']" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -237,7 +234,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 	
 	<!-- C-S / CONTROLLED-PHASE -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='C-S']" name="svg-C-S" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='C-S']" name="svg-C-S" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -280,7 +277,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- C-T / Controlled PI/8 -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='C-T']" name="svg-C-T" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='C-T']" name="svg-C-T" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -323,7 +320,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- C-X / Controlled-X -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='C-X']" name="svg-C-X" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='C-X']" name="svg-C-X" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -366,7 +363,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 	
 	<!-- C-Z / Controlled-Z -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='C-Z']" name="svg-C-Z" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='C-Z']" name="svg-C-Z" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -409,7 +406,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- DEUSTCH(3) -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='DEUTSCH']" name="svg-DEUTSCH" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='DEUTSCH']" name="svg-DEUTSCH" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -465,7 +462,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- FREDKIN(3) -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='FREDKIN']" name="svg-FREDKIN" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='FREDKIN']" name="svg-FREDKIN" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -525,7 +522,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- HADAMARD -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='H']" name="svg-H" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='H']" name="svg-H" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -549,7 +546,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- I / IDENTITY-->
-	<xsl:template match="g:Gate[r:Identification/r:ID='I']" name="svg-I" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='I']" name="svg-I" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -568,7 +565,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- S / PHASE -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='S']" name="svg-S" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='S']" name="svg-S" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -592,7 +589,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- SHIFT / PHASE SHIFT -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='SHIFT']" name="svg-SHIFT" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='SHIFT']" name="svg-SHIFT" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -616,7 +613,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- SQUARE ROOT OF NOT -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='SQRT-NOT']" name="svg-SQRT-NOT" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='SQRT-NOT']" name="svg-SQRT-NOT" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -640,7 +637,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- SWAP -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='SWAP']" name="svg-SWAP" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='SWAP']" name="svg-SWAP" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -685,7 +682,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- T / PI/8 -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='T']" name="svg-T" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='T']" name="svg-T" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -709,7 +706,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- TOFFOLI -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='TOFFOLI']" name="svg-TOFFOLI" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='TOFFOLI']" name="svg-TOFFOLI" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -765,7 +762,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- X / PAULI-X -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='X']" name="svg-X" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='X']" name="svg-X" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -789,7 +786,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- Y / PAULI-Y -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='Y']" name="svg-Y" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='Y']" name="svg-Y" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -813,7 +810,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- Z / PAULI-Z -->
-	<xsl:template match="g:Gate[r:Identification/r:ID='Z']" name="svg-Z" mode="svg">
+	<xsl:template match="qis:Gate[qis:Identification/qis:ID='Z']" name="svg-Z" mode="svg">
 		<xsl:param name="x" select="0"/>
 		<xsl:param name="y" select="0"/>
 		<xsl:param name="map" select="Dummy"/>
@@ -837,7 +834,7 @@ OF SUCH DAMAGE.
 	</xsl:template>
 
 	<!-- CATCH ALL -->
-	<xsl:template match="g:Gate" mode="svg"/>
+	<xsl:template match="qis:Gate" mode="svg"/>
 
 	<!-- GATE BOX (40x40 with 10 px shift) (can float) 
 		Draws a single qubit gate box 

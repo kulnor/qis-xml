@@ -1,1214 +1,1210 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<i:QIS 
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
-	xmlns:p="qis:program:1_1"
-	xsi:schemaLocation="qis:instance:1_1 ../schema/qis.instance.xsd" 
+<QIS 
+	xmlns="qis:1_1"
+	xsi:schemaLocation="qis:1_1 ../schema/qis.xsd" 
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	>
-	<r:Identification>
-		<r:ID>ExampleInstance</r:ID>
-		<r:Agency>qisxml.org</r:Agency>
-		<r:Version>1.0</r:Version>
-	</r:Identification>
+	<Identification>
+		<ID>ExampleInstance</ID>
+		<Agency>qisxml.org</Agency>
+		<Version>1.0</Version>
+	</Identification>
 	
-	<g:GateLibrary>
-		<r:Identification>
-			<r:ID>ExampleGateLibrary</r:ID>
-			<r:Agency>qisxml.org</r:Agency>
-			<r:Version>1.0</r:Version>
-		</r:Identification>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>C-NOT</r:ID>
-			</r:Identification>
-			<g:Name>Controlled-NOT</g:Name>
-			<g:Nickname>C-NOT</g:Nickname>
-			<r:Transformation size="2">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="4" r="1"/>
-				<r:Cell row="4" col="3" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>C-T</r:ID>
-			</r:Identification>
-			<g:Name>Controlled &#960;/8</g:Name>
-			<r:Transformation size="2">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="3" r="1"/>
-				<r:Cell row="4" col="4" r="707106781" i="707106781">
-					<r:Symbolic syntax="odf">e^{i %PI/4 }</r:Symbolic>
-					<r:Symbolic syntax="html">e^(i &#960;/4)</r:Symbolic>
-				</r:Cell>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>C-S</r:ID>
-			</r:Identification>
-			<g:Name>Controlled Phase</g:Name>
-			<r:Transformation size="2">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="3" r="1"/>
-				<r:Cell row="4" col="4" i="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>C-Z</r:ID>
-			</r:Identification>
-			<g:Name>Controlled-Z</g:Name>
-			<r:Transformation size="2">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="3" r="1"/>
-				<r:Cell row="4" col="4" r="-1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>DEUTSCH</r:ID>
-			</r:Identification>
-			<g:Name>Deutsch Gate</g:Name>
-			<g:Description>The Deutsch gate is a quantum gate, which is based on the idea of a Toffoli gate. It is a 3 input gate where the two top inputs control the action of the bottom line. But this time the action is not a toggle. Instead it is a spin rotation by angle &#952; about the x axis. See also http://beige.ucs.indiana.edu/M743/node95.html.</g:Description>
-			<g:Parameter>
-				<g:Name>theta</g:Name>
-			</g:Parameter>
-			<r:Transformation size="3">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="3" r="1"/>
-				<r:Cell row="4" col="4" r="1"/>
-				<r:Cell row="5" col="5" r="1"/>
-				<r:Cell row="6" col="6" r="1"/>
-				<r:Cell row="7" col="7">
-					<r:Symbolic syntax="html">cos(&#952;)</r:Symbolic>
-				</r:Cell>
-				<r:Cell row="7" col="8">
-					<r:Symbolic syntax="html">i sin(&#952;)</r:Symbolic>
-				</r:Cell>
-				<r:Cell row="8" col="7">
-					<r:Symbolic syntax="html">i sin(&#952;)</r:Symbolic>
-				</r:Cell>
-				<r:Cell row="8" col="8">
-					<r:Symbolic syntax="html">cos(&#952;)</r:Symbolic>
-				</r:Cell>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>FREDKIN</r:ID>
-			</r:Identification>
-			<g:Name>Fredkin</g:Name>
-			<g:Nickname>Controlled Swap</g:Nickname>
-			<g:Description>
+	<GateLibrary>
+		<Identification>
+			<ID>ExampleGateLibrary</ID>
+			<Agency>qisxml.org</Agency>
+			<Version>1.0</Version>
+		</Identification>
+		<Gate>
+			<Identification>
+				<ID>C-NOT</ID>
+			</Identification>
+			<Name>Controlled-NOT</Name>
+			<Nickname>C-NOT</Nickname>
+			<Transformation size="2">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="4" r="1"/>
+				<Cell row="4" col="3" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>C-T</ID>
+			</Identification>
+			<Name>Controlled &#960;/8</Name>
+			<Transformation size="2">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="3" r="1"/>
+				<Cell row="4" col="4" r="707106781" i="707106781">
+					<Symbolic syntax="odf">e^{i %PI/4 }</Symbolic>
+					<Symbolic syntax="html">e^(i &#960;/4)</Symbolic>
+				</Cell>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>C-S</ID>
+			</Identification>
+			<Name>Controlled Phase</Name>
+			<Transformation size="2">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="3" r="1"/>
+				<Cell row="4" col="4" i="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>C-Z</ID>
+			</Identification>
+			<Name>Controlled-Z</Name>
+			<Transformation size="2">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="3" r="1"/>
+				<Cell row="4" col="4" r="-1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>DEUTSCH</ID>
+			</Identification>
+			<Name>Deutsch Gate</Name>
+			<Description>The Deutsch gate is a quantum gate, which is based on the idea of a Toffoli gate. It is a 3 input gate where the two top inputs control the action of the bottom line. But this time the action is not a toggle. Instead it is a spin rotation by angle &#952; about the x axis. See also http://beige.ucs.indiana.edu/M743/node95.html.</Description>
+			<Parameter>
+				<Name>theta</Name>
+			</Parameter>
+			<Transformation size="3">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="3" r="1"/>
+				<Cell row="4" col="4" r="1"/>
+				<Cell row="5" col="5" r="1"/>
+				<Cell row="6" col="6" r="1"/>
+				<Cell row="7" col="7">
+					<Symbolic syntax="html">cos(&#952;)</Symbolic>
+				</Cell>
+				<Cell row="7" col="8">
+					<Symbolic syntax="html">i sin(&#952;)</Symbolic>
+				</Cell>
+				<Cell row="8" col="7">
+					<Symbolic syntax="html">i sin(&#952;)</Symbolic>
+				</Cell>
+				<Cell row="8" col="8">
+					<Symbolic syntax="html">cos(&#952;)</Symbolic>
+				</Cell>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>FREDKIN</ID>
+			</Identification>
+			<Name>Fredkin</Name>
+			<Nickname>Controlled Swap</Nickname>
+			<Description>
 				The basic Fredkin gate is a controlled swap gate that maps three inputs (C, I1, I2) onto three outputs (C, O1, O2). 
 				The C input is mapped directly to the C output. 
 				If C=0, no swap is performed; I1 maps to O1, and I2 maps to O2. 
 				Otherwise, the two outputs are swapped so that I1 maps to O2, and I2 maps to O1.		
-			</g:Description>
-			<r:Transformation size="3">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-				<r:Cell row="3" col="3" r="1"/>
-				<r:Cell row="4" col="4" r="1"/>
-				<r:Cell row="5" col="5" r="1"/>
-				<r:Cell row="6" col="7" r="1"/>
-				<r:Cell row="7" col="6" r="1"/>
-				<r:Cell row="8" col="8" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>H</r:ID>
-			</r:Identification>
-			<g:Name>Hadamard</g:Name>
-			<r:Transformation size="1">
-				<r:Multiplier r="0.707106781">
-					<r:Symbolic syntax="odf">1/sqrt(2)</r:Symbolic>
-					<r:Symbolic syntax="html">1/sqrt(2)</r:Symbolic>
-				</r:Multiplier>
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="1" col="2" r="1"/>
-				<r:Cell row="2" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="-1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>I</r:ID>
-			</r:Identification>
-			<g:Name>Identity</g:Name>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>X</r:ID>
-			</r:Identification>
-			<g:Name>Pauli-X</g:Name>
-			<g:Nickname>NOT</g:Nickname>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="2" r="1"/>
-				<r:Cell row="2" col="1" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>SQRT-NOT</r:ID>
-			</r:Identification>
-			<g:Name>Square Root of Not</g:Name>
-			<r:Transformation size="1">
-				<r:Multiplier r="0.707106781">
-					<r:Symbolic syntax="odf">1/sqrt(2)</r:Symbolic>
-					<r:Symbolic syntax="html">1/sqrt(2)</r:Symbolic>
-				</r:Multiplier>
-				<r:Cell row="1" col="2" r="1"/>
-				<r:Cell row="2" col="1" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>Y</r:ID>
-			</r:Identification>
-			<g:Name>Pauli-Y</g:Name>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="2" i="-1"/>
-				<r:Cell row="2" col="1" i="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>Z</r:ID>
-			</r:Identification>
-			<g:Name>Pauli-Z</g:Name>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="-1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>S</r:ID>
-			</r:Identification>
-			<g:Name>Phase</g:Name>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" i="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>SHIFT</r:ID>
-			</r:Identification>
-			<g:Name>Phase Shift</g:Name>
-			<g:Parameter>
-				<g:Name>&#952;</g:Name>
-			</g:Parameter>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2">
-					<r:Symbolic syntax="html">e^(2&#960;i&#952;)</r:Symbolic>
-				</r:Cell>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>SWAP</r:ID>
-			</r:Identification>
-			<g:Name>Swap</g:Name>
-			<r:Transformation size="2">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="3" r="1"/>
-				<r:Cell row="3" col="2" r="1"/>
-				<r:Cell row="4" col="4" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>TOFFOLI</r:ID>
-			</r:Identification>
-			<g:Name>Toffoli</g:Name>
-			<g:Nickname>controlled-controlled-not</g:Nickname>
-			<g:Description>The Toffoli gate is a reversible gate that takes three bits as input. The first two are control bits and are left unchanged by the gate. The third bit is flipped  if both control bits are equal to 1. It is also known as the “controlled-controlled-not” gate</g:Description>
-			<r:Transformation size="3">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="3" r="1"/>
-				<r:Cell row="3" col="2" r="1"/>
-				<r:Cell row="4" col="4" r="1"/>
-				<r:Cell row="5" col="5" r="1"/>
-				<r:Cell row="6" col="6" r="1"/>
-				<r:Cell row="7" col="8" r="1"/>
-				<r:Cell row="8" col="7" r="1"/>
-			</r:Transformation>
-		</g:Gate>
-		<g:Gate>
-			<r:Identification>
-				<r:ID>T</r:ID>
-			</r:Identification>
-			<g:Name>&#960;/8</g:Name>
-			<r:Transformation size="1">
-				<r:Cell row="1" col="1" r="1"/>
-				<r:Cell row="2" col="2" r="0.707106781" i="0.707106781">
-					<r:Symbolic syntax="odf">e^{i %PI/4 }</r:Symbolic>
-					<r:Symbolic syntax="html">e^(i &#960;/4)</r:Symbolic>
-				</r:Cell>
-			</r:Transformation>
-		</g:Gate>
-	</g:GateLibrary>
+			</Description>
+			<Transformation size="3">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+				<Cell row="3" col="3" r="1"/>
+				<Cell row="4" col="4" r="1"/>
+				<Cell row="5" col="5" r="1"/>
+				<Cell row="6" col="7" r="1"/>
+				<Cell row="7" col="6" r="1"/>
+				<Cell row="8" col="8" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>H</ID>
+			</Identification>
+			<Name>Hadamard</Name>
+			<Transformation size="1">
+				<Multiplier r="0.707106781">
+					<Symbolic syntax="odf">1/sqrt(2)</Symbolic>
+					<Symbolic syntax="html">1/sqrt(2)</Symbolic>
+				</Multiplier>
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="1" col="2" r="1"/>
+				<Cell row="2" col="1" r="1"/>
+				<Cell row="2" col="2" r="-1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>I</ID>
+			</Identification>
+			<Name>Identity</Name>
+			<Transformation size="1">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>X</ID>
+			</Identification>
+			<Name>Pauli-X</Name>
+			<Nickname>NOT</Nickname>
+			<Transformation size="1">
+				<Cell row="1" col="2" r="1"/>
+				<Cell row="2" col="1" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>SQRT-NOT</ID>
+			</Identification>
+			<Name>Square Root of Not</Name>
+			<Transformation size="1">
+				<Multiplier r="0.707106781">
+					<Symbolic syntax="odf">1/sqrt(2)</Symbolic>
+					<Symbolic syntax="html">1/sqrt(2)</Symbolic>
+				</Multiplier>
+				<Cell row="1" col="2" r="1"/>
+				<Cell row="2" col="1" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>Y</ID>
+			</Identification>
+			<Name>Pauli-Y</Name>
+			<Transformation size="1">
+				<Cell row="1" col="2" i="-1"/>
+				<Cell row="2" col="1" i="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>Z</ID>
+			</Identification>
+			<Name>Pauli-Z</Name>
+			<Transformation size="1">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="-1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>S</ID>
+			</Identification>
+			<Name>Phase</Name>
+			<Transformation size="1">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" i="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>SHIFT</ID>
+			</Identification>
+			<Name>Phase Shift</Name>
+			<Parameter>
+				<Name>&#952;</Name>
+			</Parameter>
+			<Transformation size="1">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2">
+					<Symbolic syntax="html">e^(2&#960;i&#952;)</Symbolic>
+				</Cell>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>SWAP</ID>
+			</Identification>
+			<Name>Swap</Name>
+			<Transformation size="2">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="3" r="1"/>
+				<Cell row="3" col="2" r="1"/>
+				<Cell row="4" col="4" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>TOFFOLI</ID>
+			</Identification>
+			<Name>Toffoli</Name>
+			<Nickname>controlled-controlled-not</Nickname>
+			<Description>The Toffoli gate is a reversible gate that takes three bits as input. The first two are control bits and are left unchanged by the gate. The third bit is flipped  if both control bits are equal to 1. It is also known as the “controlled-controlled-not” gate</Description>
+			<Transformation size="3">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="3" r="1"/>
+				<Cell row="3" col="2" r="1"/>
+				<Cell row="4" col="4" r="1"/>
+				<Cell row="5" col="5" r="1"/>
+				<Cell row="6" col="6" r="1"/>
+				<Cell row="7" col="8" r="1"/>
+				<Cell row="8" col="7" r="1"/>
+			</Transformation>
+		</Gate>
+		<Gate>
+			<Identification>
+				<ID>T</ID>
+			</Identification>
+			<Name>&#960;/8</Name>
+			<Transformation size="1">
+				<Cell row="1" col="1" r="1"/>
+				<Cell row="2" col="2" r="0.707106781" i="0.707106781">
+					<Symbolic syntax="odf">e^{i %PI/4 }</Symbolic>
+					<Symbolic syntax="html">e^(i &#960;/4)</Symbolic>
+				</Cell>
+			</Transformation>
+		</Gate>
+	</GateLibrary>
 	
-	<c:CircuitLibrary>
-		<r:Identification>
-			<r:ID>ExampleCircuitLibrary</r:ID>
-			<r:Agency>qisxml.org</r:Agency>
-			<r:Version>1.0</r:Version>
-		</r:Identification>
+	<CircuitLibrary>
+		<Identification>
+			<ID>ExampleCircuitLibrary</ID>
+			<Agency>qisxml.org</Agency>
+			<Version>1.0</Version>
+		</Identification>
 	
-		<c:Circuit size="3">
-			<r:Identification>
-				<r:ID>qft3</r:ID>
-			</r:Identification>
-			<c:Name>3-qubit QFT</c:Name>
-			<c:Description>A three qubit quantum Fourier transform</c:Description>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="2"/>
-					<c:Map qubit="2" input="1"/>
-					<c:GateRef>
-						<r:ID>C-S</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="2"/>
-					<c:Map qubit="3" input="1"/>
-					<c:GateRef>
-						<r:ID>C-T</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="2" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="2" input="2"/>
-					<c:Map qubit="3" input="1"/>
-					<c:GateRef>
-						<r:ID>C-S</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="3" input="2"/>
-					<c:GateRef>
-						<r:ID>SWAP</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-		</c:Circuit>
-		<c:Circuit size="3">
-			<r:Identification>
-				<r:ID>three_qb_phase_flip</r:ID>
-			</r:Identification>
-			<c:Name>3-qubit phase flip code</c:Name>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="3" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="2" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-		</c:Circuit>
-		<c:Circuit size="9">
-			<r:Identification>
-				<r:ID>nine_qbit_shor</r:ID>
-			</r:Identification>
-			<c:Name>9-qubit Shor qubit code</c:Name>
-			<c:Description>Encoding circuit for the Shor nine qubit code.
-			</c:Description>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="4" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="7" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:GateRef>
-						<r:ID>H</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="8" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="3" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="6" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="9" input="2" value="0"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-		</c:Circuit>
-		<c:Circuit size="6">
-			<r:Identification>
-				<r:ID>adder2</r:ID>
-				<r:Agency>pascal.heus.name</r:Agency>
-				<r:Version>1.0</r:Version>			
-			</r:Identification>
-			<c:Description>A simple example is a 2-bit wide adder. 
+		<Circuit size="3">
+			<Identification>
+				<ID>qft3</ID>
+			</Identification>
+			<Name>3-qubit QFT</Name>
+			<Description>A three qubit quantum Fourier transform</Description>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="2"/>
+					<Map qubit="2" input="1"/>
+					<GateRef>
+						<ID>C-S</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="2"/>
+					<Map qubit="3" input="1"/>
+					<GateRef>
+						<ID>C-T</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="2" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="2" input="2"/>
+					<Map qubit="3" input="1"/>
+					<GateRef>
+						<ID>C-S</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="3" input="2"/>
+					<GateRef>
+						<ID>SWAP</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+		</Circuit>
+		<Circuit size="3">
+			<Identification>
+				<ID>three_qb_phase_flip</ID>
+			</Identification>
+			<Name>3-qubit phase flip code</Name>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="3" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="2" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+		</Circuit>
+		<Circuit size="9">
+			<Identification>
+				<ID>nine_qbit_shor</ID>
+			</Identification>
+			<Name>9-qubit Shor qubit code</Name>
+			<Description>Encoding circuit for the Shor nine qubit code.
+			</Description>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="4" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="7" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<GateRef>
+						<ID>H</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="8" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="3" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="6" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="9" input="2" value="0"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+		</Circuit>
+		<Circuit size="6">
+			<Identification>
+				<ID>adder2</ID>
+				<Agency>pascal.heus.name</Agency>
+				<Version>1.0</Version>			
+			</Identification>
+			<Description>A simple example is a 2-bit wide adder. 
 			It uses six qubits: inp0, inp1, sum0, sum1, anc0, and carryOut. 
 			The input is inp0/1 and sum0/1. The output is sum0, sum1, and carryOut. 
 			The least significant bits are at the top.		
 			(source: http://hissa.nist.gov/~black/Quantum/genadder.html)
-			</c:Description>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:Map qubit="3" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:Map qubit="3" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="3" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-		</c:Circuit>
-		<c:Circuit size="15">
-			<r:Identification>
-				<r:ID>adder5</r:ID>
-				<r:Agency>pascal.heus.name</r:Agency>
-				<r:Version>1.0</r:Version>			
-			</r:Identification>
-			<c:Description>A 5-bit wide adder based on http://hissa.nist.gov/~black/Quantum/genadder.html</c:Description>
-			<r:Input qubit="1"><r:Name>InputA0</r:Name></r:Input>
-			<r:Input qubit="2"><r:Name>InputB0</r:Name></r:Input>
-			<r:Input qubit="3"><r:Name>Ancillary0</r:Name></r:Input>
-			<r:Input qubit="4"><r:Name>InputA1</r:Name></r:Input>
-			<r:Input qubit="5"><r:Name>InputB1</r:Name></r:Input>
-			<r:Input qubit="6"><r:Name>Ancillary1</r:Name></r:Input>
-			<r:Input qubit="7"><r:Name>InputA2</r:Name></r:Input>
-			<r:Input qubit="8"><r:Name>InputB2</r:Name></r:Input>
-			<r:Input qubit="9"><r:Name>Ancillary2</r:Name></r:Input>
-			<r:Input qubit="10"><r:Name>InputA3</r:Name></r:Input>
-			<r:Input qubit="11"><r:Name>InputB3</r:Name></r:Input>
-			<r:Input qubit="12"><r:Name>Ancillary3</r:Name></r:Input>
-			<r:Input qubit="13"><r:Name>InputA4</r:Name></r:Input>
-			<r:Input qubit="14"><r:Name>InputB4</r:Name></r:Input>
-			<r:Input qubit="15"><r:Name>Ancillary4</r:Name></r:Input>
-			<r:Output qubit="2"><r:Name>Sum0</r:Name></r:Output>
-			<r:Output qubit="5"><r:Name>Sum1</r:Name></r:Output>
-			<r:Output qubit="8"><r:Name>Sum2</r:Name></r:Output>
-			<r:Output qubit="11"><r:Name>Sum3</r:Name></r:Output>
-			<r:Output qubit="14"><r:Name>Sum4</r:Name></r:Output>
-			<r:Output qubit="15"><r:Name>CarryOut</r:Name></r:Output>
+			</Description>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<Map qubit="3" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<Map qubit="5" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<Map qubit="3" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="3" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+		</Circuit>
+		<Circuit size="15">
+			<Identification>
+				<ID>adder5</ID>
+				<Agency>pascal.heus.name</Agency>
+				<Version>1.0</Version>			
+			</Identification>
+			<Description>A 5-bit wide adder based on http://hissa.nist.gov/~black/Quantum/genadder.html</Description>
+			<Input qubit="1"><Name>InputA0</Name></Input>
+			<Input qubit="2"><Name>InputB0</Name></Input>
+			<Input qubit="3"><Name>Ancillary0</Name></Input>
+			<Input qubit="4"><Name>InputA1</Name></Input>
+			<Input qubit="5"><Name>InputB1</Name></Input>
+			<Input qubit="6"><Name>Ancillary1</Name></Input>
+			<Input qubit="7"><Name>InputA2</Name></Input>
+			<Input qubit="8"><Name>InputB2</Name></Input>
+			<Input qubit="9"><Name>Ancillary2</Name></Input>
+			<Input qubit="10"><Name>InputA3</Name></Input>
+			<Input qubit="11"><Name>InputB3</Name></Input>
+			<Input qubit="12"><Name>Ancillary3</Name></Input>
+			<Input qubit="13"><Name>InputA4</Name></Input>
+			<Input qubit="14"><Name>InputB4</Name></Input>
+			<Input qubit="15"><Name>Ancillary4</Name></Input>
+			<Output qubit="2"><Name>Sum0</Name></Output>
+			<Output qubit="5"><Name>Sum1</Name></Output>
+			<Output qubit="8"><Name>Sum2</Name></Output>
+			<Output qubit="11"><Name>Sum3</Name></Output>
+			<Output qubit="14"><Name>Sum4</Name></Output>
+			<Output qubit="15"><Name>CarryOut</Name></Output>
 			<!-- sum bit 0 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:Map qubit="3" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<Map qubit="3" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- sum bit 1 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- sum bit 2 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:Map qubit="9" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="6" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:Map qubit="9" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="8" input="2"/>
+					<Map qubit="9" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="8" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="6" input="1"/>
+					<Map qubit="8" input="2"/>
+					<Map qubit="9" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- sum bit 3 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="10" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:Map qubit="12" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="10" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="9" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:Map qubit="12" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="10" input="1"/>
+					<Map qubit="11" input="2"/>
+					<Map qubit="12" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="10" input="1"/>
+					<Map qubit="11" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="9" input="1"/>
+					<Map qubit="11" input="2"/>
+					<Map qubit="12" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- sum bit 4 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="13" input="1"/>
-					<c:Map qubit="14" input="2"/>
-					<c:Map qubit="15" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="13" input="1"/>
-					<c:Map qubit="14" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="12" input="1"/>
-					<c:Map qubit="14" input="2"/>
-					<c:Map qubit="15" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="13" input="1"/>
+					<Map qubit="14" input="2"/>
+					<Map qubit="15" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="13" input="1"/>
+					<Map qubit="14" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="12" input="1"/>
+					<Map qubit="14" input="2"/>
+					<Map qubit="15" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- finish bit 4 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="12" input="1"/>
-					<c:Map qubit="14" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="12" input="1"/>
+					<Map qubit="14" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- finish bit 3 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="9" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:Map qubit="12" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="10" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:Map qubit="12" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="10" input="1"/>
-					<c:Map qubit="12" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="9" input="1"/>
-					<c:Map qubit="11" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="9" input="1"/>
+					<Map qubit="11" input="2"/>
+					<Map qubit="12" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="10" input="1"/>
+					<Map qubit="11" input="2"/>
+					<Map qubit="12" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="10" input="1"/>
+					<Map qubit="12" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="9" input="1"/>
+					<Map qubit="11" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- finish bit 2 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="6" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:Map qubit="9" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:Map qubit="9" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="7" input="1"/>
-					<c:Map qubit="9" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="6" input="1"/>
-					<c:Map qubit="8" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="6" input="1"/>
+					<Map qubit="8" input="2"/>
+					<Map qubit="9" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="8" input="2"/>
+					<Map qubit="9" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="7" input="1"/>
+					<Map qubit="9" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="6" input="1"/>
+					<Map qubit="8" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- finish bit 1 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:Map qubit="6" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="4" input="1"/>
-					<c:Map qubit="6" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="3" input="1"/>
-					<c:Map qubit="5" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="5" input="2"/>
+					<Map qubit="6" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="4" input="1"/>
+					<Map qubit="6" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="3" input="1"/>
+					<Map qubit="5" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
 			<!-- finish bit 0 -->
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="2" input="2"/>
-					<c:Map qubit="3" input="3"/>
-					<c:GateRef>
-						<r:ID>TOFFOLI</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-			<c:Step>
-				<c:Operation>
-					<c:Map qubit="1" input="1"/>
-					<c:Map qubit="3" input="2"/>
-					<c:GateRef>
-						<r:ID>C-NOT</r:ID>
-					</c:GateRef>
-				</c:Operation>
-			</c:Step>
-		</c:Circuit>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="2" input="2"/>
+					<Map qubit="3" input="3"/>
+					<GateRef>
+						<ID>TOFFOLI</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+			<Step>
+				<Operation>
+					<Map qubit="1" input="1"/>
+					<Map qubit="3" input="2"/>
+					<GateRef>
+						<ID>C-NOT</ID>
+					</GateRef>
+				</Operation>
+			</Step>
+		</Circuit>
 
-	</c:CircuitLibrary>
+	</CircuitLibrary>
 
-	<c:CircuitLibrary>
-		<r:Identification>
-			<r:ID>ExampleCircuitEquivalenceLibrary</r:ID>
-			<r:Agency>pascal.heus.name</r:Agency>
-			<r:Version>1.0</r:Version>
-		</r:Identification>
-		<c:GateEquivalentCircuit>
-			<c:GateReference>
-				<r:ID>SWAP</r:ID>
-			</c:GateReference>
-			<c:Circuit size="2">
-				<c:Description>A SWAP gate equivalent using 3 C-NOT gates. The I/O are swapped as input of the second gate.</c:Description>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="2" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="2"/>
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="2" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-			</c:Circuit>
-		</c:GateEquivalentCircuit>
-		<c:GateEquivalentCircuit>
-			<c:GateReference>
-				<r:ID>C-NOT</r:ID>
-			</c:GateReference>
-			<c:Circuit size="2">
-				<c:Description>C-NOT gate equivalent composed of two Hadamard and one Controlled-Z</c:Description>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>H</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="2" input="2"/>
-						<c:GateRef>
-							<r:ID>C-Z</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>H</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-			</c:Circuit>
-		</c:GateEquivalentCircuit>
-		<c:GateEquivalentCircuit>
-			<c:GateReference>
-				<r:ID>X</r:ID>
-			</c:GateReference>
-			<c:Circuit size="1">
-				<c:Description>NOT gate equivalent circuit made of two "Square root of not" gates</c:Description>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:GateRef>
-							<r:ID>SQRT-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:GateRef>
-							<r:ID>SQRT-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-			</c:Circuit>
-		</c:GateEquivalentCircuit>
-		<c:GateEquivalentCircuit>
-			<c:GateReference>
-				<r:ID>TOFFOLI</r:ID>
-			</c:GateReference>
-			<c:Circuit size="3">
-				<c:Description>A Toffoli gate equivalent made only of Hadamard, Phase, C-Not and Pi/8 gates (source: "Quantum Computation and Quantum Information", Nielsen/Chuang, p.182)</c:Description>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>H</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="2" input="1"/>
-						<c:Map qubit="3" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation reverse="yes">
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="3" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="2" input="1"/>
-						<c:Map qubit="3" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation reverse="yes">
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="3" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation reverse="yes">
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-					<c:Operation reverse="yes">
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="2" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-					<c:Operation>
-						<c:Map qubit="3" input="1"/>
-						<c:GateRef>
-							<r:ID>H</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation reverse="yes">
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:Map qubit="2" input="2"/>
-						<c:GateRef>
-							<r:ID>C-NOT</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-				<c:Step>
-					<c:Operation>
-						<c:Map qubit="1" input="1"/>
-						<c:GateRef>
-							<r:ID>T</r:ID>
-						</c:GateRef>
-					</c:Operation>
-					<c:Operation>
-						<c:Map qubit="2" input="1"/>
-						<c:GateRef>
-							<r:ID>S</r:ID>
-						</c:GateRef>
-					</c:Operation>
-				</c:Step>
-			</c:Circuit>
-		</c:GateEquivalentCircuit>
-	</c:CircuitLibrary>
+	<CircuitLibrary>
+		<Identification>
+			<ID>ExampleCircuitEquivalenceLibrary</ID>
+			<Agency>pascal.heus.name</Agency>
+			<Version>1.0</Version>
+		</Identification>
+		<GateEquivalentCircuit>
+			<GateReference>
+				<ID>SWAP</ID>
+			</GateReference>
+			<Circuit size="2">
+				<Description>A SWAP gate equivalent using 3 C-NOT gates. The I/O are swapped as input of the second gate.</Description>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="2" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="2"/>
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="2" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+			</Circuit>
+		</GateEquivalentCircuit>
+		<GateEquivalentCircuit>
+			<GateReference>
+				<ID>C-NOT</ID>
+			</GateReference>
+			<Circuit size="2">
+				<Description>C-NOT gate equivalent composed of two Hadamard and one Controlled-Z</Description>
+				<Step>
+					<Operation>
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>H</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="2" input="2"/>
+						<GateRef>
+							<ID>C-Z</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>H</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+			</Circuit>
+		</GateEquivalentCircuit>
+		<GateEquivalentCircuit>
+			<GateReference>
+				<ID>X</ID>
+			</GateReference>
+			<Circuit size="1">
+				<Description>NOT gate equivalent circuit made of two "Square root of not" gates</Description>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<GateRef>
+							<ID>SQRT-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<GateRef>
+							<ID>SQRT-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+			</Circuit>
+		</GateEquivalentCircuit>
+		<GateEquivalentCircuit>
+			<GateReference>
+				<ID>TOFFOLI</ID>
+			</GateReference>
+			<Circuit size="3">
+				<Description>A Toffoli gate equivalent made only of Hadamard, Phase, C-Not and Pi/8 gates (source: "Quantum Computation and Quantum Information", Nielsen/Chuang, p.182)</Description>
+				<Step>
+					<Operation>
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>H</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="2" input="1"/>
+						<Map qubit="3" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation reverse="yes">
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="3" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="2" input="1"/>
+						<Map qubit="3" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation reverse="yes">
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="3" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation reverse="yes">
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+					<Operation reverse="yes">
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="2" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+					<Operation>
+						<Map qubit="3" input="1"/>
+						<GateRef>
+							<ID>H</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation reverse="yes">
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<Map qubit="2" input="2"/>
+						<GateRef>
+							<ID>C-NOT</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+				<Step>
+					<Operation>
+						<Map qubit="1" input="1"/>
+						<GateRef>
+							<ID>T</ID>
+						</GateRef>
+					</Operation>
+					<Operation>
+						<Map qubit="2" input="1"/>
+						<GateRef>
+							<ID>S</ID>
+						</GateRef>
+					</Operation>
+				</Step>
+			</Circuit>
+		</GateEquivalentCircuit>
+	</CircuitLibrary>
 	<!--
 		Programs
 	-->
-	<p:ProgramLibrary>
-		<r:Identification>
-			<r:ID>ProgramLibrary1</r:ID>
-			<r:Agency>pascal.heus.name</r:Agency>
-			<r:Version>1.0</r:Version>
-		</r:Identification>
+	<ProgramLibrary>
+		<Identification>
+			<ID>ProgramLibrary1</ID>
+			<Agency>pascal.heus.name</Agency>
+			<Version>1.0</Version>
+		</Identification>
 		<!-- 2 qubit adder 1+1 -->
-		<p:Program>
-			<r:Identification>
-				<r:ID>one_plus_one</r:ID>
-			</r:Identification>
-			<p:Name>One plus One</p:Name>
-			<p:Memory size="6"/>
-			<p:Execute>
-				<p:Register size="6">
-					<p:Prepare>
-						<p:QubitSet>
-							<p:QubitIndex>1</p:QubitIndex>
-							<p:QubitIndex>2</p:QubitIndex>
-							<p:Value r="1"/>
-						</p:QubitSet>
-					</p:Prepare>
-				</p:Register>
-				<p:CircuitRef>
-					<r:ID>adder2</r:ID>
-				</p:CircuitRef>
-			</p:Execute>
-		</p:Program>
+		<Program>
+			<Identification>
+				<ID>one_plus_one</ID>
+			</Identification>
+			<Name>One plus One</Name>
+			<Memory size="6"/>
+			<Execute>
+				<Register size="6">
+					<Prepare>
+						<QubitSet>
+							<QubitIndex>1</QubitIndex>
+							<QubitIndex>2</QubitIndex>
+							<Value r="1"/>
+						</QubitSet>
+					</Prepare>
+				</Register>
+				<CircuitRef>
+					<ID>adder2</ID>
+				</CircuitRef>
+			</Execute>
+		</Program>
 		<!-- 2 qubit adder 2+1 -->
-		<p:Program>
-			<r:Identification>
-				<r:ID>two_plus_one</r:ID>
-			</r:Identification>
-			<p:Name>Two plus One</p:Name>
-			<p:Memory size="6"/>
-			<p:Execute>
-				<p:Register size="6">
-					<p:Prepare>
-						<p:QubitSet>
-							<p:QubitIndex>2</p:QubitIndex>
-							<p:QubitIndex>4</p:QubitIndex>
-							<p:Value r="1"/>
-						</p:QubitSet>
-					</p:Prepare>
-				</p:Register>
-				<p:CircuitRef>
-					<r:ID>adder2</r:ID>
-				</p:CircuitRef>
-			</p:Execute>
-		</p:Program>
+		<Program>
+			<Identification>
+				<ID>two_plus_one</ID>
+			</Identification>
+			<Name>Two plus One</Name>
+			<Memory size="6"/>
+			<Execute>
+				<Register size="6">
+					<Prepare>
+						<QubitSet>
+							<QubitIndex>2</QubitIndex>
+							<QubitIndex>4</QubitIndex>
+							<Value r="1"/>
+						</QubitSet>
+					</Prepare>
+				</Register>
+				<CircuitRef>
+					<ID>adder2</ID>
+				</CircuitRef>
+			</Execute>
+		</Program>
 		<!-- 5 qubit adder 6+7 -->
-		<p:Program>
-			<r:Identification>
-				<r:ID>six_plus_seven</r:ID>
-			</r:Identification>
-			<p:Name>Six plus Seven</p:Name>
-			<p:Memory size="15"/>
-			<p:Execute>
-				<p:Register size="15">
-					<p:Prepare>
-						<p:QubitSet>
+		<Program>
+			<Identification>
+				<ID>six_plus_seven</ID>
+			</Identification>
+			<Name>Six plus Seven</Name>
+			<Memory size="15"/>
+			<Execute>
+				<Register size="15">
+					<Prepare>
+						<QubitSet>
 							<!-- A = 6 -->
-							<p:QubitIndex>4</p:QubitIndex>
-							<p:QubitIndex>7</p:QubitIndex>
+							<QubitIndex>4</QubitIndex>
+							<QubitIndex>7</QubitIndex>
 							<!-- B = 7 -->
-							<p:QubitIndex>2</p:QubitIndex>
-							<p:QubitIndex>5</p:QubitIndex>
-							<p:QubitIndex>8</p:QubitIndex>
-							<p:Value r="1"/>
-						</p:QubitSet>
-					</p:Prepare>
-				</p:Register>
-				<p:CircuitRef>
-					<r:ID>adder5</r:ID>
-				</p:CircuitRef>
-			</p:Execute>
-			<p:Measure>
-				<p:Register size="6">
-					<p:QubitIndex>2</p:QubitIndex>
-					<p:QubitIndex>5</p:QubitIndex>
-					<p:QubitIndex>8</p:QubitIndex>
-					<p:QubitIndex>11</p:QubitIndex>
-					<p:QubitIndex>14</p:QubitIndex>
-					<p:QubitIndex>15</p:QubitIndex>
-				</p:Register>
-			</p:Measure>
-		</p:Program>		
-	</p:ProgramLibrary>
-</i:QIS>
+							<QubitIndex>2</QubitIndex>
+							<QubitIndex>5</QubitIndex>
+							<QubitIndex>8</QubitIndex>
+							<Value r="1"/>
+						</QubitSet>
+					</Prepare>
+				</Register>
+				<CircuitRef>
+					<ID>adder5</ID>
+				</CircuitRef>
+			</Execute>
+			<Measure>
+				<Register size="6">
+					<QubitIndex>2</QubitIndex>
+					<QubitIndex>5</QubitIndex>
+					<QubitIndex>8</QubitIndex>
+					<QubitIndex>11</QubitIndex>
+					<QubitIndex>14</QubitIndex>
+					<QubitIndex>15</QubitIndex>
+				</Register>
+			</Measure>
+		</Program>		
+	</ProgramLibrary>
+</QIS>

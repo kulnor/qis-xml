@@ -37,10 +37,7 @@ OF SUCH DAMAGE.
 <xsl:stylesheet version="2.0"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
+	xmlns:qis="qis:1_1" 
 	xmlns:math="http://exslt.org/math" 
 	extension-element-prefixes="math"
 	>
@@ -51,24 +48,24 @@ OF SUCH DAMAGE.
 		<h3>1 qubit gates</h3>
 		<div>
 			<table>
-				<xsl:apply-templates select="//g:GateLibrary/g:Gate[r:Transformation/@size=1]" mode="table_row">
-					<xsl:sort select="g:Name"/>
+				<xsl:apply-templates select="//qis:GateLibrary/qis:Gate[qis:Transformation/@size=1]" mode="table_row">
+					<xsl:sort select="qis:Name"/>
 				</xsl:apply-templates>
 			</table>
 		</div>
 		<h3>2 qubit gates</h3>
 		<div>
 			<table>
-				<xsl:apply-templates select="//g:GateLibrary/g:Gate[r:Transformation/@size=2]" mode="table_row">
-					<xsl:sort select="g:Name"/>
+				<xsl:apply-templates select="//qis:GateLibrary/qis:Gate[qis:Transformation/@size=2]" mode="table_row">
+					<xsl:sort select="qis:Name"/>
 				</xsl:apply-templates>
 			</table>
 		</div>
 		<h3>3+ qubit gates</h3>
 		<div>
 			<table>
-				<xsl:apply-templates select="//g:GateLibrary/g:Gate[r:Transformation/@size>2]" mode="table_row">
-					<xsl:sort select="g:Name"/>
+				<xsl:apply-templates select="//qis:GateLibrary/qis:Gate[qis:Transformation/@size>2]" mode="table_row">
+					<xsl:sort select="qis:Name"/>
 				</xsl:apply-templates>
 			</table>
 		</div>
@@ -142,32 +139,32 @@ OF SUCH DAMAGE.
 	<!-- 
 		Gate
 	-->
-	<xsl:template match="g:Gate" mode="table_row">
+	<xsl:template match="qis:Gate" mode="table_row">
 		<tr style="background-color:#f0f0f0;">
 			<td valign="top" width="200">
 				<div style="font-weight:bold;">
-					<xsl:value-of select="g:Name"/>
+					<xsl:value-of select="qis:Name"/>
 				</div>
 				<xsl:if test="Description">
 					<div style="font-size:8pt;">
-						<xsl:value-of select="g:Description"/>
+						<xsl:value-of select="qis:Description"/>
 					</div>
 				</xsl:if>
 			</td>
 			<td style="font-size:8pt;text-align:right;">
-				<xsl:value-of select="g:Identification/@id"/>
-				<xsl:if test="g:Parameter">
+				<xsl:value-of select="qis:Identification/@id"/>
+				<xsl:if test="qis:Parameter">
 					<xsl:text>(</xsl:text>
-					<xsl:for-each select="g:Parameter">
+					<xsl:for-each select="qis:Parameter">
 						<xsl:if test="position()>1">,</xsl:if>
-						<xsl:value-of select="g:Name"/>
+						<xsl:value-of select="qis:Name"/>
 					</xsl:for-each>
 					<xsl:text>)</xsl:text>
 				</xsl:if>
 				<xsl:text>=</xsl:text>
 			</td>
 			<td>
-				<xsl:apply-templates select="r:Transformation" mode="toMatrix"/>
+				<xsl:apply-templates select="qis:Transformation" mode="toMatrix"/>
 			</td>
 			<!--
 			<td valign="middle">
@@ -180,7 +177,7 @@ OF SUCH DAMAGE.
 			</td>
 			-->
 			<td valign="middle">
-				<svg width="50" height="{(r:Transformation/@size)*$svg-cell-height}">				
+				<svg width="50" height="{(qis:Transformation/@size)*$svg-cell-height}">				
 				  <xsl:apply-templates select="." mode="svg">
 					  <xsl:with-param name="x" select="25"/>
 					  <xsl:with-param name="y" select="25"/>
@@ -194,12 +191,12 @@ OF SUCH DAMAGE.
 	<!--
 		Tranformation
 	-->
-	<xsl:template match="r:Transformation" mode="toMatrix">
+	<xsl:template match="qis:Transformation" mode="toMatrix">
 		<table>
 			<tr>
-				<xsl:if test="r:Multiplier">
+				<xsl:if test="qis:Multiplier">
 					<td style="font-size:8pt; text-align:right;">
-						<xsl:apply-templates select="r:Multiplier"/>
+						<xsl:apply-templates select="qis:Multiplier"/>
 					</td>
 				</xsl:if>
 				<td style="border:1px solid black; border-right:none; font-size:0px;">&#160;</td>
@@ -210,7 +207,7 @@ OF SUCH DAMAGE.
 			</tr>
 		</table>
 	</xsl:template>
-	<xsl:template match="r:Transformation" mode="_toMatrix">
+	<xsl:template match="qis:Transformation" mode="_toMatrix">
 		<xsl:param name="startRow">1</xsl:param>
 		<xsl:param name="startCol">1</xsl:param>
 		<xsl:param name="size">
@@ -224,8 +221,8 @@ OF SUCH DAMAGE.
 						<!-- top left cell -->
 						<td style="font-size:8pt; size=50%;" align="center">
 							<xsl:choose>
-								<xsl:when test="./r:Cell[@row=$startRow and @col=$startCol]">
-									<xsl:apply-templates select="./r:Cell[@row=$startRow and @col=$startCol]"/>
+								<xsl:when test="./qis:Cell[@row=$startRow and @col=$startCol]">
+									<xsl:apply-templates select="./qis:Cell[@row=$startRow and @col=$startCol]"/>
 								</xsl:when>
 								<xsl:otherwise>0</xsl:otherwise>
 							</xsl:choose>
@@ -233,8 +230,8 @@ OF SUCH DAMAGE.
 						<!-- top right cell -->
 						<td style="font-size:8pt; size=50%;" align="center">
 							<xsl:choose>
-								<xsl:when test="./r:Cell[@row=$startRow and @col=$startCol+1]">
-									<xsl:apply-templates select="./r:Cell[@row=$startRow and @col=$startCol+1]"/>
+								<xsl:when test="./qis:Cell[@row=$startRow and @col=$startCol+1]">
+									<xsl:apply-templates select="./qis:Cell[@row=$startRow and @col=$startCol+1]"/>
 								</xsl:when>
 								<xsl:otherwise>0</xsl:otherwise>
 							</xsl:choose>
@@ -244,8 +241,8 @@ OF SUCH DAMAGE.
 						<!-- bottom left cell -->
 						<td style="font-size:8pt;" align="center">
 							<xsl:choose>
-								<xsl:when test="./r:Cell[@row=$startRow+1 and @col=$startCol]">
-									<xsl:apply-templates select="./r:Cell[@row=$startRow+1 and @col=$startCol]"/>
+								<xsl:when test="./qis:Cell[@row=$startRow+1 and @col=$startCol]">
+									<xsl:apply-templates select="./qis:Cell[@row=$startRow+1 and @col=$startCol]"/>
 								</xsl:when>
 								<xsl:otherwise>0</xsl:otherwise>
 							</xsl:choose>
@@ -253,8 +250,8 @@ OF SUCH DAMAGE.
 						<!-- bottom right cell -->
 						<td style="font-size:8pt;" align="center">
 							<xsl:choose>
-								<xsl:when test="./r:Cell[@row=$startRow+1 and @col=$startCol+1]">
-									<xsl:apply-templates select="./r:Cell[@row=$startRow+1 and @col=$startCol+1]"/>
+								<xsl:when test="./qis:Cell[@row=$startRow+1 and @col=$startCol+1]">
+									<xsl:apply-templates select="./qis:Cell[@row=$startRow+1 and @col=$startCol+1]"/>
 								</xsl:when>
 								<xsl:otherwise>0</xsl:otherwise>
 							</xsl:choose>
@@ -315,9 +312,9 @@ OF SUCH DAMAGE.
 	<!-- 
 		Cell
 	-->
-	<xsl:template match="r:Cell">
+	<xsl:template match="qis:Cell">
 		<div style="font-weight:bold;">
-			<xsl:call-template name="r:ComplexNumberType">
+			<xsl:call-template name="qis:ComplexNumberType">
 				<xsl:with-param name="value" select="."/>
 			</xsl:call-template>
 		</div>
@@ -325,15 +322,15 @@ OF SUCH DAMAGE.
 	<!-- 
 		Multiplier
 	-->
-	<xsl:template match="r:Multiplier">
-		<xsl:call-template name="r:ComplexNumberType">
+	<xsl:template match="qis:Multiplier">
+		<xsl:call-template name="qis:ComplexNumberType">
 			<xsl:with-param name="value" select="."/>
 		</xsl:call-template>
 	</xsl:template>
 	<!-- 
 		ComplexNumberType
 	-->
-	<xsl:template name="r:ComplexNumberType">
+	<xsl:template name="qis:ComplexNumberType">
 		<xsl:param name="value"/>
 		<!-- real -->
 		<xsl:if test="$value/@r">
@@ -351,13 +348,13 @@ OF SUCH DAMAGE.
 			<xsl:text>i</xsl:text>
 		</xsl:if>
 		<!-- symbolic in html -->
-		<xsl:if test="r:Symbolic[@syntax='html']">
-			<div><xsl:value-of select="r:Symbolic[@syntax='html']"/></div>
+		<xsl:if test="qis:Symbolic[@syntax='html']">
+			<div><xsl:value-of select="qis:Symbolic[@syntax='html']"/></div>
 		</xsl:if>
 	</xsl:template>
 	
 	<!-- Image -->
-	<xsl:template match="g:Image">
+	<xsl:template match="qis:Image">
 		<xsl:choose>
 			<xsl:when test="@format='svg'">
 				<object data="{.}" width="{@width}" height="{@height}" type="image/svg+xml"/>

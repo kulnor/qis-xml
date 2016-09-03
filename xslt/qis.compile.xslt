@@ -21,25 +21,20 @@ License:
     The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet version="1.0"
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1" 
-	xmlns:c="qis:circuit:1_1" 
-	xmlns:p="qis:program:1_1" 
-	xmlns:r="qis:reusable:1_1" 
+	xmlns:qis="qis:1_1" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:math="http://exslt.org/math" 
 	extension-element-prefixes="math"
 	>
 	<xsl:import href="qis.compile.qcl.xslt"/>
 	<xsl:import href="qis.compile.qml.xslt"/>
-	<xsl:import href="qis.compile.J.xslt"/>
 	<xsl:import href="qis.exslt.xslt"/>
 
 	<xsl:output omit-xml-declaration="yes" encoding="utf-8"/>
 
 	<!-- TESTS -->
 	<xsl:template match="/">
-		<xsl:apply-templates select="/i:QIS/p:ProgramLibrary[1]/p:Program[r:Identification/r:ID='two_plus_one']" mode="qml"/>
+		<xsl:apply-templates select="/qis:QIS/qis:ProgramLibrary[1]/qis:Program[qis:Identification/qis:ID='two_plus_one']" mode="qml"/>
 	</xsl:template>
 	
 </xsl:stylesheet>

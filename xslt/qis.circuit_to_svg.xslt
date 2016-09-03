@@ -36,10 +36,7 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 -->
 <xsl:stylesheet version="2.0"
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
+	xmlns:qis="qis:1_1" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	>
 	<xsl:import href="qis.svg.xslt"/>

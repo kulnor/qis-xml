@@ -35,10 +35,7 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 -->
 <xsl:stylesheet version="2.0"
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
+	xmlns:qis="qis:1_1" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	>
 	<xsl:import href="qis.svg.xslt"/>
@@ -77,15 +74,15 @@ OF SUCH DAMAGE.
 		<h2>Circuit Library</h2>
 		<h3><xsl:apply-templates select="*:Identification"/></h3>
 		<xsl:apply-templates select="*:Name|*:Description"></xsl:apply-templates>
-		<div>This library contains <xsl:value-of select="count(c:Circuit)"/> circuit(s).</div>
-		<xsl:apply-templates select="c:Circuit"/>
+		<div>This library contains <xsl:value-of select="count(qis:Circuit)"/> circuit(s).</div>
+		<xsl:apply-templates select="qis:Circuit"/>
 	</xsl:template>
 	
 	<xsl:template match="*:Circuit">
 		<h3><xsl:apply-templates select="*:Identification"/></h3>
 		<xsl:apply-templates select="*:Name|*:Description"></xsl:apply-templates>
 		<div style="margin-top:20px;">
-			<svg width="{ (count(c:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
+			<svg width="{ (count(qis:Step) * $svg-cell-width) + $svg-element-sep-y}" height="{ (@size * $svg-cell-height) }">
 				<xsl:apply-templates select="." mode="svg"/>
 			</svg>
 		</div>
