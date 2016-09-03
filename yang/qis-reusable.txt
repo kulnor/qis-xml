@@ -1,0 +1,48 @@
+module: qis-reusable
+   +--rw complex-number
+   |  +--rw r?          decimal64
+   |  +--rw i?          decimal64
+   |  +--rw symbolic* [syntax]
+   |     +--rw value     string
+   |     +--rw syntax    string
+   +--rw input
+   |  +--rw number?        uint16
+   |  +--rw name           string
+   |  +--rw description?   string
+   +--rw matrix-cell
+   |  +--rw row?        uint32
+   |  +--rw col?        uint32
+   |  +--rw r?          decimal64
+   |  +--rw i?          decimal64
+   |  +--rw symbolic* [syntax]
+   |     +--rw value     string
+   |     +--rw syntax    string
+   +--rw matrix
+   |  +--rw cell* [row col]
+   |     +--rw row         uint32
+   |     +--rw col         uint32
+   |     +--rw r?          decimal64
+   |     +--rw i?          decimal64
+   |     +--rw symbolic* [syntax]
+   |        +--rw value     string
+   |        +--rw syntax    string
+   +--rw output
+   |  +--rw number?        uint16
+   |  +--rw name           string
+   |  +--rw description?   string
+   +--rw qubit
+   |  +--rw zero
+   |  |  +--rw r?          decimal64
+   |  |  +--rw i?          decimal64
+   |  |  +--rw symbolic* [syntax]
+   |  |     +--rw value     string
+   |  |     +--rw syntax    string
+   |  +--rw one
+   |     +--rw r?          decimal64
+   |     +--rw i?          decimal64
+   |     +--rw symbolic* [syntax]
+   |        +--rw value     string
+   |        +--rw syntax    string
+   +--rw symbolic-string
+      +--rw value     string
+      +--rw syntax?   string

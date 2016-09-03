@@ -1,0 +1,95 @@
+'Download plantuml from http://plantuml.sourceforge.net/ 
+'Generate png with java -jar plantuml.jar <file> 
+'Output in img/<module>.png 
+'If Java spits out memory error increase heap size with java -Xmx1024m  -jar plantuml.jar <file> 
+@startuml img/qis-reusable.png 
+hide empty fields 
+hide empty methods 
+hide <<case>> circle
+hide <<augment>> circle
+hide <<choice>> circle
+hide <<leafref>> stereotype
+hide <<leafref>> circle
+page 1x1 
+Title qis-reusable 
+note top of r_qis_reusable : <b>Namespace: </b> qis:reusable:1_1 \n<b>Prefix: </b> r \n<b>Contact : </b>\n“pascal.heus@gmail.com” \n<b>Revision : </b> 2016-09-03 \n
+package "r:qis-reusable" as r_qis_reusable { 
+class "qis-reusable" as qis_reusable << (M, #33CCFF) module>> 
+class "complex-number" as  qis_reusable_I_complex_number <<container>> 
+qis_reusable *-- "1" qis_reusable_I_complex_number 
+qis_reusable_I_complex_number : ComplexNumberType {uses} 
+class "ComplexNumberType" as qis_reusable_I_ComplexNumberType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_ComplexNumberType_grouping : r : decimal64   = 0 
+qis_reusable_I_ComplexNumberType_grouping : i : decimal64   = 0 
+class "symbolic" as qis_reusable_I_ComplexNumberType_I_symbolic << (L, #FF7700) list>> 
+qis_reusable_I_ComplexNumberType_grouping *-- "0..N" qis_reusable_I_ComplexNumberType_I_symbolic 
+qis_reusable_I_ComplexNumberType_I_symbolic : SymbolicStringType {uses} 
+class "input" as  qis_reusable_I_input <<container>> 
+qis_reusable *-- "1" qis_reusable_I_input 
+qis_reusable_I_input : InputType {uses} 
+class "InputType" as qis_reusable_I_InputType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_InputType_grouping : number : uint16  
+qis_reusable_I_InputType_grouping : NameDescType {uses} 
+class "IdentificationType" as qis_reusable_I_IdentificationType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_IdentificationType_grouping : id : string   {mandatory}
+qis_reusable_I_IdentificationType_grouping : version : string  
+qis_reusable_I_IdentificationType_grouping : agency : string  
+class "matrix-cell" as  qis_reusable_I_matrix_cell <<container>> 
+qis_reusable *-- "1" qis_reusable_I_matrix_cell 
+qis_reusable_I_matrix_cell : MatrixCellType {uses} 
+class "MatrixCellType" as qis_reusable_I_MatrixCellType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_MatrixCellType_grouping : row : uint32  
+qis_reusable_I_MatrixCellType_grouping : col : uint32  
+qis_reusable_I_MatrixCellType_grouping : ComplexNumberType {uses} 
+class "matrix" as  qis_reusable_I_matrix <<container>> 
+qis_reusable *-- "1" qis_reusable_I_matrix 
+qis_reusable_I_matrix : MatrixType {uses} 
+class "MatrixType" as qis_reusable_I_MatrixType_grouping <<(G,Lime) grouping>> 
+class "cell" as qis_reusable_I_MatrixType_I_cell << (L, #FF7700) list>> 
+qis_reusable_I_MatrixType_grouping *-- "0..N" qis_reusable_I_MatrixType_I_cell 
+qis_reusable_I_MatrixType_I_cell : MatrixCellType {uses} 
+class "NameDescType" as qis_reusable_I_NameDescType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_NameDescType_grouping : name : string  
+qis_reusable_I_NameDescType_grouping : description : string  
+class "output" as  qis_reusable_I_output <<container>> 
+qis_reusable *-- "1" qis_reusable_I_output 
+qis_reusable_I_output : OutputType {uses} 
+class "OutputType" as qis_reusable_I_OutputType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_OutputType_grouping : number : uint16  
+qis_reusable_I_OutputType_grouping : NameDescType {uses} 
+class "qubit" as  qis_reusable_I_qubit <<container>> 
+qis_reusable *-- "1" qis_reusable_I_qubit 
+qis_reusable_I_qubit : QubitType {uses} 
+class "QubitType" as qis_reusable_I_QubitType_grouping <<(G,Lime) grouping>> 
+class "zero" as  qis_reusable_I_QubitType_I_zero <<container>> 
+qis_reusable_I_QubitType_grouping *-- "1" qis_reusable_I_QubitType_I_zero 
+qis_reusable_I_QubitType_I_zero : ComplexNumberType {uses} 
+class "one" as  qis_reusable_I_QubitType_I_one <<container>> 
+qis_reusable_I_QubitType_grouping *-- "1" qis_reusable_I_QubitType_I_one 
+qis_reusable_I_QubitType_I_one : ComplexNumberType {uses} 
+class "symbolic-string" as  qis_reusable_I_symbolic_string <<container>> 
+qis_reusable *-- "1" qis_reusable_I_symbolic_string 
+qis_reusable_I_symbolic_string : SymbolicStringType {uses} 
+class "SymbolicStringType" as qis_reusable_I_SymbolicStringType_grouping <<(G,Lime) grouping>> 
+qis_reusable_I_SymbolicStringType_grouping : value : string   {mandatory}
+qis_reusable_I_SymbolicStringType_grouping : syntax : string  
+} 
+
+qis_reusable_I_complex_number --> qis_reusable_I_ComplexNumberType_grouping : uses 
+qis_reusable_I_ComplexNumberType_I_symbolic --> qis_reusable_I_SymbolicStringType_grouping : uses 
+qis_reusable_I_input --> qis_reusable_I_InputType_grouping : uses 
+qis_reusable_I_InputType_grouping --> qis_reusable_I_NameDescType_grouping : uses 
+qis_reusable_I_matrix_cell --> qis_reusable_I_MatrixCellType_grouping : uses 
+qis_reusable_I_MatrixCellType_grouping --> qis_reusable_I_ComplexNumberType_grouping : uses 
+qis_reusable_I_matrix --> qis_reusable_I_MatrixType_grouping : uses 
+qis_reusable_I_MatrixType_I_cell --> qis_reusable_I_MatrixCellType_grouping : uses 
+qis_reusable_I_output --> qis_reusable_I_OutputType_grouping : uses 
+qis_reusable_I_OutputType_grouping --> qis_reusable_I_NameDescType_grouping : uses 
+qis_reusable_I_qubit --> qis_reusable_I_QubitType_grouping : uses 
+qis_reusable_I_QubitType_I_zero --> qis_reusable_I_ComplexNumberType_grouping : uses 
+qis_reusable_I_QubitType_I_one --> qis_reusable_I_ComplexNumberType_grouping : uses 
+qis_reusable_I_symbolic_string --> qis_reusable_I_SymbolicStringType_grouping : uses 
+center footer
+ <size:20> UML Generated : 2016-09-03 08:17 </size>
+ endfooter 
+@enduml 
