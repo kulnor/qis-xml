@@ -1,14 +1,15 @@
-# qis-xml v1.1 (Under Development)
+# qis-xml v1.1 (draft)
 A metadata specification for Quantum Information Science
 
-This project aism at  on 
-This includes:
+This work is based on version 1.0 of the QIS-XML specification initially released in 2011 at qisxml.org(http://www.qisxml.org)
 
-* Collapse the specificaton in a single namespace to simplify ussage
-* Include a [YANG](https://en.wikipedia.org/wiki/YANG) version of the model
-* Add features to descibe quantum device capabilities
-* Consider adding support for [QMI](http://www.dwavesys.com/software) programmin model used by D-Wave
-* Improve/Enhance version 1.0
+This version aims at:
+
+* Collapsing the specificaton in a single namespace to simplify ussage
+* Including a [YANG](https://en.wikipedia.org/wiki/YANG) version of the model
+* Adding features to descibe quantum device capabilities
+* Possibly adding support for [QMI](http://www.dwavesys.com/software) programmin model used by D-Wave
+* Generally improving/enhancing version 1.0
 
  
 
