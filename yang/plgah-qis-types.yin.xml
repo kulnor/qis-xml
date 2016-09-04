@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="plgah-qis-types"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:qis="plgah:qis-types:1_1">
+  <yang-version value="1"/>
+  <namespace uri="plgah:qis-types:1_1"/>
+  <prefix value="qis"/>
+  <contact>
+    <text>“pascal.heus@gmail.com”</text>
+  </contact>
+  <description>
+    <text>This module contains a collection of YANG groupings and data types used by the QIS-XML specification.</text>
+  </description>
+  <revision date="2016-09-04">
+    <description>
+      <text>Draft/Development version</text>
+    </description>
+  </revision>
+  <grouping name="ComplexNumberType">
+    <description>
+      <text>A complex number</text>
+    </description>
+    <leaf name="r">
+      <type name="decimal64">
+        <fraction-digits value="10"/>
+      </type>
+      <default value="0"/>
+      <description>
+        <text>Real component</text>
+      </description>
+    </leaf>
+    <leaf name="i">
+      <type name="decimal64">
+        <fraction-digits value="10"/>
+      </type>
+      <default value="0"/>
+      <description>
+        <text>Imaginary component</text>
+      </description>
+    </leaf>
+    <list name="symbolic">
+      <key value="syntax"/>
+      <uses name="SymbolicExpressionType"/>
+      <description>
+        <text>Can be used to describe a symbolic expression for this value. 
+When the real and imaginary values are not specified, this can be used for syntax evaluation to infer such values.</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="InputType">
+    <description>
+      <text>Description of a gate/circuit input</text>
+    </description>
+    <leaf name="number">
+      <type name="uint16"/>
+      <description>
+        <text>The input number (one based index)</text>
+      </description>
+    </leaf>
+    <uses name="NameDescType">
+      <description>
+        <text>Input name and description</text>
+      </description>
+      <refine target-node="name">
+        <mandatory value="true"/>
+      </refine>
+    </uses>
+  </grouping>
+  <grouping name="IdentificationType">
+    <description>
+      <text>An entity identifier</text>
+    </description>
+    <leaf name="id">
+      <type name="string"/>
+      <mandatory value="true"/>
+      <description>
+        <text>A unique identifier within the container/agency</text>
+      </description>
+    </leaf>
+    <leaf name="version">
+      <type name="VersionType"/>
+      <description>
+        <text>The entity version number. Can be inherited from parent.</text>
+      </description>
+    </leaf>
+    <leaf name="agency">
+      <type name="string"/>
+      <description>
+        <text>A unique identifier for the agency maintaining this entity. Can be inherioted from parent.</text>
+      </description>
+    </leaf>
+  </grouping>
+  <grouping name="MatrixCellType">
+    <leaf name="row">
+      <type name="uint32"/>
+      <description>
+        <text>The cell row</text>
+      </description>
+    </leaf>
+    <leaf name="col">
+      <type name="uint32"/>
+      <description>
+        <text>The cell column</text>
+      </description>
+    </leaf>
+    <uses name="ComplexNumberType"/>
+    <description>
+      <text>A cell representing a complex number in a Matrix</text>
+    </description>
+  </grouping>
+  <grouping name="MatrixType">
+    <description>
+      <text>A matrix</text>
+    </description>
+    <list name="cell">
+      <key value="row col"/>
+      <uses name="MatrixCellType"/>
+      <description>
+        <text>A cell im this matrix. Zero valued cells are optional. </text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="NameDescType">
+    <description>
+      <text>A Name and Description</text>
+    </description>
+    <leaf name="name">
+      <type name="string"/>
+      <description>
+        <text>The entity name</text>
+      </description>
+    </leaf>
+    <leaf name="description">
+      <type name="string"/>
+      <description>
+        <text>A detailed description of the entity</text>
+      </description>
+    </leaf>
+  </grouping>
+  <grouping name="OutputType">
+    <description>
+      <text>Descripiton of a gate/circuit output</text>
+    </description>
+    <leaf name="number">
+      <type name="uint16"/>
+      <description>
+        <text>The output number (one based index)</text>
+      </description>
+    </leaf>
+    <uses name="NameDescType">
+      <description>
+        <text>Output name and description</text>
+      </description>
+      <refine target-node="name">
+        <mandatory value="true"/>
+      </refine>
+    </uses>
+  </grouping>
+  <grouping name="CbitType">
+    <leaf name="value">
+      <type name="boolean"/>
+      <description>
+        <text>The bit value</text>
+      </description>
+    </leaf>
+    <description>
+      <text>A classic bit</text>
+    </description>
+  </grouping>
+  <grouping name="QubitType">
+    <container name="zero">
+      <uses name="ComplexNumberType"/>
+      <description>
+        <text>The |0&gt; basis state of the Qubit</text>
+      </description>
+    </container>
+    <container name="one">
+      <uses name="ComplexNumberType"/>
+      <description>
+        <text>The |1&gt; basis state of the Qubit</text>
+      </description>
+    </container>
+    <description>
+      <text>A Quantum Bit</text>
+    </description>
+  </grouping>
+  <grouping name="SymbolicExpressionType">
+    <description>
+      <text>Can be used to describe a symbolic expression in various syntaxes</text>
+    </description>
+    <leaf name="value">
+      <type name="string"/>
+      <mandatory value="true"/>
+      <description>
+        <text>The symbolic expression</text>
+      </description>
+    </leaf>
+    <leaf name="syntax">
+      <type name="string"/>
+      <description>
+        <text>The symbolic syntax used for the value</text>
+      </description>
+    </leaf>
+  </grouping>
+  <grouping name="TransformationType">
+    <description>
+      <text>A unitary transormation represented as a square matrix of complex number</text>
+    </description>
+    <leaf name="size">
+      <type name="uint32"/>
+      <description>
+        <text>The matrix n x n size</text>
+      </description>
+    </leaf>
+    <container name="multiplier">
+      <uses name="ComplexNumberType"/>
+      <description>
+        <text>A complex number to scale the matrix</text>
+      </description>
+    </container>
+    <list name="cell">
+      <key value="row col"/>
+      <uses name="MatrixCellType"/>
+      <description>
+        <text>A cell im this matrix. Zero valued cells are optional. </text>
+      </description>
+    </list>
+  </grouping>
+  <typedef name="VersionType">
+    <type name="string">
+      <pattern value="\d|\d\.\d|\d\.\d\.\d"/>
+    </type>
+    <description>
+      <text>A version number. Can be n / n.n / n.n.n</text>
+    </description>
+  </typedef>
+  <grouping name="GateType">
+    <description>
+      <text>A quantum gate</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType">
+      <refine target-node="name">
+        <mandatory value="true"/>
+      </refine>
+    </uses>
+    <leaf-list name="nickname">
+      <type name="string"/>
+      <description>
+        <text>Short/altername names</text>
+      </description>
+    </leaf-list>
+    <list name="input">
+      <key value="number"/>
+      <uses name="InputType"/>
+      <description>
+        <text>Description of the gate input</text>
+      </description>
+    </list>
+    <list name="output">
+      <key value="number"/>
+      <uses name="OutputType"/>
+      <description>
+        <text>Description of the gate output</text>
+      </description>
+    </list>
+    <list name="parameter">
+      <key value="name"/>
+      <uses name="NameDescType"/>
+      <container name="value">
+        <uses name="ComplexNumberType"/>
+        <description>
+          <text>The parameter value</text>
+        </description>
+      </container>
+      <description>
+        <text>Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix.</text>
+      </description>
+    </list>
+    <container name="transformation">
+      <uses name="TransformationType"/>
+      <description>
+        <text>The unitary transformation the gate performs</text>
+      </description>
+    </container>
+  </grouping>
+  <grouping name="GateLibrary">
+    <description>
+      <text>A collection of quantum gates</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType"/>
+    <list name="gate">
+      <key value="agency id version"/>
+      <uses name="GateType"/>
+      <description>
+        <text>The collection of gates in this libraryr</text>
+      </description>
+    </list>
+  </grouping>
+</module>
