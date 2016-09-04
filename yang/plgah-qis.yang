@@ -1,0 +1,239 @@
+module plgah-qis {
+    yang-version 1;
+       
+    namespace
+      "qis:1_1";
+
+    prefix qis;
+
+    //import ietf-inet-types { prefix "inet";  }
+
+    contact “pascal.heus@gmail.com”;
+
+    description
+      "This module is a YANG version of the QIS-XML 1.1 specification.";
+
+    revision 2016-09-04 {
+         description "Draft/Development version";
+    }
+
+    /***********************************************************************
+    * REUSABLE TYPES & ELEMENTS
+    ***********************************************************************/
+
+    grouping ComplexNumberType {
+        description "A complex number";
+        leaf r {
+            type decimal64 {fraction-digits 10;}
+            default 0;
+            description "Real component";
+        }
+        leaf i {
+            type decimal64 {fraction-digits 10;}
+            default 0;
+            description "Imaginary component";
+        }
+        list symbolic {
+            key "syntax";
+            uses SymbolicExpressionType;
+            description "Can be used to describe a symbolic expression for this value. 
+              When the real and imaginary values are not specified, this can be used for syntax evaluation to infer such values.";
+        }
+    }
+
+    grouping InputType {
+        description "Description of a gate/circuit input";
+        leaf number {
+            type uint16;
+            description "The input number (one based index)";
+        }
+        uses NameDescType {
+            description "Input name and description";
+            refine name { mandatory true; }
+        }
+    }
+    
+    grouping IdentificationType {
+        description "An entity identifier";
+        leaf id {
+            type string;
+            mandatory true;
+            description "A unique identifier within the container/agency";
+        }
+        leaf version {
+            type VersionType;
+            description "The entity version number. Can be inherited from parent.";
+        }
+        leaf agency {
+            type string;
+            description "A unique identifier for the agency maintaining this entity. Can be inherioted from parent.";
+        }
+    }
+
+    grouping MatrixCellType {
+        leaf row {
+            type uint32;
+            description "The cell row";
+        }
+        leaf col {
+            type uint32;
+            description "The cell column";
+        }
+        uses ComplexNumberType;
+        description "A cell representing a complex number in a Matrix";
+    }
+    
+    grouping MatrixType {
+        description "A matrix";
+        list cell {
+            key "row col";
+            uses MatrixCellType;
+            description "A cell im this matrix. Zero valued cells are optional. ";
+        }
+    }
+   
+    grouping NameDescType {
+        description "A Name and Description";
+        leaf name {
+            type string;
+            description "The entity name";
+        }
+        leaf description {
+            type string;
+            description "A detailed description of the entity";
+        }
+    }
+
+    grouping OutputType {
+        description "Descripiton of a gate/circuit output";
+        leaf number {
+            type uint16;
+            description "The output number (one based index)";
+        }
+        uses NameDescType {
+            description "Output name and description";
+            refine name { mandatory true; }
+        }
+    }
+
+    grouping CbitType {
+        leaf value {
+             type boolean;
+             description "The bit value";
+        }
+        description "A classic bit";
+    }
+
+    grouping QubitType {
+        container zero {
+            uses ComplexNumberType;
+            description "The |0> basis state of the Qubit";
+        }
+        container one {
+            uses ComplexNumberType;
+            description "The |1> basis state of the Qubit";
+        }
+        description "A Quantum Bit";
+    }
+
+    grouping SymbolicExpressionType {
+        description "Can be used to describe a symbolic expression in various syntaxes";
+        leaf value {
+            type string;
+            mandatory true;
+            description "The symbolic expression";
+        }
+        leaf syntax {
+            type string;
+            description "The symbolic syntax used for the value";
+        }
+    }
+
+    grouping TransformationType {
+        description "A unitary transormation represented as a square matrix of complex number";
+        leaf size {
+            type uint32;
+            description "The matrix n x n size";
+        }
+        container multiplier {
+            uses ComplexNumberType;
+            description "A complex number to scale the matrix";
+        }
+        list cell {
+            key "row col";
+            uses MatrixCellType;
+            description "A cell im this matrix. Zero valued cells are optional. ";
+        }       
+    }
+
+    typedef VersionType {
+        type string {
+            pattern "\d|\d\.\d|\d\.\d\.\d";
+        }
+        description "A version number. Can be n / n.n / n.n.n";
+    }
+
+    /***********************************************************************
+    * GATE TYPES & ELEMENTS
+    ***********************************************************************/
+
+    grouping GateType {
+        description "A quantum gate";
+        uses IdentificationType;
+        uses NameDescType {
+	    refine name { mandatory true; }
+	}
+	leaf-list nickname {
+	    type string;
+	    description "Short/altername names";
+	}
+	list input {
+	    key "number"; 
+	    uses InputType;
+	    description "Description of the gate input";
+	}
+	list output {
+	    key "number"; 
+	    uses OutputType;
+	    description "Description of the gate output";
+	}
+	list parameter {
+	    key name;
+	    uses NameDescType;
+	    container value {
+	        uses ComplexNumberType;
+	        description "The parameter value";
+	    }
+	    description "Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix.";
+	}
+	container transformation { /* required */
+	    uses TransformationType;
+	    description "The unitary transformation the gate performs";
+	}
+    }
+
+    grouping GateLibrary {
+        description "A collection of quantum gates";
+        uses IdentificationType;
+        uses NameDescType;
+        list gate {
+            key "agency id version";
+            uses GateType;
+            description "The collection of gates in this libraryr";
+        }
+    }
+    
+    /***********************************************************************
+    * MAIN CONTAINER
+    ***********************************************************************/
+
+    container qis {
+        description "A QIS instance";
+        uses IdentificationType;
+        list gate-library {
+            key "agency id version";
+            uses GateLibrary;
+            description "Gate libraries deployed on this device";
+        }
+    }
+}

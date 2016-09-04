@@ -1,0 +1,124 @@
+'Download plantuml from http://plantuml.sourceforge.net/ 
+'Generate png with java -jar plantuml.jar <file> 
+'Output in img/<module>.png 
+'If Java spits out memory error increase heap size with java -Xmx1024m  -jar plantuml.jar <file> 
+@startuml img/plgah-qis.png 
+hide empty fields 
+hide empty methods 
+hide <<case>> circle
+hide <<augment>> circle
+hide <<choice>> circle
+hide <<leafref>> stereotype
+hide <<leafref>> circle
+page 1x1 
+Title plgah-qis 
+note top of qis_plgah_qis : <b>Namespace: </b> qis:1_1 \n<b>Prefix: </b> qis \n<b>Contact : </b>\n“pascal.heus@gmail.com” \n<b>Revision : </b> 2016-09-04 \n
+package "qis:plgah-qis" as qis_plgah_qis { 
+class "plgah-qis" as plgah_qis << (M, #33CCFF) module>> 
+class "ComplexNumberType" as plgah_qis_I_ComplexNumberType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_ComplexNumberType_grouping : r : decimal64   = 0 
+plgah_qis_I_ComplexNumberType_grouping : i : decimal64   = 0 
+class "symbolic" as plgah_qis_I_ComplexNumberType_I_symbolic << (L, #FF7700) list>> 
+plgah_qis_I_ComplexNumberType_grouping *-- "0..N" plgah_qis_I_ComplexNumberType_I_symbolic 
+plgah_qis_I_ComplexNumberType_I_symbolic : SymbolicExpressionType {uses} 
+class "InputType" as plgah_qis_I_InputType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_InputType_grouping : number : uint16  
+plgah_qis_I_InputType_grouping : NameDescType {uses} 
+class "IdentificationType" as plgah_qis_I_IdentificationType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_IdentificationType_grouping : id : string   {mandatory}
+plgah_qis_I_IdentificationType_grouping : version : VersionType  
+plgah_qis_I_IdentificationType_grouping : agency : string  
+class "MatrixCellType" as plgah_qis_I_MatrixCellType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_MatrixCellType_grouping : row : uint32  
+plgah_qis_I_MatrixCellType_grouping : col : uint32  
+plgah_qis_I_MatrixCellType_grouping : ComplexNumberType {uses} 
+class "MatrixType" as plgah_qis_I_MatrixType_grouping <<(G,Lime) grouping>> 
+class "cell" as plgah_qis_I_MatrixType_I_cell << (L, #FF7700) list>> 
+plgah_qis_I_MatrixType_grouping *-- "0..N" plgah_qis_I_MatrixType_I_cell 
+plgah_qis_I_MatrixType_I_cell : MatrixCellType {uses} 
+class "NameDescType" as plgah_qis_I_NameDescType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_NameDescType_grouping : name : string  
+plgah_qis_I_NameDescType_grouping : description : string  
+class "OutputType" as plgah_qis_I_OutputType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_OutputType_grouping : number : uint16  
+plgah_qis_I_OutputType_grouping : NameDescType {uses} 
+class "CbitType" as plgah_qis_I_CbitType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_CbitType_grouping : value : boolean  
+class "QubitType" as plgah_qis_I_QubitType_grouping <<(G,Lime) grouping>> 
+class "zero" as  plgah_qis_I_QubitType_I_zero <<container>> 
+plgah_qis_I_QubitType_grouping *-- "1" plgah_qis_I_QubitType_I_zero 
+plgah_qis_I_QubitType_I_zero : ComplexNumberType {uses} 
+class "one" as  plgah_qis_I_QubitType_I_one <<container>> 
+plgah_qis_I_QubitType_grouping *-- "1" plgah_qis_I_QubitType_I_one 
+plgah_qis_I_QubitType_I_one : ComplexNumberType {uses} 
+class "SymbolicExpressionType" as plgah_qis_I_SymbolicExpressionType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_SymbolicExpressionType_grouping : value : string   {mandatory}
+plgah_qis_I_SymbolicExpressionType_grouping : syntax : string  
+class "TransformationType" as plgah_qis_I_TransformationType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_TransformationType_grouping : size : uint32  
+class "multiplier" as  plgah_qis_I_TransformationType_I_multiplier <<container>> 
+plgah_qis_I_TransformationType_grouping *-- "1" plgah_qis_I_TransformationType_I_multiplier 
+plgah_qis_I_TransformationType_I_multiplier : ComplexNumberType {uses} 
+class "cell" as plgah_qis_I_TransformationType_I_cell << (L, #FF7700) list>> 
+plgah_qis_I_TransformationType_grouping *-- "0..N" plgah_qis_I_TransformationType_I_cell 
+plgah_qis_I_TransformationType_I_cell : MatrixCellType {uses} 
+class "VersionType" as VersionType << (T, YellowGreen) typedef>>
+VersionType : string {pattern = \d|\d\.\d|\d\.\d\.\d...}
+class "GateType" as plgah_qis_I_GateType_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_GateType_grouping : IdentificationType {uses} 
+plgah_qis_I_GateType_grouping : NameDescType {uses} 
+plgah_qis_I_GateType_grouping : nickname []: string 
+class "input" as plgah_qis_I_GateType_I_input << (L, #FF7700) list>> 
+plgah_qis_I_GateType_grouping *-- "0..N" plgah_qis_I_GateType_I_input 
+plgah_qis_I_GateType_I_input : InputType {uses} 
+class "output" as plgah_qis_I_GateType_I_output << (L, #FF7700) list>> 
+plgah_qis_I_GateType_grouping *-- "0..N" plgah_qis_I_GateType_I_output 
+plgah_qis_I_GateType_I_output : OutputType {uses} 
+class "parameter" as plgah_qis_I_GateType_I_parameter << (L, #FF7700) list>> 
+plgah_qis_I_GateType_grouping *-- "0..N" plgah_qis_I_GateType_I_parameter 
+plgah_qis_I_GateType_I_parameter : NameDescType {uses} 
+class "value" as  plgah_qis_I_GateType_I_parameter_I_value <<container>> 
+plgah_qis_I_GateType_I_parameter *-- "1" plgah_qis_I_GateType_I_parameter_I_value 
+plgah_qis_I_GateType_I_parameter_I_value : ComplexNumberType {uses} 
+class "transformation" as  plgah_qis_I_GateType_I_transformation <<container>> 
+plgah_qis_I_GateType_grouping *-- "1" plgah_qis_I_GateType_I_transformation 
+plgah_qis_I_GateType_I_transformation : TransformationType {uses} 
+class "GateLibrary" as plgah_qis_I_GateLibrary_grouping <<(G,Lime) grouping>> 
+plgah_qis_I_GateLibrary_grouping : IdentificationType {uses} 
+plgah_qis_I_GateLibrary_grouping : NameDescType {uses} 
+class "gate" as plgah_qis_I_GateLibrary_I_gate << (L, #FF7700) list>> 
+plgah_qis_I_GateLibrary_grouping *-- "0..N" plgah_qis_I_GateLibrary_I_gate 
+plgah_qis_I_GateLibrary_I_gate : GateType {uses} 
+class "qis" as  plgah_qis_I_qis <<container>> 
+plgah_qis *-- "1" plgah_qis_I_qis 
+plgah_qis_I_qis : IdentificationType {uses} 
+class "gate-library" as plgah_qis_I_qis_I_gate_library << (L, #FF7700) list>> 
+plgah_qis_I_qis *-- "0..N" plgah_qis_I_qis_I_gate_library 
+plgah_qis_I_qis_I_gate_library : GateLibrary {uses} 
+} 
+
+plgah_qis_I_ComplexNumberType_I_symbolic --> plgah_qis_I_SymbolicExpressionType_grouping : uses 
+plgah_qis_I_InputType_grouping --> plgah_qis_I_NameDescType_grouping : uses 
+plgah_qis_I_MatrixCellType_grouping --> plgah_qis_I_ComplexNumberType_grouping : uses 
+plgah_qis_I_MatrixType_I_cell --> plgah_qis_I_MatrixCellType_grouping : uses 
+plgah_qis_I_OutputType_grouping --> plgah_qis_I_NameDescType_grouping : uses 
+plgah_qis_I_QubitType_I_zero --> plgah_qis_I_ComplexNumberType_grouping : uses 
+plgah_qis_I_QubitType_I_one --> plgah_qis_I_ComplexNumberType_grouping : uses 
+plgah_qis_I_TransformationType_I_multiplier --> plgah_qis_I_ComplexNumberType_grouping : uses 
+plgah_qis_I_TransformationType_I_cell --> plgah_qis_I_MatrixCellType_grouping : uses 
+plgah_qis_I_GateType_grouping --> plgah_qis_I_IdentificationType_grouping : uses 
+plgah_qis_I_GateType_grouping --> plgah_qis_I_NameDescType_grouping : uses 
+plgah_qis_I_GateType_I_input --> plgah_qis_I_InputType_grouping : uses 
+plgah_qis_I_GateType_I_output --> plgah_qis_I_OutputType_grouping : uses 
+plgah_qis_I_GateType_I_parameter --> plgah_qis_I_NameDescType_grouping : uses 
+plgah_qis_I_GateType_I_parameter_I_value --> plgah_qis_I_ComplexNumberType_grouping : uses 
+plgah_qis_I_GateType_I_transformation --> plgah_qis_I_TransformationType_grouping : uses 
+plgah_qis_I_GateLibrary_grouping --> plgah_qis_I_IdentificationType_grouping : uses 
+plgah_qis_I_GateLibrary_grouping --> plgah_qis_I_NameDescType_grouping : uses 
+plgah_qis_I_GateLibrary_I_gate --> plgah_qis_I_GateType_grouping : uses 
+plgah_qis_I_qis --> plgah_qis_I_IdentificationType_grouping : uses 
+plgah_qis_I_qis_I_gate_library --> plgah_qis_I_GateLibrary_grouping : uses 
+center footer
+ <size:20> UML Generated : 2016-09-04 11:58 </size>
+ endfooter 
+@enduml 

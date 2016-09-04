@@ -27,7 +27,7 @@ This version aims at:
 * High level background and project overview is provided below
 * The XML schema specification is in the ```xsd``` directory and the YANG model under ```yang```
 * Examples and official reference libraries in the ````xml``` directory 
-* 
+
 
 #QIS-XML Overview
 * [Background](#background)
@@ -78,7 +78,7 @@ The main objectives of QIS-XML are:
 * Support the development of educational tools
 * Foster a better understanding of QIS amongst ICT experts
 
-Version 1.0 of QIS-XML was release in 2001. For details, see ["QIS-XML: An Extensible Markup Language for Quantum Information Science", Pascal Heus, Richard Gomez, June 2011, arXiv:0712.3925v1](http://arxiv.org/abs/1106.2684)
+Version 1.0 of QIS-XML was release in 2011. For details, see ["QIS-XML: An Extensible Markup Language for Quantum Information Science", Pascal Heus, Richard Gomez, June 2011, arXiv:0712.3925v1](http://arxiv.org/abs/1106.2684)
 Rationale
 
 Quantum Information Science is in its infancy. However, while we do not know precisely when production level quantum hardware will become available, rapid progress is being made and prototype quantum systems have been demonstrated to work. QIS research however has been so far primarily lead by physicists and the ICT community has shown little interest in it. This has been an impediment to the development of QIS as it will somehow need to smoothly integrate and co-exists with classic ICT. This lack of IT expertise may also lead to improperly designed architecture or incompatible systems.
@@ -104,7 +104,7 @@ If you are producing quantum hardware (circuits, co-processors, computers), adop
 ## QIS-XML Status and Timeline?
 QIS-XML 1.0 was initially release in June of 2011 at the conclusion of my MS thesis. It has been farily dormant since. 
 
-The specification has in the summer of 2016 received attention for the [IEEE working group P1913](https://standards.ieee.org/develop/project/1913.html) focusing on Software Defined Quantum Commmunication. This has lead to the current effort towards producing version 1.1 including a YANG version of the model to facilitate configuration and eventually operations of quantum devices using NETCONF. 
+The specification has in the summer of 2016 received attention from the [IEEE working group P1913](https://standards.ieee.org/develop/project/1913.html) focusing on Software Defined Quantum Commmunication. This has lead to the current effort towards producing version 1.1 including a YANG version of the model to facilitate configuration and eventually operations of quantum devices using NETCONF. 
 
 The future of QIS-XML greatly depends on its adoption and the establishment of a well supported community. An XML specification cannot be lead by individual effort and, without institutional support and adoption, such specification is not sustainable. If you are interested in the QIS-XML initiave and can potentially support to its adoption, maintenance and development, we encourage you to ontact us to discuss possible collaboration options.
 

@@ -1,4 +1,4 @@
-<head><title> qis 
+<head><title> plgah-qis 
 </title>
 <style type="text/css" media="all">
 
@@ -153,9 +153,9 @@ function expandAllRows() {
 </a>
 <div class="app">
 <div style="background: #eee; border: dashed 1px #000;">
-<h1> Module: <font color=blue>qis</font>, Namespace:
+<h1> Module: <font color=blue>plgah-qis</font>, Namespace:
                     <font color=blue>qis:1_1</font>, Prefix:
-                    <font color=blue>r</font></h1> 
+                    <font color=blue>qis</font></h1> 
 
  <table width="100%">
 
@@ -181,7 +181,7 @@ function expandAllRows() {
                               onclick="toggleRows(this);return false;"
                               class="folder">&nbsp;
                            </a>
-                           <font color=blue>qis</font>
+                           <font color=blue>plgah-qis</font>
                         </div>
                      </td> 
 <td>module</td><td></td><td></td><td></td><td>
@@ -193,7 +193,7 @@ function expandAllRows() {
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">complex-number</abbr>
+                             <abbr title="A QIS instance">qis</abbr>
                           </div>
                        </td> 
 <td nowrap>container</td>
@@ -201,44 +201,59 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:complex-number</td>
+                    <td nowrap>/qis:qis</td>
                     </tr> 
 <tr id="1-1-1" class="a">
                        <td nowrap>
                           <div id=9999 class=tier3>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="Real component"> <em> r </em></abbr>
+                             <abbr title="A unique identifier within the container/agency">  id </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
                        <td nowrap>config</td>
-                       <td>?</td>
+                       <td></td>
                        <td>current</td>
-                       <td nowrap>/r:complex-number/r:r</td</tr> 
+                       <td nowrap>/qis:qis/qis:id</td</tr> 
 <tr id="1-1-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier3>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="Imaginary component"> <em> i </em></abbr>
+                             <abbr title="The entity version number. Can be inherited from parent."> <em> version </em></abbr>
                           </div>
                        </td>
                        <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:complex-number/r:i</td</tr> 
+                       <td nowrap>/qis:qis/qis:version</td</tr> 
 <tr id="1-1-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier3>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent."> <em> agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:agency</td</tr> 
+<tr id="1-1-4" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier3">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">symbolic[syntax]</abbr>
+                             <abbr title="Gate libraries deployed on this device">gate-library[agency id version]</abbr>
                           </div>
                        </td> 
 <td nowrap>list</td>
@@ -246,13 +261,13 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:complex-number/r:symbolic</td>
+                    <td nowrap>/qis:qis/qis:gate-library</td>
                     </tr> 
-<tr id="1-1-3-1" class="a">
+<tr id="1-1-4-1" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
+                             <abbr title="A unique identifier within the container/agency">  id </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -261,12 +276,27 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:complex-number/r:symbolic/r:value</td</tr> 
-<tr id="1-1-3-2" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:id</td</tr> 
+<tr id="1-1-4-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  syntax </abbr>
+                             <abbr title="The entity version number. Can be inherited from parent.">  version </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:version</td</tr> 
+<tr id="1-1-4-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -275,43 +305,173 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:complex-number/r:symbolic/r:syntax</td</tr> 
-<tr id="1-2" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:agency</td</tr> 
+<tr id="1-1-4-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name"> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:name</td</tr> 
+<tr id="1-1-4-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:description</td</tr> 
+<tr id="1-1-4-6" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
+                          <div id="p5000" class="tier4">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="A Gate/Circuit Input">input</abbr>
+                             <abbr title="The collection of gates in this libraryr">gate[agency id version]</abbr>
                           </div>
                        </td> 
-<td nowrap>container</td>
+<td nowrap>list</td>
                     <td nowrap></td>
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:input</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate</td>
                     </tr> 
-<tr id="1-2-4" class="a">
+<tr id="1-1-4-6-1" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier3>
+                          <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description"> <em> number </em></abbr>
+                             <abbr title="A unique identifier within the container/agency">  id </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:id</td</tr> 
+<tr id="1-1-4-6-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity version number. Can be inherited from parent.">  version </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:version</td</tr> 
+<tr id="1-1-4-6-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:agency</td</tr> 
+<tr id="1-1-4-6-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:name</td</tr> 
+<tr id="1-1-4-6-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:description</td</tr> 
+<tr id="1-1-4-6-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf-list">&nbsp;</a>
+                             <abbr title="Short/altername names">  nickname </abbr>
+                          </div>
+                       </td>
+                       <td>leaf-list</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>*</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:nickname</td</tr> 
+<tr id="1-1-4-6-7" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Description of the gate input">input[number]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input</td>
+                    </tr> 
+<tr id="1-1-4-6-7-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The input number (one based index)">  number </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
                        <td nowrap><abbr title="uint16
 ">uint16</abbr></td>
                        <td nowrap>config</td>
-                       <td>?</td>
+                       <td></td>
                        <td>current</td>
-                       <td nowrap>/r:input/r:number</td</tr> 
-<tr id="1-2-5" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:number</td</tr> 
+<tr id="1-1-4-6-7-2" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier3>
+                          <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  name </abbr>
+                             <abbr title="The entity name">  name </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -320,12 +480,12 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:input/r:name</td</tr> 
-<tr id="1-2-6" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:name</td</tr> 
+<tr id="1-1-4-6-7-3" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier3>
+                          <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description"> <em> description </em></abbr>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -334,15 +494,119 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:input/r:description</td</tr> 
-<tr id="1-3" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:description</td</tr> 
+<tr id="1-1-4-6-8" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
+                          <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">matrix-cell</abbr>
+                             <abbr title="Description of the gate output">output[number]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output</td>
+                    </tr> 
+<tr id="1-1-4-6-8-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The output number (one based index)">  number </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint16
+">uint16</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:number</td</tr> 
+<tr id="1-1-4-6-8-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:name</td</tr> 
+<tr id="1-1-4-6-8-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:description</td</tr> 
+<tr id="1-1-4-6-9" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix.">parameter[name]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter</td>
+                    </tr> 
+<tr id="1-1-4-6-9-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:name</td</tr> 
+<tr id="1-1-4-6-9-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:description</td</tr> 
+<tr id="1-1-4-6-9-9" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier6">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The parameter value">value</abbr>
                           </div>
                        </td> 
 <td nowrap>container</td>
@@ -350,39 +614,11 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:matrix-cell</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value</td>
                     </tr> 
-<tr id="1-3-7" class="a">
+<tr id="1-1-4-6-9-9-1" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="The cell row"> <em> row </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="uint32
-">uint32</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:row</td</tr> 
-<tr id="1-3-8" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="The cell row"> <em> col </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="uint32
-">uint32</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:col</td</tr> 
-<tr id="1-3-9" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
                              <abbr title="Real component"> <em> r </em></abbr>
                           </div>
@@ -393,10 +629,10 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:r</td</tr> 
-<tr id="1-3-10" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:r</td</tr> 
+<tr id="1-1-4-6-9-9-2" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier3>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
                              <abbr title="Imaginary component"> <em> i </em></abbr>
                           </div>
@@ -407,15 +643,16 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:i</td</tr> 
-<tr id="1-3-11" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:i</td</tr> 
+<tr id="1-1-4-6-9-9-3" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier3">
+                          <div id="p5000" class="tier7">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">symbolic[syntax]</abbr>
+                             <abbr title="Can be used to describe a symbolic expression for this value. 
+When the real and imaginary values are not specified, this can be used for syntax evaluation to infer such values.">symbolic[syntax]</abbr>
                           </div>
                        </td> 
 <td nowrap>list</td>
@@ -423,13 +660,13 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:matrix-cell/r:symbolic</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic</td>
                     </tr> 
-<tr id="1-3-11-3" class="a">
+<tr id="1-1-4-6-9-9-3-1" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
+                             <abbr title="The symbolic expression">  value </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -438,12 +675,12 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:symbolic/r:value</td</tr> 
-<tr id="1-3-11-4" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic/qis:value</td</tr> 
+<tr id="1-1-4-6-9-9-3-2" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  syntax </abbr>
+                             <abbr title="The symbolic syntax used for the value">  syntax </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -452,15 +689,15 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix-cell/r:symbolic/r:syntax</td</tr> 
-<tr id="1-4" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic/qis:syntax</td</tr> 
+<tr id="1-1-4-6-10" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
+                          <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">matrix</abbr>
+                             <abbr title="The unitary transformation the gate performs">transformation</abbr>
                           </div>
                        </td> 
 <td nowrap>container</td>
@@ -468,16 +705,76 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:matrix</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation</td>
                     </tr> 
-<tr id="1-4-12" class="a">
+<tr id="1-1-4-6-10-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The matrix n x n size"> <em> size </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:size</td</tr> 
+<tr id="1-1-4-6-10-11" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier3">
+                          <div id="p5000" class="tier6">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">cell[row col]</abbr>
+                             <abbr title="A complex number to scale the matrix">multiplier</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier</td>
+                    </tr> 
+<tr id="1-1-4-6-10-11-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Real component"> <em> r </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="decimal64
+">decimal64</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:r</td</tr> 
+<tr id="1-1-4-6-10-11-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Imaginary component"> <em> i </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="decimal64
+">decimal64</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:i</td</tr> 
+<tr id="1-1-4-6-10-11-6" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier7">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Can be used to describe a symbolic expression for this value. 
+When the real and imaginary values are not specified, this can be used for syntax evaluation to infer such values.">symbolic[syntax]</abbr>
                           </div>
                        </td> 
 <td nowrap>list</td>
@@ -485,11 +782,56 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:matrix/r:cell</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic</td>
                     </tr> 
-<tr id="1-4-12-5" class="a">
+<tr id="1-1-4-6-10-11-6-3" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The symbolic expression">  value </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic/qis:value</td</tr> 
+<tr id="1-1-4-6-10-11-6-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The symbolic syntax used for the value">  syntax </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic/qis:syntax</td</tr> 
+<tr id="1-1-4-6-10-12" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier6">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="A cell im this matrix. Zero valued cells are optional. ">cell[row col]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell</td>
+                    </tr> 
+<tr id="1-1-4-6-10-12-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
                              <abbr title="The cell row">  row </abbr>
                           </div>
@@ -500,12 +842,12 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:row</td</tr> 
-<tr id="1-4-12-6" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:row</td</tr> 
+<tr id="1-1-4-6-10-12-8" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="The cell row">  col </abbr>
+                             <abbr title="The cell column">  col </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -514,10 +856,10 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:col</td</tr> 
-<tr id="1-4-12-7" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:col</td</tr> 
+<tr id="1-1-4-6-10-12-9" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
                              <abbr title="Real component"> <em> r </em></abbr>
                           </div>
@@ -528,10 +870,10 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:r</td</tr> 
-<tr id="1-4-12-8" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:r</td</tr> 
+<tr id="1-1-4-6-10-12-10" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier4>
+                          <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
                              <abbr title="Imaginary component"> <em> i </em></abbr>
                           </div>
@@ -542,15 +884,16 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:i</td</tr> 
-<tr id="1-4-12-9" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:i</td</tr> 
+<tr id="1-1-4-6-10-12-11" class="a">
                        <td nowrap id="p4000">
-                          <div id="p5000" class="tier4">
+                          <div id="p5000" class="tier7">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="No description">symbolic[syntax]</abbr>
+                             <abbr title="Can be used to describe a symbolic expression for this value. 
+When the real and imaginary values are not specified, this can be used for syntax evaluation to infer such values.">symbolic[syntax]</abbr>
                           </div>
                        </td> 
 <td nowrap>list</td>
@@ -558,13 +901,13 @@ function expandAllRows() {
                     <td nowrap>config</td>
                     <td></td>
                     <td>current</td>
-                    <td nowrap>/r:matrix/r:cell/r:symbolic</td>
+                    <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic</td>
                     </tr> 
-<tr id="1-4-12-9-1" class="a">
+<tr id="1-1-4-6-10-12-11-5" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier5>
+                          <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
+                             <abbr title="The symbolic expression">  value </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -573,12 +916,12 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:symbolic/r:value</td</tr> 
-<tr id="1-4-12-9-2" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic/qis:value</td</tr> 
+<tr id="1-1-4-6-10-12-11-6" class="a">
                        <td nowrap>
-                          <div id=9999 class=tier5>
+                          <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  syntax </abbr>
+                             <abbr title="The symbolic syntax used for the value">  syntax </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -587,308 +930,7 @@ function expandAllRows() {
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
-                       <td nowrap>/r:matrix/r:cell/r:symbolic/r:syntax</td</tr> 
-<tr id="1-5" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="A Gate/Circuit Output">output</abbr>
-                          </div>
-                       </td> 
-<td nowrap>container</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:output</td>
-                    </tr> 
-<tr id="1-5-13" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description"> <em> number </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="uint16
-">uint16</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:output/r:number</td</tr> 
-<tr id="1-5-14" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  name </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:output/r:name</td</tr> 
-<tr id="1-5-15" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description"> <em> description </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:output/r:description</td</tr> 
-<tr id="1-6" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">qubit</abbr>
-                          </div>
-                       </td> 
-<td nowrap>container</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:qubit</td>
-                    </tr> 
-<tr id="1-6-16" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier3">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">zero</abbr>
-                          </div>
-                       </td> 
-<td nowrap>container</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:qubit/r:zero</td>
-                    </tr> 
-<tr id="1-6-16-10" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier4>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="Real component"> <em> r </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:zero/r:r</td</tr> 
-<tr id="1-6-16-11" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier4>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="Imaginary component"> <em> i </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:zero/r:i</td</tr> 
-<tr id="1-6-16-12" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier4">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">symbolic[syntax]</abbr>
-                          </div>
-                       </td> 
-<td nowrap>list</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:qubit/r:zero/r:symbolic</td>
-                    </tr> 
-<tr id="1-6-16-12-3" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier5>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:zero/r:symbolic/r:value</td</tr> 
-<tr id="1-6-16-12-4" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier5>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  syntax </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:zero/r:symbolic/r:syntax</td</tr> 
-<tr id="1-6-17" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier3">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">one</abbr>
-                          </div>
-                       </td> 
-<td nowrap>container</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:qubit/r:one</td>
-                    </tr> 
-<tr id="1-6-17-13" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier4>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="Real component"> <em> r </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:one/r:r</td</tr> 
-<tr id="1-6-17-14" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier4>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="Imaginary component"> <em> i </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="decimal64
-">decimal64</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:one/r:i</td</tr> 
-<tr id="1-6-17-15" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier4">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">symbolic[syntax]</abbr>
-                          </div>
-                       </td> 
-<td nowrap>list</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:qubit/r:one/r:symbolic</td>
-                    </tr> 
-<tr id="1-6-17-15-5" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier5>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:one/r:symbolic/r:value</td</tr> 
-<tr id="1-6-17-15-6" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier5>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  syntax </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:qubit/r:one/r:symbolic/r:syntax</td</tr> 
-<tr id="1-7" class="a">
-                       <td nowrap id="p4000">
-                          <div id="p5000" class="tier2">
-                             <a href="#" id="p6000"
-                                onclick="toggleRows(this);return false"
-                                class="folder">&nbsp;
-                             </a>
-                             <abbr title="No description">symbolic-string</abbr>
-                          </div>
-                       </td> 
-<td nowrap>container</td>
-                    <td nowrap></td>
-                    <td nowrap>config</td>
-                    <td></td>
-                    <td>current</td>
-                    <td nowrap>/r:symbolic-string</td>
-                    </tr> 
-<tr id="1-7-18" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description">  value </abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td></td>
-                       <td>current</td>
-                       <td nowrap>/r:symbolic-string/r:value</td</tr> 
-<tr id="1-7-19" class="a">
-                       <td nowrap>
-                          <div id=9999 class=tier3>
-                             <a class="leaf">&nbsp;</a>
-                             <abbr title="No description"> <em> syntax </em></abbr>
-                          </div>
-                       </td>
-                       <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
-                       <td nowrap>config</td>
-                       <td>?</td>
-                       <td>current</td>
-                       <td nowrap>/r:symbolic-string/r:syntax</td</tr> 
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic/qis:syntax</td</tr> 
 
 </table>
 </div>
