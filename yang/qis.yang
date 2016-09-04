@@ -17,11 +17,9 @@ module qis {
     //import ietf-yang-types { prefix yang; }
 
     /***********************************************************************
-    * REUSABLE TYPES
+    * REUSABLE TYPES & ELEMENTS
     ***********************************************************************/
-    container complex-number {
-        uses ComplexNumberType;
-    }
+    
     grouping ComplexNumberType {
         description "A complex number";
         leaf r {
@@ -39,11 +37,10 @@ module qis {
 	     uses SymbolicStringType;
         }
     }
-
-    container input {
-        description "A Gate/Circuit Input";
-        uses InputType;
+    container complex-number {
+        uses ComplexNumberType;
     }
+
     grouping InputType {
         leaf number {
             type uint16;
@@ -51,6 +48,10 @@ module qis {
         uses NameDescType {
             refine name { mandatory true; }
         }
+    }
+    container input {
+        description "A Gate/Circuit Input";
+        uses InputType;
     }
     
     grouping IdentificationType {
@@ -66,9 +67,6 @@ module qis {
 	}
     }
 
-    container matrix-cell {
-        uses MatrixCellType;
-    }
     grouping MatrixCellType {
         description "A complex number in a square Matrix";
         leaf row {
@@ -81,16 +79,19 @@ module qis {
         }
         uses ComplexNumberType;
     }
-
-    container matrix {
-        uses MatrixType;
+    container matrix-cell {
+        uses MatrixCellType;
     }
+
     grouping MatrixType {
         description "A matrix";
         list cell {
 	    key "row col";
             uses MatrixCellType;
         }
+    }
+    container matrix {
+        uses MatrixType;
     }
 
     grouping NameDescType {
@@ -103,10 +104,6 @@ module qis {
         }
     }
 
-    container output {
-        description "A Gate/Circuit Output";
-        uses OutputType;
-    }
     grouping OutputType {
         leaf number {
             type uint16;
@@ -115,10 +112,11 @@ module qis {
             refine name { mandatory true; }
         }
     }
-
-    container qubit {
-        uses QubitType;
+    container output {
+        description "A Gate/Circuit Output";
+        uses OutputType;
     }
+
     grouping QubitType {
         container zero {
 	    uses ComplexNumberType;
@@ -127,10 +125,10 @@ module qis {
 	    uses ComplexNumberType;
 	}
     }
-
-    container symbolic-string {
-        uses SymbolicStringType;
+    container qubit {
+        uses QubitType;
     }
+
     grouping SymbolicStringType {
         description "Can be used to describe a symbolic expression in various syntaxes";
 	leaf value {
@@ -141,4 +139,15 @@ module qis {
 	    type string;
 	}
     }
+    container symbolic-string {
+        uses SymbolicStringType;
+    }
+
+
+    /***********************************************************************
+    * GATE TYPES & ELEMENTS
+    ***********************************************************************/
+
+
+    
 }
