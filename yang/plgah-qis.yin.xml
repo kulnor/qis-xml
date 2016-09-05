@@ -9,6 +9,9 @@
   <import module="plgah-qis-types">
     <prefix value="qist"/>
   </import>
+  <organization>
+    <text>Pascal L.G.A. Heus</text>
+  </organization>
   <contact>
     <text>“pascal.heus@gmail.com”</text>
   </contact>
@@ -19,6 +22,9 @@
     <description>
       <text>Draft/Development version</text>
     </description>
+    <reference>
+      <text>QIS-XML: A metadata specification for Quantum Information Science</text>
+    </reference>
   </revision>
   <container name="qis">
     <description>
@@ -29,7 +35,14 @@
       <key value="agency id version"/>
       <uses name="qist:GateLibrary"/>
       <description>
-        <text>Gate libraries deployed on this device</text>
+        <text>Gate libraries available on this device</text>
+      </description>
+    </list>
+    <list name="circuit-library">
+      <key value="agency id version"/>
+      <uses name="qist:CircuitLibrary"/>
+      <description>
+        <text>Circuit libraries available on this device</text>
       </description>
     </list>
   </container>

@@ -8,13 +8,17 @@ module plgah-qis {
 
     import plgah-qis-types { prefix "qist";  }
 
+    organization "Pascal L.G.A. Heus";
+
     contact “pascal.heus@gmail.com”;
 
     description
       "This module is a YANG version of the QIS-XML 1.1 specification.";
 
     revision 2016-09-04 {
-         description "Draft/Development version";
+        description "Draft/Development version";
+        reference "QIS-XML: A metadata specification for Quantum Information Science";
+
     }
 
     container qis {

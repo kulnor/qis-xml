@@ -1,21 +1,72 @@
 module: plgah-qis
    +--rw qis
-      +--rw id              string
-      +--rw version?        VersionType
-      +--rw agency?         string
+      +--rw agency?               NcnameType
+      +--rw id                    NcnameType
+      +--rw version?              VersionType
+      +--rw versionDescription?   string
       +--rw gate-library* [agency id version]
-         +--rw id             string
-         +--rw version        VersionType
-         +--rw agency         string
-         +--rw name?          string
-         +--rw description?   string
-         +--rw gate* [agency id version]
-            +--rw id                string
-            +--rw version           VersionType
-            +--rw agency            string
-            +--rw name              string
-            +--rw description?      string
-            +--rw nickname*         string
+      |  +--rw agency                NcnameType
+      |  +--rw id                    NcnameType
+      |  +--rw version               VersionType
+      |  +--rw versionDescription?   string
+      |  +--rw name?                 string
+      |  +--rw description?          string
+      |  +--rw gate* [agency id version]
+      |     +--rw agency                NcnameType
+      |     +--rw id                    NcnameType
+      |     +--rw version               VersionType
+      |     +--rw versionDescription?   string
+      |     +--rw name                  string
+      |     +--rw description?          string
+      |     +--rw nickname*             string
+      |     +--rw input* [number]
+      |     |  +--rw number         uint16
+      |     |  +--rw name           string
+      |     |  +--rw description?   string
+      |     +--rw output* [number]
+      |     |  +--rw number         uint16
+      |     |  +--rw name           string
+      |     |  +--rw description?   string
+      |     +--rw parameter* [name]
+      |     |  +--rw name           string
+      |     |  +--rw description?   string
+      |     |  +--rw value
+      |     |     +--rw r?          decimal64
+      |     |     +--rw i?          decimal64
+      |     |     +--rw symbolic* [syntax]
+      |     |        +--rw value     string
+      |     |        +--rw syntax    string
+      |     +--rw transformation
+      |        +--rw size?         uint32
+      |        +--rw multiplier
+      |        |  +--rw r?          decimal64
+      |        |  +--rw i?          decimal64
+      |        |  +--rw symbolic* [syntax]
+      |        |     +--rw value     string
+      |        |     +--rw syntax    string
+      |        +--rw cell* [row col]
+      |           +--rw row         uint32
+      |           +--rw col         uint32
+      |           +--rw r?          decimal64
+      |           +--rw i?          decimal64
+      |           +--rw symbolic* [syntax]
+      |              +--rw value     string
+      |              +--rw syntax    string
+      +--rw circuit-library* [agency id version]
+         +--rw agency                NcnameType
+         +--rw id                    NcnameType
+         +--rw version               VersionType
+         +--rw versionDescription?   string
+         +--rw name?                 string
+         +--rw description?          string
+         +--rw circuit* [agency id version]
+            +--rw agency                NcnameType
+            +--rw id                    NcnameType
+            +--rw version               VersionType
+            +--rw versionDescription?   string
+            +--rw name                  string
+            +--rw description?          string
+            +--rw size?                 uint32
             +--rw input* [number]
             |  +--rw number         uint16
             |  +--rw name           string
@@ -24,28 +75,34 @@ module: plgah-qis
             |  +--rw number         uint16
             |  +--rw name           string
             |  +--rw description?   string
-            +--rw parameter* [name]
-            |  +--rw name           string
-            |  +--rw description?   string
-            |  +--rw value
-            |     +--rw r?          decimal64
-            |     +--rw i?          decimal64
-            |     +--rw symbolic* [syntax]
-            |        +--rw value     string
-            |        +--rw syntax    string
-            +--rw transformation
-               +--rw size?         uint32
-               +--rw multiplier
-               |  +--rw r?          decimal64
-               |  +--rw i?          decimal64
-               |  +--rw symbolic* [syntax]
-               |     +--rw value     string
-               |     +--rw syntax    string
-               +--rw cell* [row col]
-                  +--rw row         uint32
-                  +--rw col         uint32
-                  +--rw r?          decimal64
-                  +--rw i?          decimal64
-                  +--rw symbolic* [syntax]
-                     +--rw value     string
-                     +--rw syntax    string
+            +--rw step* [yang-key]
+               +--rw yang-key       string
+               +--rw name?          string
+               +--rw description?   string
+               +--rw operation* [yang-key]
+                  +--rw yang-key       string
+                  +--rw reverse?       boolean
+                  +--rw map* [yang-key]
+                  |  +--rw yang-key    string
+                  |  +--rw qubit?      uint32
+                  |  +--rw input?      uint32
+                  |  +--rw value       boolean
+                  +--rw (transform)?
+                     +--:(gate-ref)
+                     |  +--rw gate-ref
+                     |     +--rw agency?            NcnameType
+                     |     +--rw id                 NcnameType
+                     |     +--rw version?           VersionType
+                     |     +--rw library_id?        NcnameType
+                     |     +--rw library_agency?    NcnameType
+                     |     +--rw library_version?   NcnameType
+                     +--:(circuit-ref)
+                     |  +--rw circuit-ref
+                     |     +--rw agency?            NcnameType
+                     |     +--rw id                 NcnameType
+                     |     +--rw version?           VersionType
+                     |     +--rw library_id?        NcnameType
+                     |     +--rw library_agency?    NcnameType
+                     |     +--rw library_version?   NcnameType
+                     +--:(measurement)
+                        +--rw measurement?   empty

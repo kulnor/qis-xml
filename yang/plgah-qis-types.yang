@@ -8,13 +8,16 @@ module plgah-qis-types {
 
     //import ietf-inet-types { prefix "inet";  }
 
+    organization "Pascal L.G.A. Heus";
+
     contact “pascal.heus@gmail.com”;
 
     description
-      "This module contains a collection of YANG groupings and data types used by the QIS-XML specification.";
+      "This module contains a YANG groupings and data types mirroring the QIS-XML 1.1 specification elements.";
 
-    revision 2016-09-04 {
+    revision 2016-09-05 {
          description "Draft/Development version";
+	 reference "QIS-XML: A metadata specification for Quantum Information Science";
     }
 
      /***********************************************************************
@@ -213,6 +216,14 @@ module plgah-qis-types {
         description "A version number. Can be n / n.n / n.n.n";
     }
 
+    grouping YangDummyKey {
+        description "A YANG dummy key for reuse in lists";
+        leaf yang-key {
+	    type string;
+	    description "The key value";
+	}
+    }
+
     /***********************************************************************
     * GATE
     ***********************************************************************/
@@ -288,6 +299,7 @@ module plgah-qis-types {
             description "Description of the gate output";
         }
         list step {
+	    key "yang-key";
             uses StepType;
 	    description "Sequence of steps in this circuit";
         }
@@ -304,7 +316,20 @@ module plgah-qis-types {
         }
     }
 
+    grouping GateEquivalentCircuitType {
+        description "Describes a gate circuit equivalent, typically using univeral gates.";
+	container gate-ref {
+	    uses ReferenceType;
+	    description "A reference to the Gate the circuit is equivalent to";
+	}
+	container circuit {
+	    uses CircuitType;
+	    description "The circuit equivalent to this Gate";
+	}
+    }
+    
     grouping MapType {
+	uses YangDummyKey;
         leaf qubit {
 	    type uint32;
 	    description "Maps a wire/qubit/cbit to a circuit/gate input number (one based index)";
@@ -322,16 +347,13 @@ module plgah-qis-types {
     }
     
     grouping OperationType {
-        leaf key {
-	    type string;
-	    description "An optional key. Necessary for reuse in YANG list.";
-	}
+	uses YangDummyKey;
         leaf reverse {
 	    type boolean;
 	    description "If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)";
 	}
 	list map {
-	    key "key";
+	    key "yang-key";
 	    description "Collection of maps for this Operation";
 	    uses MapType;
 	}
@@ -361,13 +383,11 @@ module plgah-qis-types {
 
     grouping StepType {
         description "A execution step in a Circuit";
-        leaf number {
-            /* note: this is not in QIS-XML as element order is used instead. Necessary in YANG for key */
-            type uint32;
-            description "The step sequence number. This is optional and should not be used for execution. Necessary for reuse in YANG list.";
-        }
+	uses YangDummyKey;
 	uses NameDescType;
 	list operation {
+	    key "yang-key";
+	    uses OperationType;
 	    description "The collection of operations for this step";
 	}
     }

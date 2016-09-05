@@ -210,17 +210,33 @@ function expandAllRows() {
                        <td nowrap>
                           <div id=9999 class=tier3>
                              <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent."> <em> agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:agency</td</tr> 
+<tr id="1-1-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier3>
+                             <a class="leaf">&nbsp;</a>
                              <abbr title="A unique identifier within the container/agency">  id </abbr>
                           </div>
                        </td>
                        <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:id</td</tr> 
-<tr id="1-1-2" class="a">
+<tr id="1-1-3" class="a">
                        <td nowrap>
                           <div id=9999 class=tier3>
                              <a class="leaf">&nbsp;</a>
@@ -235,11 +251,11 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:version</td</tr> 
-<tr id="1-1-3" class="a">
+<tr id="1-1-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier3>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent."> <em> agency </em></abbr>
+                             <abbr title="Version rationale / narrative"> <em> versionDescription </em></abbr>
                           </div>
                        </td>
                        <td>leaf</td>
@@ -248,15 +264,15 @@ string
                        <td nowrap>config</td>
                        <td>?</td>
                        <td>current</td>
-                       <td nowrap>/qis:qis/qis:agency</td</tr> 
-<tr id="1-1-4" class="a">
+                       <td nowrap>/qis:qis/qis:versionDescription</td</tr> 
+<tr id="1-1-5" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier3">
                              <a href="#" id="p6000"
                                 onclick="toggleRows(this);return false"
                                 class="folder">&nbsp;
                              </a>
-                             <abbr title="Gate libraries deployed on this device">gate-library[agency id version]</abbr>
+                             <abbr title="Gate libraries available on this device">gate-library[agency id version]</abbr>
                           </div>
                        </td> 
 <td nowrap>list</td>
@@ -266,7 +282,22 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library</td>
                     </tr> 
-<tr id="1-1-4-1" class="a">
+<tr id="1-1-5-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:agency</td</tr> 
+<tr id="1-1-5-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
@@ -274,13 +305,14 @@ string
                           </div>
                        </td>
                        <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:id</td</tr> 
-<tr id="1-1-4-2" class="a">
+<tr id="1-1-5-3" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
@@ -295,21 +327,21 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:version</td</tr> 
-<tr id="1-1-4-3" class="a">
+<tr id="1-1-5-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                             <abbr title="Version rationale / narrative"> <em> versionDescription </em></abbr>
                           </div>
                        </td>
                        <td>leaf</td>
                        <td nowrap><abbr title="string
 ">string</abbr></td>
                        <td nowrap>config</td>
-                       <td></td>
+                       <td>?</td>
                        <td>current</td>
-                       <td nowrap>/qis:qis/qis:gate-library/qis:agency</td</tr> 
-<tr id="1-1-4-4" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:versionDescription</td</tr> 
+<tr id="1-1-5-5" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
@@ -323,7 +355,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:name</td</tr> 
-<tr id="1-1-4-5" class="a">
+<tr id="1-1-5-6" class="a">
                        <td nowrap>
                           <div id=9999 class=tier4>
                              <a class="leaf">&nbsp;</a>
@@ -337,7 +369,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:description</td</tr> 
-<tr id="1-1-4-6" class="a">
+<tr id="1-1-5-7" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier4">
                              <a href="#" id="p6000"
@@ -354,7 +386,22 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate</td>
                     </tr> 
-<tr id="1-1-4-6-1" class="a">
+<tr id="1-1-5-7-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:agency</td</tr> 
+<tr id="1-1-5-7-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
@@ -362,13 +409,14 @@ string
                           </div>
                        </td>
                        <td>leaf</td>
-                       <td nowrap><abbr title="string
-">string</abbr></td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
                        <td nowrap>config</td>
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:id</td</tr> 
-<tr id="1-1-4-6-2" class="a">
+<tr id="1-1-5-7-3" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
@@ -383,21 +431,21 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:version</td</tr> 
-<tr id="1-1-4-6-3" class="a">
+<tr id="1-1-5-7-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
-                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                             <abbr title="Version rationale / narrative"> <em> versionDescription </em></abbr>
                           </div>
                        </td>
                        <td>leaf</td>
                        <td nowrap><abbr title="string
 ">string</abbr></td>
                        <td nowrap>config</td>
-                       <td></td>
+                       <td>?</td>
                        <td>current</td>
-                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:agency</td</tr> 
-<tr id="1-1-4-6-4" class="a">
+                       <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:versionDescription</td</tr> 
+<tr id="1-1-5-7-5" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
@@ -411,7 +459,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:name</td</tr> 
-<tr id="1-1-4-6-5" class="a">
+<tr id="1-1-5-7-6" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf">&nbsp;</a>
@@ -425,7 +473,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:description</td</tr> 
-<tr id="1-1-4-6-6" class="a">
+<tr id="1-1-5-7-7" class="a">
                        <td nowrap>
                           <div id=9999 class=tier5>
                              <a class="leaf-list">&nbsp;</a>
@@ -439,7 +487,7 @@ string
                        <td>*</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:nickname</td</tr> 
-<tr id="1-1-4-6-7" class="a">
+<tr id="1-1-5-7-8" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
@@ -456,7 +504,7 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input</td>
                     </tr> 
-<tr id="1-1-4-6-7-1" class="a">
+<tr id="1-1-5-7-8-1" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -470,7 +518,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:number</td</tr> 
-<tr id="1-1-4-6-7-2" class="a">
+<tr id="1-1-5-7-8-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -484,7 +532,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:name</td</tr> 
-<tr id="1-1-4-6-7-3" class="a">
+<tr id="1-1-5-7-8-3" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -498,7 +546,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:input/qis:description</td</tr> 
-<tr id="1-1-4-6-8" class="a">
+<tr id="1-1-5-7-9" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
@@ -515,7 +563,7 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output</td>
                     </tr> 
-<tr id="1-1-4-6-8-4" class="a">
+<tr id="1-1-5-7-9-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -529,7 +577,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:number</td</tr> 
-<tr id="1-1-4-6-8-5" class="a">
+<tr id="1-1-5-7-9-5" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -543,7 +591,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:name</td</tr> 
-<tr id="1-1-4-6-8-6" class="a">
+<tr id="1-1-5-7-9-6" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -557,7 +605,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:output/qis:description</td</tr> 
-<tr id="1-1-4-6-9" class="a">
+<tr id="1-1-5-7-10" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
@@ -574,7 +622,7 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter</td>
                     </tr> 
-<tr id="1-1-4-6-9-7" class="a">
+<tr id="1-1-5-7-10-7" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -588,7 +636,7 @@ string
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:name</td</tr> 
-<tr id="1-1-4-6-9-8" class="a">
+<tr id="1-1-5-7-10-8" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -602,7 +650,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:description</td</tr> 
-<tr id="1-1-4-6-9-9" class="a">
+<tr id="1-1-5-7-10-9" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier6">
                              <a href="#" id="p6000"
@@ -619,7 +667,7 @@ string
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value</td>
                     </tr> 
-<tr id="1-1-4-6-9-9-1" class="a">
+<tr id="1-1-5-7-10-9-1" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -633,7 +681,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:r</td</tr> 
-<tr id="1-1-4-6-9-9-2" class="a">
+<tr id="1-1-5-7-10-9-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -647,7 +695,7 @@ string
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:i</td</tr> 
-<tr id="1-1-4-6-9-9-3" class="a">
+<tr id="1-1-5-7-10-9-3" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier7">
                              <a href="#" id="p6000"
@@ -665,7 +713,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic</td>
                     </tr> 
-<tr id="1-1-4-6-9-9-3-1" class="a">
+<tr id="1-1-5-7-10-9-3-1" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -679,7 +727,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic/qis:value</td</tr> 
-<tr id="1-1-4-6-9-9-3-2" class="a">
+<tr id="1-1-5-7-10-9-3-2" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -693,7 +741,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:parameter/qis:value/qis:symbolic/qis:syntax</td</tr> 
-<tr id="1-1-4-6-10" class="a">
+<tr id="1-1-5-7-11" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier5">
                              <a href="#" id="p6000"
@@ -710,7 +758,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation</td>
                     </tr> 
-<tr id="1-1-4-6-10-10" class="a">
+<tr id="1-1-5-7-11-10" class="a">
                        <td nowrap>
                           <div id=9999 class=tier6>
                              <a class="leaf">&nbsp;</a>
@@ -724,7 +772,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:size</td</tr> 
-<tr id="1-1-4-6-10-11" class="a">
+<tr id="1-1-5-7-11-11" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier6">
                              <a href="#" id="p6000"
@@ -741,7 +789,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier</td>
                     </tr> 
-<tr id="1-1-4-6-10-11-4" class="a">
+<tr id="1-1-5-7-11-11-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -755,7 +803,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:r</td</tr> 
-<tr id="1-1-4-6-10-11-5" class="a">
+<tr id="1-1-5-7-11-11-5" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -769,7 +817,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:i</td</tr> 
-<tr id="1-1-4-6-10-11-6" class="a">
+<tr id="1-1-5-7-11-11-6" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier7">
                              <a href="#" id="p6000"
@@ -787,7 +835,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic</td>
                     </tr> 
-<tr id="1-1-4-6-10-11-6-3" class="a">
+<tr id="1-1-5-7-11-11-6-3" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -801,7 +849,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic/qis:value</td</tr> 
-<tr id="1-1-4-6-10-11-6-4" class="a">
+<tr id="1-1-5-7-11-11-6-4" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -815,7 +863,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:multiplier/qis:symbolic/qis:syntax</td</tr> 
-<tr id="1-1-4-6-10-12" class="a">
+<tr id="1-1-5-7-11-12" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier6">
                              <a href="#" id="p6000"
@@ -832,7 +880,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell</td>
                     </tr> 
-<tr id="1-1-4-6-10-12-7" class="a">
+<tr id="1-1-5-7-11-12-7" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -846,7 +894,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:row</td</tr> 
-<tr id="1-1-4-6-10-12-8" class="a">
+<tr id="1-1-5-7-11-12-8" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -860,7 +908,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:col</td</tr> 
-<tr id="1-1-4-6-10-12-9" class="a">
+<tr id="1-1-5-7-11-12-9" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -874,7 +922,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:r</td</tr> 
-<tr id="1-1-4-6-10-12-10" class="a">
+<tr id="1-1-5-7-11-12-10" class="a">
                        <td nowrap>
                           <div id=9999 class=tier7>
                              <a class="leaf">&nbsp;</a>
@@ -888,7 +936,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td>?</td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:i</td</tr> 
-<tr id="1-1-4-6-10-12-11" class="a">
+<tr id="1-1-5-7-11-12-11" class="a">
                        <td nowrap id="p4000">
                           <div id="p5000" class="tier7">
                              <a href="#" id="p6000"
@@ -906,7 +954,7 @@ When the real and imaginary values are not specified, this can be used for synta
                     <td>current</td>
                     <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic</td>
                     </tr> 
-<tr id="1-1-4-6-10-12-11-5" class="a">
+<tr id="1-1-5-7-11-12-11-5" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -920,7 +968,7 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic/qis:value</td</tr> 
-<tr id="1-1-4-6-10-12-11-6" class="a">
+<tr id="1-1-5-7-11-12-11-6" class="a">
                        <td nowrap>
                           <div id=9999 class=tier8>
                              <a class="leaf">&nbsp;</a>
@@ -934,6 +982,819 @@ When the real and imaginary values are not specified, this can be used for synta
                        <td></td>
                        <td>current</td>
                        <td nowrap>/qis:qis/qis:gate-library/qis:gate/qis:transformation/qis:cell/qis:symbolic/qis:syntax</td</tr> 
+<tr id="1-1-6" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier3">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Circuit libraries available on this device">circuit-library[agency id version]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library</td>
+                    </tr> 
+<tr id="1-1-6-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:agency</td</tr> 
+<tr id="1-1-6-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier within the container/agency">  id </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:id</td</tr> 
+<tr id="1-1-6-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity version number. Can be inherited from parent.">  version </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:version</td</tr> 
+<tr id="1-1-6-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Version rationale / narrative"> <em> versionDescription </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:versionDescription</td</tr> 
+<tr id="1-1-6-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name"> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:name</td</tr> 
+<tr id="1-1-6-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:description</td</tr> 
+<tr id="1-1-6-14" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier4">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The collection of circuits in this library">circuit[agency id version]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit</td>
+                    </tr> 
+<tr id="1-1-6-14-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier for the agency maintaining this entity. Can be inherioted from parent.">  agency </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:agency</td</tr> 
+<tr id="1-1-6-14-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A unique identifier within the container/agency">  id </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:id</td</tr> 
+<tr id="1-1-6-14-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity version number. Can be inherited from parent.">  version </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:version</td</tr> 
+<tr id="1-1-6-14-15" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Version rationale / narrative"> <em> versionDescription </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:versionDescription</td</tr> 
+<tr id="1-1-6-14-16" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:name</td</tr> 
+<tr id="1-1-6-14-17" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:description</td</tr> 
+<tr id="1-1-6-14-18" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The circuit size (number if inputs/outputs)"> <em> size </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:size</td</tr> 
+<tr id="1-1-6-14-19" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Description of the gate input">input[number]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:input</td>
+                    </tr> 
+<tr id="1-1-6-14-19-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The input number (one based index)">  number </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint16
+">uint16</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:input/qis:number</td</tr> 
+<tr id="1-1-6-14-19-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:input/qis:name</td</tr> 
+<tr id="1-1-6-14-19-15" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:input/qis:description</td</tr> 
+<tr id="1-1-6-14-20" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Description of the gate output">output[number]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:output</td>
+                    </tr> 
+<tr id="1-1-6-14-20-16" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The output number (one based index)">  number </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint16
+">uint16</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:output/qis:number</td</tr> 
+<tr id="1-1-6-14-20-17" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:output/qis:name</td</tr> 
+<tr id="1-1-6-14-20-18" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:output/qis:description</td</tr> 
+<tr id="1-1-6-14-21" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Sequence of steps in this circuit">step[yang-key]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step</td>
+                    </tr> 
+<tr id="1-1-6-14-21-19" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The key value">  yang-key </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:yang-key</td</tr> 
+<tr id="1-1-6-14-21-20" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The entity name"> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:name</td</tr> 
+<tr id="1-1-6-14-21-21" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="A detailed description of the entity"> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:description</td</tr> 
+<tr id="1-1-6-14-21-22" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier6">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The collection of operations for this step">operation[yang-key]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The key value">  yang-key </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:yang-key</td</tr> 
+<tr id="1-1-6-14-21-22-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)"> <em> reverse </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:reverse</td</tr> 
+<tr id="1-1-6-14-21-22-14" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier7">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Collection of maps for this Operation">map[yang-key]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:map</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-14-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The key value">  yang-key </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:map/qis:yang-key</td</tr> 
+<tr id="1-1-6-14-21-22-14-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Maps a wire/qubit/cbit to a circuit/gate input number (one based index)"> <em> qubit </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:map/qis:qubit</td</tr> 
+<tr id="1-1-6-14-21-22-14-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The input number (one based index)"> <em> input </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:map/qis:input</td</tr> 
+<tr id="1-1-6-14-21-22-14-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="If specified, set the input to a fixed value 0 or 1.">  value </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis:qis/qis:circuit-library/qis:circuit/qis:step/qis:operation/qis:map/qis:value</td</tr> 
+<tr id="1-1-6-14-21-22-15" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier7">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The trasnformation for this operation. Can be a gate, a circuit, or a measurement.">(transform)</abbr>
+                          </div>
+                       </td> 
+<td nowrap>choice</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td>Choice</td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-11" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier8">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="No description">:(gate-ref)</abbr>
+                          </div>
+                       </td> 
+<td nowrap>case</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-11-1" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier9">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="A reference to the Gate implementing this Operation">gate-ref</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-11-1-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The referred resource agency."> <em> agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:agency</td</tr> 
+<tr id="1-1-6-14-21-22-15-11-1-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Thr resource identifier within the library/agency">  id </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:id</td</tr> 
+<tr id="1-1-6-14-21-22-15-11-1-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The resource version number. Can be inherited from parent."> <em> version </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:version</td</tr> 
+<tr id="1-1-6-14-21-22-15-11-1-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The indentifier of the library containining the resource"> <em> library_id </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:library_id</td</tr> 
+<tr id="1-1-6-14-21-22-15-11-1-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The library agency, if different from the resource"> <em> library_agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:library_agency</td</tr> 
+<tr id="1-1-6-14-21-22-15-11-1-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The library version, if different from the resource"> <em> library_version </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:gate-ref/qis:library_version</td</tr> 
+<tr id="1-1-6-14-21-22-15-12" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier8">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="No description">:(circuit-ref)</abbr>
+                          </div>
+                       </td> 
+<td nowrap>case</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-12-2" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier9">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="A reference to the Gate implementing this Operation">circuit-ref</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-12-2-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The referred resource agency."> <em> agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:agency</td</tr> 
+<tr id="1-1-6-14-21-22-15-12-2-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Thr resource identifier within the library/agency">  id </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:id</td</tr> 
+<tr id="1-1-6-14-21-22-15-12-2-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The resource version number. Can be inherited from parent."> <em> version </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="VersionType
+string
+ {pattern = \d|\d\.\d|\d\.\d\.\d}">VersionType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:version</td</tr> 
+<tr id="1-1-6-14-21-22-15-12-2-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The indentifier of the library containining the resource"> <em> library_id </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:library_id</td</tr> 
+<tr id="1-1-6-14-21-22-15-12-2-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The library agency, if different from the resource"> <em> library_agency </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:library_agency</td</tr> 
+<tr id="1-1-6-14-21-22-15-12-2-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier10>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The library version, if different from the resource"> <em> library_version </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="NcnameType
+string
+ {pattern = [_A-Za-z][_\-A-Za-z0-9.]*}">NcnameType</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:circuit-ref/qis:library_version</td</tr> 
+<tr id="1-1-6-14-21-22-15-13" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier8">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="No description">:(measurement)</abbr>
+                          </div>
+                       </td> 
+<td nowrap>case</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/qis/circuit-library/circuit/step/operation</td>
+                    </tr> 
+<tr id="1-1-6-14-21-22-15-13-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier9>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Applies a Measurement on mapped wire(s)"> <em> measurement </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="empty
+">empty</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/qis/circuit-library/circuit/step/operation/qis:measurement</td</tr> 
 <tr id="4" class="a">
                      <td id="p1">
                         <div id="p2" class="tier1">

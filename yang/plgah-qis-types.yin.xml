@@ -5,16 +5,22 @@
   <yang-version value="1"/>
   <namespace uri="plgah:qis-types:1_1"/>
   <prefix value="qis"/>
+  <organization>
+    <text>Pascal L.G.A. Heus</text>
+  </organization>
   <contact>
     <text>“pascal.heus@gmail.com”</text>
   </contact>
   <description>
-    <text>This module contains a collection of YANG groupings and data types used by the QIS-XML specification.</text>
+    <text>This module contains a YANG groupings and data types mirroring the QIS-XML 1.1 specification elements.</text>
   </description>
-  <revision date="2016-09-04">
+  <revision date="2016-09-05">
     <description>
       <text>Draft/Development version</text>
     </description>
+    <reference>
+      <text>QIS-XML: A metadata specification for Quantum Information Science</text>
+    </reference>
   </revision>
   <grouping name="ComplexNumberType">
     <description>
@@ -70,8 +76,14 @@ When the real and imaginary values are not specified, this can be used for synta
     <description>
       <text>An entity identifier</text>
     </description>
+    <leaf name="agency">
+      <type name="NcnameType"/>
+      <description>
+        <text>A unique identifier for the agency maintaining this entity. Can be inherioted from parent.</text>
+      </description>
+    </leaf>
     <leaf name="id">
-      <type name="string"/>
+      <type name="NcnameType"/>
       <mandatory value="true"/>
       <description>
         <text>A unique identifier within the container/agency</text>
@@ -83,13 +95,21 @@ When the real and imaginary values are not specified, this can be used for synta
         <text>The entity version number. Can be inherited from parent.</text>
       </description>
     </leaf>
-    <leaf name="agency">
+    <leaf name="versionDescription">
       <type name="string"/>
       <description>
-        <text>A unique identifier for the agency maintaining this entity. Can be inherioted from parent.</text>
+        <text>Version rationale / narrative</text>
       </description>
     </leaf>
   </grouping>
+  <typedef name="NcnameType">
+    <type name="string">
+      <pattern value="[_A-Za-z][_\-A-Za-z0-9.]*"/>
+    </type>
+    <description>
+      <text>A resource identifier</text>
+    </description>
+  </typedef>
   <grouping name="MatrixCellType">
     <leaf name="row">
       <type name="uint32"/>
@@ -184,6 +204,48 @@ When the real and imaginary values are not specified, this can be used for synta
       <text>A Quantum Bit</text>
     </description>
   </grouping>
+  <grouping name="ReferenceType">
+    <leaf name="agency">
+      <type name="NcnameType"/>
+      <description>
+        <text>The referred resource agency.</text>
+      </description>
+    </leaf>
+    <leaf name="id">
+      <type name="NcnameType"/>
+      <mandatory value="true"/>
+      <description>
+        <text>Thr resource identifier within the library/agency</text>
+      </description>
+    </leaf>
+    <leaf name="version">
+      <type name="VersionType"/>
+      <description>
+        <text>The resource version number. Can be inherited from parent.</text>
+      </description>
+    </leaf>
+    <leaf name="library_id">
+      <type name="NcnameType"/>
+      <description>
+        <text>The indentifier of the library containining the resource</text>
+      </description>
+    </leaf>
+    <leaf name="library_agency">
+      <type name="NcnameType"/>
+      <description>
+        <text>The library agency, if different from the resource</text>
+      </description>
+    </leaf>
+    <leaf name="library_version">
+      <type name="NcnameType"/>
+      <description>
+        <text>The library version, if different from the resource</text>
+      </description>
+    </leaf>
+    <description>
+      <text>A reference to an Identifiable resource</text>
+    </description>
+  </grouping>
   <grouping name="SymbolicExpressionType">
     <description>
       <text>Can be used to describe a symbolic expression in various syntaxes</text>
@@ -234,6 +296,17 @@ When the real and imaginary values are not specified, this can be used for synta
       <text>A version number. Can be n / n.n / n.n.n</text>
     </description>
   </typedef>
+  <grouping name="YangDummyKey">
+    <description>
+      <text>A YANG dummy key for reuse in lists</text>
+    </description>
+    <leaf name="yang-key">
+      <type name="string"/>
+      <description>
+        <text>The key value</text>
+      </description>
+    </leaf>
+  </grouping>
   <grouping name="GateType">
     <description>
       <text>A quantum gate</text>
@@ -295,6 +368,162 @@ When the real and imaginary values are not specified, this can be used for synta
       <uses name="GateType"/>
       <description>
         <text>The collection of gates in this libraryr</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="CircuitType">
+    <description>
+      <text>A quantum circuit</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType">
+      <refine target-node="name">
+        <mandatory value="true"/>
+      </refine>
+    </uses>
+    <leaf name="size">
+      <type name="uint32"/>
+      <description>
+        <text>The circuit size (number if inputs/outputs)</text>
+      </description>
+    </leaf>
+    <list name="input">
+      <key value="number"/>
+      <uses name="InputType"/>
+      <description>
+        <text>Description of the gate input</text>
+      </description>
+    </list>
+    <list name="output">
+      <key value="number"/>
+      <uses name="OutputType"/>
+      <description>
+        <text>Description of the gate output</text>
+      </description>
+    </list>
+    <list name="step">
+      <key value="yang-key"/>
+      <uses name="StepType"/>
+      <description>
+        <text>Sequence of steps in this circuit</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="CircuitLibrary">
+    <description>
+      <text>A collection of quantum circuits</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType"/>
+    <list name="circuit">
+      <key value="agency id version"/>
+      <uses name="CircuitType"/>
+      <description>
+        <text>The collection of circuits in this library</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="GateEquivalentCircuitType">
+    <description>
+      <text>Describes a gate circuit equivalent, typically using univeral gates.</text>
+    </description>
+    <container name="gate-ref">
+      <uses name="ReferenceType"/>
+      <description>
+        <text>A reference to the Gate the circuit is equivalent to</text>
+      </description>
+    </container>
+    <container name="circuit">
+      <uses name="CircuitType"/>
+      <description>
+        <text>The circuit equivalent to this Gate</text>
+      </description>
+    </container>
+  </grouping>
+  <grouping name="MapType">
+    <uses name="YangDummyKey"/>
+    <leaf name="qubit">
+      <type name="uint32"/>
+      <description>
+        <text>Maps a wire/qubit/cbit to a circuit/gate input number (one based index)</text>
+      </description>
+    </leaf>
+    <leaf name="input">
+      <type name="uint32"/>
+      <description>
+        <text>The input number (one based index)</text>
+      </description>
+    </leaf>
+    <leaf name="value">
+      <type name="boolean"/>
+      <mandatory value="true"/>
+      <description>
+        <text>If specified, set the input to a fixed value 0 or 1.</text>
+      </description>
+    </leaf>
+    <description>
+      <text>Maps circuit wires to gate inputs. If not specified use natural order.</text>
+    </description>
+  </grouping>
+  <grouping name="OperationType">
+    <uses name="YangDummyKey"/>
+    <leaf name="reverse">
+      <type name="boolean"/>
+      <description>
+        <text>If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)</text>
+      </description>
+    </leaf>
+    <list name="map">
+      <key value="yang-key"/>
+      <description>
+        <text>Collection of maps for this Operation</text>
+      </description>
+      <uses name="MapType"/>
+    </list>
+    <choice name="transform">
+      <description>
+        <text>The trasnformation for this operation. Can be a gate, a circuit, or a measurement.</text>
+      </description>
+      <case name="gate-ref">
+        <container name="gate-ref">
+          <uses name="ReferenceType"/>
+          <description>
+            <text>A reference to the Gate implementing this Operation</text>
+          </description>
+        </container>
+      </case>
+      <case name="circuit-ref">
+        <container name="circuit-ref">
+          <uses name="ReferenceType"/>
+          <description>
+            <text>A reference to the Gate implementing this Operation</text>
+          </description>
+        </container>
+      </case>
+      <case name="measurement">
+        <leaf name="measurement">
+          <type name="empty"/>
+          <description>
+            <text>Applies a Measurement on mapped wire(s)</text>
+          </description>
+        </leaf>
+      </case>
+    </choice>
+    <description>
+      <text>An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gat or Circuit inputs</text>
+    </description>
+  </grouping>
+  <grouping name="StepType">
+    <description>
+      <text>A execution step in a Circuit</text>
+    </description>
+    <uses name="YangDummyKey"/>
+    <uses name="NameDescType"/>
+    <list name="operation">
+      <key value="yang-key"/>
+      <uses name="OperationType"/>
+      <description>
+        <text>The collection of operations for this step</text>
       </description>
     </list>
   </grouping>
