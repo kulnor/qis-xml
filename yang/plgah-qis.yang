@@ -34,5 +34,14 @@ module plgah-qis {
             uses qist:CircuitLibrary;
             description "Circuit libraries available on this device";
         }
+        list program-library {
+            key "agency id version";
+            uses qist:ProgramLibrary;
+            description "Program libraries available on this device";
+        }
+	container memory {
+	    uses qist:MemoryType;
+	    description "Global device memory";
+	}
     }
 }

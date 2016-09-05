@@ -45,5 +45,18 @@
         <text>Circuit libraries available on this device</text>
       </description>
     </list>
+    <list name="program-library">
+      <key value="agency id version"/>
+      <uses name="qist:ProgramLibrary"/>
+      <description>
+        <text>Program libraries available on this device</text>
+      </description>
+    </list>
+    <container name="memory">
+      <uses name="qist:MemoryType"/>
+      <description>
+        <text>Global device memory</text>
+      </description>
+    </container>
   </container>
 </module>

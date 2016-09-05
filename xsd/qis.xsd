@@ -272,45 +272,6 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 </xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:complexType name="CircuitLibraryType">
-		<xs:sequence>
-			<xs:element ref="Identification"/>
-			<xs:element name="Name" type="xs:string" minOccurs="0"/>
-			<xs:element name="Circuit" type="CircuitType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="GateEquivalentCircuit" type="GateEquivalentCircuitType" minOccurs="0"
-				maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:element name="CircuitLibrary" type="CircuitLibraryType"/>
-	<xs:complexType name="MemoryType">
-		<xs:sequence>
-			<xs:element ref="Identification" minOccurs="0"/>
-			<xs:element name="Name" type="xs:string" minOccurs="0"/>
-			<xs:element ref="Prepare" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Prepares the memory</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Qubit" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Can be use to actually store memory values. Note that this element extends the Qubit type by adding an index attribute.</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="QubitType">
-							<xs:attribute name="index" use="required"/>
-						</xs:extension>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="size" type="xs:positiveInteger" use="required">
-			<xs:annotation>
-				<xs:documentation>Number of qubits</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-	<xs:element name="Memory" type="MemoryType"/>
 	<xs:complexType name="MapType">
 		<xs:attribute name="qubit" type="xs:positiveInteger">
 			<xs:annotation>
@@ -359,6 +320,45 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="CircuitLibraryType">
+		<xs:sequence>
+			<xs:element ref="Identification"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Circuit" type="CircuitType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GateEquivalentCircuit" type="GateEquivalentCircuitType" minOccurs="0"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CircuitLibrary" type="CircuitLibraryType"/>
+	<xs:complexType name="MemoryType">
+		<xs:sequence>
+			<xs:element ref="Identification" minOccurs="0"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element ref="Prepare" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Prepares the memory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Qubit" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be use to actually store memory values. Note that this element extends the Qubit type by adding an index attribute.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="QubitType">
+							<xs:attribute name="index" use="required"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="size" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Number of qubits</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Memory" type="MemoryType"/>
 	<!-- 
 		PROGRAM
 	-->
@@ -369,12 +369,12 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:element name="Description" type="xs:string" minOccurs="0"/>
 			<xs:element ref="Memory">
 				<xs:annotation>
-					<xs:documentation>Program memory pool used be Registry (inspired by QCL)</xs:documentation>
+					<xs:documentation>Program memory pool used by Register (inspired by QCL)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="Register" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>A global register that can be refered from Execute elements. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by idnex value). This is a bit equivalent of a global variable.</xs:documentation>
+					<xs:documentation>A memory register that can be refered from Execute elements. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by index value). This is a bit equivalent of a global variable.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:choice maxOccurs="unbounded">
@@ -428,7 +428,14 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element ref="Register"/>
+							<xs:choice minOccurs="0">
+								<xs:element ref="Register">
+									<xs:annotation>
+										<xs:documentation>A subset of qubits from the main program memory to use for this circuit. If not specified, assume that the whole memory is used. This is a bit equivalent ot a local variable.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="RegisterRef" type="ReferenceType"/>
+							</xs:choice>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -473,7 +480,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="RegisterReference">
+				<xs:element name="RegisterReference" type="ReferenceType">
 					<xs:annotation>
 						<xs:documentation>Includes another Register's qubits</xs:documentation>
 					</xs:annotation>

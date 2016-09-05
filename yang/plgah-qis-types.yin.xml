@@ -527,4 +527,271 @@ When the real and imaginary values are not specified, this can be used for synta
       </description>
     </list>
   </grouping>
+  <grouping name="MemoryType">
+    <description>
+      <text>Quantum Memory</text>
+    </description>
+    <leaf name="size">
+      <type name="uint64"/>
+      <description>
+        <text>The memory size</text>
+      </description>
+    </leaf>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType"/>
+    <uses name="PrepareType"/>
+    <list name="qubit">
+      <key value="yang-key"/>
+      <uses name="YangDummyKey"/>
+      <leaf name="index">
+        <type name="uint64"/>
+        <description>
+          <text>The qubit position in memory</text>
+        </description>
+      </leaf>
+      <container name="value">
+        <uses name="ComplexNumberType"/>
+        <description>
+          <text>Qubit value</text>
+        </description>
+      </container>
+      <description>
+        <text>Qubit value</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="PrepareType">
+    <description>
+      <text>Prepares/initalizes quantum memory</text>
+    </description>
+    <leaf name="reset">
+      <type name="boolean"/>
+      <description>
+        <text>Resets all qubits to |0&gt;</text>
+      </description>
+    </leaf>
+    <list name="qubit-set">
+      <key value="yang-key"/>
+      <description>
+        <text>Collection of values to set one or more qubits to</text>
+      </description>
+      <uses name="YangDummyKey"/>
+      <choice name="qubits">
+        <description>
+          <text>The range of affected qubits</text>
+        </description>
+        <case name="qubit-index">
+          <leaf name="qubit-index">
+            <type name="uint64"/>
+            <description>
+              <text>Sets the qubit as specified memory position</text>
+            </description>
+          </leaf>
+        </case>
+        <case name="qubit-range">
+          <container name="qubit-range">
+            <leaf name="start">
+              <type name="uint64"/>
+              <description>
+                <text>Start index position</text>
+              </description>
+            </leaf>
+            <leaf name="end">
+              <type name="uint64"/>
+              <description>
+                <text>End index position</text>
+              </description>
+            </leaf>
+            <description>
+              <text>Sets all qubits within specified memory range</text>
+            </description>
+          </container>
+        </case>
+      </choice>
+      <container name="value">
+        <uses name="ComplexNumberType"/>
+        <description>
+          <text>The value to set the qubit(s) to (can be complex)</text>
+        </description>
+      </container>
+    </list>
+  </grouping>
+  <grouping name="ProgramType">
+    <description>
+      <text>A quantum program</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType">
+      <refine target-node="name">
+        <mandatory value="true"/>
+      </refine>
+    </uses>
+    <container name="memory">
+      <uses name="MemoryType"/>
+      <description>
+        <text>Program local allocated quantum memory</text>
+      </description>
+    </container>
+    <list name="register">
+      <key value="agency id version"/>
+      <uses name="RegisterType"/>
+      <description>
+        <text>Collection of program level memory register(s)</text>
+      </description>
+    </list>
+    <list name="statement">
+      <key value="yang-key"/>
+      <uses name="YangDummyKey"/>
+      <choice name="statement-type">
+        <case name="execute">
+          <container name="execute">
+            <description>
+              <text>Executes a circuit</text>
+            </description>
+            <choice name="register-choice">
+              <description>
+                <text>The memory local or external register to use. Must match the circuit size</text>
+              </description>
+              <case name="register">
+                <container name="register">
+                  <uses name="RegisterType"/>
+                  <description>
+                    <text>Locally defined register</text>
+                  </description>
+                </container>
+              </case>
+              <case name="external-register">
+                <container name="register-ref">
+                  <uses name="ReferenceType"/>
+                  <description>
+                    <text>Reference to the external register</text>
+                  </description>
+                </container>
+              </case>
+            </choice>
+            <choice name="circuit-choice">
+              <description>
+                <text>The local or external circuit to execute</text>
+              </description>
+              <case name="local-circuit">
+                <container name="circuit">
+                  <uses name="CircuitType"/>
+                  <description>
+                    <text>Circuit to execute</text>
+                  </description>
+                </container>
+              </case>
+              <case name="external-circuit">
+                <container name="circuit-ref">
+                  <uses name="ReferenceType"/>
+                  <description>
+                    <text>Reference to Circuit to execute</text>
+                  </description>
+                </container>
+              </case>
+            </choice>
+          </container>
+        </case>
+        <case name="measure">
+          <container name="measure">
+            <choice name="register-choice">
+              <description>
+                <text>The memory register to use</text>
+              </description>
+              <case name="local-register">
+                <container name="register">
+                  <uses name="RegisterType"/>
+                  <description>
+                    <text>Locally defined register</text>
+                  </description>
+                </container>
+              </case>
+              <case name="external-register">
+                <container name="register-ref">
+                  <uses name="ReferenceType"/>
+                  <description>
+                    <text>Reference to the external register</text>
+                  </description>
+                </container>
+              </case>
+            </choice>
+            <description>
+              <text>Performs a measurement on register</text>
+            </description>
+          </container>
+        </case>
+      </choice>
+    </list>
+  </grouping>
+  <grouping name="ProgramLibrary">
+    <description>
+      <text>A collection of Programs</text>
+    </description>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType"/>
+    <list name="program">
+      <key value="agency id version"/>
+      <uses name="ProgramType"/>
+      <description>
+        <text>The collection of programs in this library</text>
+      </description>
+    </list>
+  </grouping>
+  <grouping name="RegisterType">
+    <description>
+      <text>A memory register (subset) to be used for execution. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by index value). This is somewhat a equivalent of a variable.</text>
+    </description>
+    <leaf name="size">
+      <type name="uint64"/>
+      <description>
+        <text>The register size</text>
+      </description>
+    </leaf>
+    <uses name="IdentificationType"/>
+    <uses name="NameDescType"/>
+    <container name="memory-ref">
+      <uses name="ReferenceType"/>
+      <description>
+        <text>If not using a Program local memory, a reference theto an external memory (global or from another program)</text>
+      </description>
+    </container>
+    <leaf-list name="qubit-index">
+      <type name="uint64"/>
+      <description>
+        <text>Selects a specific qubit in memory</text>
+      </description>
+    </leaf-list>
+    <list name="qubit-range">
+      <key value="yang-key"/>
+      <uses name="YangDummyKey"/>
+      <leaf name="start">
+        <type name="uint64"/>
+        <description>
+          <text>Start index position</text>
+        </description>
+      </leaf>
+      <leaf name="end">
+        <type name="uint64"/>
+        <description>
+          <text>End index position</text>
+        </description>
+      </leaf>
+      <description>
+        <text>Selects a range of qubits from memory</text>
+      </description>
+    </list>
+    <list name="register-ref">
+      <key value="agency id version"/>
+      <uses name="ReferenceType"/>
+      <description>
+        <text>Include another Register qubits</text>
+      </description>
+    </list>
+    <container name="prepare">
+      <uses name="PrepareType"/>
+      <description>
+        <text>Prepares/initializes this register</text>
+      </description>
+    </container>
+  </grouping>
 </module>

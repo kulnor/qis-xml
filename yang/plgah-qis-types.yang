@@ -17,7 +17,7 @@ module plgah-qis-types {
 
     revision 2016-09-05 {
          description "Draft/Development version";
-	 reference "QIS-XML: A metadata specification for Quantum Information Science";
+         reference "QIS-XML: A metadata specification for Quantum Information Science";
     }
 
      /***********************************************************************
@@ -79,7 +79,7 @@ module plgah-qis-types {
     typedef NcnameType {
         type string {
             pattern "[_A-Za-z][_\-A-Za-z0-9.]*";
-	}
+        }
         description "A resource identifier";
     }
     
@@ -219,9 +219,9 @@ module plgah-qis-types {
     grouping YangDummyKey {
         description "A YANG dummy key for reuse in lists";
         leaf yang-key {
-	    type string;
-	    description "The key value";
-	}
+            type string;
+            description "The key value";
+        }
     }
 
     /***********************************************************************
@@ -299,9 +299,9 @@ module plgah-qis-types {
             description "Description of the gate output";
         }
         list step {
-	    key "yang-key";
+            key "yang-key";
             uses StepType;
-	    description "Sequence of steps in this circuit";
+            description "Sequence of steps in this circuit";
         }
     }
 
@@ -318,94 +318,225 @@ module plgah-qis-types {
 
     grouping GateEquivalentCircuitType {
         description "Describes a gate circuit equivalent, typically using univeral gates.";
-	container gate-ref {
-	    uses ReferenceType;
-	    description "A reference to the Gate the circuit is equivalent to";
-	}
-	container circuit {
-	    uses CircuitType;
-	    description "The circuit equivalent to this Gate";
-	}
+        container gate-ref {
+            uses ReferenceType;
+            description "A reference to the Gate the circuit is equivalent to";
+        }
+        container circuit {
+            uses CircuitType;
+            description "The circuit equivalent to this Gate";
+        }
     }
     
     grouping MapType {
-	uses YangDummyKey;
+        uses YangDummyKey;
         leaf qubit {
-	    type uint32;
-	    description "Maps a wire/qubit/cbit to a circuit/gate input number (one based index)";
-	}
-	leaf input {
-	    type uint32;
-	    description "The input number (one based index)";
-	}
-	leaf value {
-	    type boolean;
-	    mandatory true;
-	    description "If specified, set the input to a fixed value 0 or 1.";
-	}
+            type uint32;
+            description "Maps a wire/qubit/cbit to a circuit/gate input number (one based index)";
+        }
+        leaf input {
+            type uint32;
+            description "The input number (one based index)";
+        }
+        leaf value {
+            type boolean;
+            mandatory true;
+            description "If specified, set the input to a fixed value 0 or 1.";
+        }
         description "Maps circuit wires to gate inputs. If not specified use natural order.";
     }
     
     grouping OperationType {
-	uses YangDummyKey;
+        uses YangDummyKey;
         leaf reverse {
-	    type boolean;
-	    description "If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)";
-	}
-	list map {
-	    key "yang-key";
-	    description "Collection of maps for this Operation";
-	    uses MapType;
-	}
-	choice transform {
-	    description "The trasnformation for this operation. Can be a gate, a circuit, or a measurement.";
-	    case gate-ref {
-	        container gate-ref {
-   	            uses ReferenceType;
-		    description "A reference to the Gate implementing this Operation";
-		}
-	    }
-	    case circuit-ref {
-	        container circuit-ref {
-	            uses ReferenceType;
-		    description "A reference to the Gate implementing this Operation";
-		}
-	    }
-	    case measurement {
-	        leaf measurement {
-		    type empty;
-	    	    description "Applies a Measurement on mapped wire(s)";
-		}
-	    }
-	}
+            type boolean;
+            description "If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)";
+        }
+        list map {
+            key "yang-key";
+            description "Collection of maps for this Operation";
+            uses MapType;
+        }
+        choice transform {
+            description "The trasnformation for this operation. Can be a gate, a circuit, or a measurement.";
+            case gate-ref {
+                container gate-ref {
+                    uses ReferenceType;
+                    description "A reference to the Gate implementing this Operation";
+                }
+            }
+            case circuit-ref {
+                container circuit-ref {
+                    uses ReferenceType;
+                    description "A reference to the Gate implementing this Operation";
+                }
+            }
+            case measurement {
+                leaf measurement {
+                    type empty;
+                    description "Applies a Measurement on mapped wire(s)";
+                }
+            }
+        }
         description "An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gat or Circuit inputs";
     }
 
     grouping StepType {
         description "A execution step in a Circuit";
-	uses YangDummyKey;
-	uses NameDescType;
-	list operation {
-	    key "yang-key";
-	    uses OperationType;
-	    description "The collection of operations for this step";
-	}
+        uses YangDummyKey;
+        uses NameDescType;
+        list operation {
+            key "yang-key";
+            uses OperationType;
+            description "The collection of operations for this step";
+        }
     }
     
     /***********************************************************************
      * PROGRAM
      ***********************************************************************/
-/*
+
+    grouping MemoryType {
+        description "Quantum Memory";
+        leaf size {
+            type uint64;
+            description "The memory size";
+        }
+        uses IdentificationType;
+        uses NameDescType;
+        uses PrepareType;
+        list qubit {
+            key "yang-key";
+            uses YangDummyKey;
+            leaf index {
+                type uint64;
+                description "The qubit position in memory";
+            }
+            container value {
+                uses ComplexNumberType;
+                description "Qubit value";
+            }
+            description "Qubit value";
+        }
+    }
+
+    grouping PrepareType {
+        description "Prepares/initalizes quantum memory";
+        leaf reset {
+            type boolean;
+            description "Resets all qubits to |0>";
+        }
+        list qubit-set {
+            key "yang-key";
+            description "Collection of values to set one or more qubits to";
+            uses YangDummyKey;
+            choice qubits {
+                description "The range of affected qubits";
+                case qubit-index {
+                    leaf qubit-index {
+                        type uint64;
+                        description "Sets the qubit as specified memory position";
+                    }
+                }
+                case qubit-range {
+                    container qubit-range {
+                        leaf start {
+                            type uint64;
+                            description "Start index position";
+                        }
+                        leaf end {
+                            type uint64;
+                            description "End index position";
+                        }
+                        description "Sets all qubits within specified memory range";
+                    }
+                }
+            }
+            container value {
+                uses ComplexNumberType;
+                description "The value to set the qubit(s) to (can be complex)";
+            }
+        }
+    }
+
     grouping ProgramType {
         description "A quantum program";
         uses IdentificationType;
         uses NameDescType {
             refine name { mandatory true; }
         }
-	container register {
-	    uses RegisterType;
-	    description "A global register that can be refered from Execute elements. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by index value). This is a bit equivalent of a global variable."
-	}
+        container memory {
+            uses MemoryType;
+            description "Program local allocated quantum memory";
+        }
+        list register {
+            key "agency id version";
+            uses RegisterType;
+            description "Collection of program level memory register(s)";
+        }
+        list statement {
+            key "yang-key";
+            uses YangDummyKey;
+            choice statement-type {
+                /* execute statememt */
+                case execute {
+                    container execute {
+                        description "Executes a circuit";
+                        choice register-choice {
+                            description "The memory local or external register to use. Must match the circuit size";
+                            case register {
+                                container register {
+                                    uses RegisterType;
+                                    description "Locally defined register";
+                                }
+                            }
+                            case external-register {
+                                container register-ref {
+                                    uses ReferenceType;
+                                    description "Reference to the external register";
+                                }
+                            }
+                        }
+                        choice circuit-choice {
+                            description "The local or external circuit to execute";
+                            case local-circuit {
+                                container circuit {
+                                    uses CircuitType;
+                                    description "Circuit to execute";
+                                }
+                            }
+                            case external-circuit {
+                                container circuit-ref {
+                                    uses ReferenceType;
+                                    description "Reference to Circuit to execute";
+                                }
+                            }
+                        }
+                    }
+                }
+                /* measure statememt */
+                case measure {
+                    container measure {
+                        choice register-choice {
+                            description "The memory register to use";
+                            case local-register {
+                                container register {
+                                    uses RegisterType;
+                                    description "Locally defined register";
+                                }
+                            }
+                            case external-register {
+                                container register-ref {
+                                    uses ReferenceType;
+                                    description "Reference to the external register";
+                                }
+                            }
+                        }
+                        description "Performs a measurement on register";
+                    }
+                }
+            }
+        }
     }
 
     grouping ProgramLibrary {
@@ -418,5 +549,48 @@ module plgah-qis-types {
             description "The collection of programs in this library";
         }
     }
-*/ 
+
+    grouping RegisterType {
+        description "A memory register (subset) to be used for execution. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by index value). This is somewhat a equivalent of a variable.";
+        leaf size {
+            type uint64;
+            description "The register size";
+        }
+        uses IdentificationType;
+        uses NameDescType;
+        container memory-ref {
+            uses ReferenceType;
+            description "If not using a Program local memory, a reference theto an external memory (global or from another program)";
+        }
+        /** THIS SECTION NEEDS WORK ***/
+        // Not sure how to reflect the XM model. A repeatable choice mixing different element type 
+        leaf-list qubit-index {
+            type uint64;
+            description "Selects a specific qubit in memory";
+        }
+        list qubit-range {
+            key "yang-key";
+            uses YangDummyKey;
+            leaf start {
+                type uint64;
+                description "Start index position";
+            }
+            leaf end {
+                type uint64;
+                description "End index position";
+            }
+            description "Selects a range of qubits from memory";
+        }
+        list register-ref {
+            key "agency id version";
+            uses ReferenceType;
+            description "Include another Register qubits";
+        }
+        /** ========== ***/
+        container prepare {
+            uses PrepareType;
+            description "Prepares/initializes this register";
+        }
+
+    }
 }

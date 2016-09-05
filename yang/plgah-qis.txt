@@ -53,56 +53,352 @@ module: plgah-qis
       |              +--rw value     string
       |              +--rw syntax    string
       +--rw circuit-library* [agency id version]
-         +--rw agency                NcnameType
+      |  +--rw agency                NcnameType
+      |  +--rw id                    NcnameType
+      |  +--rw version               VersionType
+      |  +--rw versionDescription?   string
+      |  +--rw name?                 string
+      |  +--rw description?          string
+      |  +--rw circuit* [agency id version]
+      |     +--rw agency                NcnameType
+      |     +--rw id                    NcnameType
+      |     +--rw version               VersionType
+      |     +--rw versionDescription?   string
+      |     +--rw name                  string
+      |     +--rw description?          string
+      |     +--rw size?                 uint32
+      |     +--rw input* [number]
+      |     |  +--rw number         uint16
+      |     |  +--rw name           string
+      |     |  +--rw description?   string
+      |     +--rw output* [number]
+      |     |  +--rw number         uint16
+      |     |  +--rw name           string
+      |     |  +--rw description?   string
+      |     +--rw step* [yang-key]
+      |        +--rw yang-key       string
+      |        +--rw name?          string
+      |        +--rw description?   string
+      |        +--rw operation* [yang-key]
+      |           +--rw yang-key       string
+      |           +--rw reverse?       boolean
+      |           +--rw map* [yang-key]
+      |           |  +--rw yang-key    string
+      |           |  +--rw qubit?      uint32
+      |           |  +--rw input?      uint32
+      |           |  +--rw value       boolean
+      |           +--rw (transform)?
+      |              +--:(gate-ref)
+      |              |  +--rw gate-ref
+      |              |     +--rw agency?            NcnameType
+      |              |     +--rw id                 NcnameType
+      |              |     +--rw version?           VersionType
+      |              |     +--rw library_id?        NcnameType
+      |              |     +--rw library_agency?    NcnameType
+      |              |     +--rw library_version?   NcnameType
+      |              +--:(circuit-ref)
+      |              |  +--rw circuit-ref
+      |              |     +--rw agency?            NcnameType
+      |              |     +--rw id                 NcnameType
+      |              |     +--rw version?           VersionType
+      |              |     +--rw library_id?        NcnameType
+      |              |     +--rw library_agency?    NcnameType
+      |              |     +--rw library_version?   NcnameType
+      |              +--:(measurement)
+      |                 +--rw measurement?   empty
+      +--rw program-library* [agency id version]
+      |  +--rw agency                NcnameType
+      |  +--rw id                    NcnameType
+      |  +--rw version               VersionType
+      |  +--rw versionDescription?   string
+      |  +--rw name?                 string
+      |  +--rw description?          string
+      |  +--rw program* [agency id version]
+      |     +--rw agency                NcnameType
+      |     +--rw id                    NcnameType
+      |     +--rw version               VersionType
+      |     +--rw versionDescription?   string
+      |     +--rw name                  string
+      |     +--rw description?          string
+      |     +--rw memory
+      |     |  +--rw size?                 uint64
+      |     |  +--rw agency?               NcnameType
+      |     |  +--rw id                    NcnameType
+      |     |  +--rw version?              VersionType
+      |     |  +--rw versionDescription?   string
+      |     |  +--rw name?                 string
+      |     |  +--rw description?          string
+      |     |  +--rw reset?                boolean
+      |     |  +--rw qubit-set* [yang-key]
+      |     |  |  +--rw yang-key       string
+      |     |  |  +--rw (qubits)?
+      |     |  |  |  +--:(qubit-index)
+      |     |  |  |  |  +--rw qubit-index?   uint64
+      |     |  |  |  +--:(qubit-range)
+      |     |  |  |     +--rw qubit-range
+      |     |  |  |        +--rw start?   uint64
+      |     |  |  |        +--rw end?     uint64
+      |     |  |  +--rw value
+      |     |  |     +--rw r?          decimal64
+      |     |  |     +--rw i?          decimal64
+      |     |  |     +--rw symbolic* [syntax]
+      |     |  |        +--rw value     string
+      |     |  |        +--rw syntax    string
+      |     |  +--rw qubit* [yang-key]
+      |     |     +--rw yang-key    string
+      |     |     +--rw index?      uint64
+      |     |     +--rw value
+      |     |        +--rw r?          decimal64
+      |     |        +--rw i?          decimal64
+      |     |        +--rw symbolic* [syntax]
+      |     |           +--rw value     string
+      |     |           +--rw syntax    string
+      |     +--rw register* [agency id version]
+      |     |  +--rw size?                 uint64
+      |     |  +--rw agency                NcnameType
+      |     |  +--rw id                    NcnameType
+      |     |  +--rw version               VersionType
+      |     |  +--rw versionDescription?   string
+      |     |  +--rw name?                 string
+      |     |  +--rw description?          string
+      |     |  +--rw memory-ref
+      |     |  |  +--rw agency?            NcnameType
+      |     |  |  +--rw id                 NcnameType
+      |     |  |  +--rw version?           VersionType
+      |     |  |  +--rw library_id?        NcnameType
+      |     |  |  +--rw library_agency?    NcnameType
+      |     |  |  +--rw library_version?   NcnameType
+      |     |  +--rw qubit-index*          uint64
+      |     |  +--rw qubit-range* [yang-key]
+      |     |  |  +--rw yang-key    string
+      |     |  |  +--rw start?      uint64
+      |     |  |  +--rw end?        uint64
+      |     |  +--rw register-ref* [agency id version]
+      |     |  |  +--rw agency             NcnameType
+      |     |  |  +--rw id                 NcnameType
+      |     |  |  +--rw version            VersionType
+      |     |  |  +--rw library_id?        NcnameType
+      |     |  |  +--rw library_agency?    NcnameType
+      |     |  |  +--rw library_version?   NcnameType
+      |     |  +--rw prepare
+      |     |     +--rw reset?       boolean
+      |     |     +--rw qubit-set* [yang-key]
+      |     |        +--rw yang-key       string
+      |     |        +--rw (qubits)?
+      |     |        |  +--:(qubit-index)
+      |     |        |  |  +--rw qubit-index?   uint64
+      |     |        |  +--:(qubit-range)
+      |     |        |     +--rw qubit-range
+      |     |        |        +--rw start?   uint64
+      |     |        |        +--rw end?     uint64
+      |     |        +--rw value
+      |     |           +--rw r?          decimal64
+      |     |           +--rw i?          decimal64
+      |     |           +--rw symbolic* [syntax]
+      |     |              +--rw value     string
+      |     |              +--rw syntax    string
+      |     +--rw statement* [yang-key]
+      |        +--rw yang-key    string
+      |        +--rw (statement-type)?
+      |           +--:(execute)
+      |           |  +--rw execute
+      |           |     +--rw (register-choice)?
+      |           |     |  +--:(register)
+      |           |     |  |  +--rw register
+      |           |     |  |     +--rw size?                 uint64
+      |           |     |  |     +--rw agency?               NcnameType
+      |           |     |  |     +--rw id                    NcnameType
+      |           |     |  |     +--rw version?              VersionType
+      |           |     |  |     +--rw versionDescription?   string
+      |           |     |  |     +--rw name?                 string
+      |           |     |  |     +--rw description?          string
+      |           |     |  |     +--rw memory-ref
+      |           |     |  |     |  +--rw agency?            NcnameType
+      |           |     |  |     |  +--rw id                 NcnameType
+      |           |     |  |     |  +--rw version?           VersionType
+      |           |     |  |     |  +--rw library_id?        NcnameType
+      |           |     |  |     |  +--rw library_agency?    NcnameType
+      |           |     |  |     |  +--rw library_version?   NcnameType
+      |           |     |  |     +--rw qubit-index*          uint64
+      |           |     |  |     +--rw qubit-range* [yang-key]
+      |           |     |  |     |  +--rw yang-key    string
+      |           |     |  |     |  +--rw start?      uint64
+      |           |     |  |     |  +--rw end?        uint64
+      |           |     |  |     +--rw register-ref* [agency id version]
+      |           |     |  |     |  +--rw agency             NcnameType
+      |           |     |  |     |  +--rw id                 NcnameType
+      |           |     |  |     |  +--rw version            VersionType
+      |           |     |  |     |  +--rw library_id?        NcnameType
+      |           |     |  |     |  +--rw library_agency?    NcnameType
+      |           |     |  |     |  +--rw library_version?   NcnameType
+      |           |     |  |     +--rw prepare
+      |           |     |  |        +--rw reset?       boolean
+      |           |     |  |        +--rw qubit-set* [yang-key]
+      |           |     |  |           +--rw yang-key       string
+      |           |     |  |           +--rw (qubits)?
+      |           |     |  |           |  +--:(qubit-index)
+      |           |     |  |           |  |  +--rw qubit-index?   uint64
+      |           |     |  |           |  +--:(qubit-range)
+      |           |     |  |           |     +--rw qubit-range
+      |           |     |  |           |        +--rw start?   uint64
+      |           |     |  |           |        +--rw end?     uint64
+      |           |     |  |           +--rw value
+      |           |     |  |              +--rw r?          decimal64
+      |           |     |  |              +--rw i?          decimal64
+      |           |     |  |              +--rw symbolic* [syntax]
+      |           |     |  |                 +--rw value     string
+      |           |     |  |                 +--rw syntax    string
+      |           |     |  +--:(external-register)
+      |           |     |     +--rw register-ref
+      |           |     |        +--rw agency?            NcnameType
+      |           |     |        +--rw id                 NcnameType
+      |           |     |        +--rw version?           VersionType
+      |           |     |        +--rw library_id?        NcnameType
+      |           |     |        +--rw library_agency?    NcnameType
+      |           |     |        +--rw library_version?   NcnameType
+      |           |     +--rw (circuit-choice)?
+      |           |        +--:(local-circuit)
+      |           |        |  +--rw circuit
+      |           |        |     +--rw agency?               NcnameType
+      |           |        |     +--rw id                    NcnameType
+      |           |        |     +--rw version?              VersionType
+      |           |        |     +--rw versionDescription?   string
+      |           |        |     +--rw name                  string
+      |           |        |     +--rw description?          string
+      |           |        |     +--rw size?                 uint32
+      |           |        |     +--rw input* [number]
+      |           |        |     |  +--rw number         uint16
+      |           |        |     |  +--rw name           string
+      |           |        |     |  +--rw description?   string
+      |           |        |     +--rw output* [number]
+      |           |        |     |  +--rw number         uint16
+      |           |        |     |  +--rw name           string
+      |           |        |     |  +--rw description?   string
+      |           |        |     +--rw step* [yang-key]
+      |           |        |        +--rw yang-key       string
+      |           |        |        +--rw name?          string
+      |           |        |        +--rw description?   string
+      |           |        |        +--rw operation* [yang-key]
+      |           |        |           +--rw yang-key       string
+      |           |        |           +--rw reverse?       boolean
+      |           |        |           +--rw map* [yang-key]
+      |           |        |           |  +--rw yang-key    string
+      |           |        |           |  +--rw qubit?      uint32
+      |           |        |           |  +--rw input?      uint32
+      |           |        |           |  +--rw value       boolean
+      |           |        |           +--rw (transform)?
+      |           |        |              +--:(gate-ref)
+      |           |        |              |  +--rw gate-ref
+      |           |        |              |     +--rw agency?            NcnameType
+      |           |        |              |     +--rw id                 NcnameType
+      |           |        |              |     +--rw version?           VersionType
+      |           |        |              |     +--rw library_id?        NcnameType
+      |           |        |              |     +--rw library_agency?    NcnameType
+      |           |        |              |     +--rw library_version?   NcnameType
+      |           |        |              +--:(circuit-ref)
+      |           |        |              |  +--rw circuit-ref
+      |           |        |              |     +--rw agency?            NcnameType
+      |           |        |              |     +--rw id                 NcnameType
+      |           |        |              |     +--rw version?           VersionType
+      |           |        |              |     +--rw library_id?        NcnameType
+      |           |        |              |     +--rw library_agency?    NcnameType
+      |           |        |              |     +--rw library_version?   NcnameType
+      |           |        |              +--:(measurement)
+      |           |        |                 +--rw measurement?   empty
+      |           |        +--:(external-circuit)
+      |           |           +--rw circuit-ref
+      |           |              +--rw agency?            NcnameType
+      |           |              +--rw id                 NcnameType
+      |           |              +--rw version?           VersionType
+      |           |              +--rw library_id?        NcnameType
+      |           |              +--rw library_agency?    NcnameType
+      |           |              +--rw library_version?   NcnameType
+      |           +--:(measure)
+      |              +--rw measure
+      |                 +--rw (register-choice)?
+      |                    +--:(local-register)
+      |                    |  +--rw register
+      |                    |     +--rw size?                 uint64
+      |                    |     +--rw agency?               NcnameType
+      |                    |     +--rw id                    NcnameType
+      |                    |     +--rw version?              VersionType
+      |                    |     +--rw versionDescription?   string
+      |                    |     +--rw name?                 string
+      |                    |     +--rw description?          string
+      |                    |     +--rw memory-ref
+      |                    |     |  +--rw agency?            NcnameType
+      |                    |     |  +--rw id                 NcnameType
+      |                    |     |  +--rw version?           VersionType
+      |                    |     |  +--rw library_id?        NcnameType
+      |                    |     |  +--rw library_agency?    NcnameType
+      |                    |     |  +--rw library_version?   NcnameType
+      |                    |     +--rw qubit-index*          uint64
+      |                    |     +--rw qubit-range* [yang-key]
+      |                    |     |  +--rw yang-key    string
+      |                    |     |  +--rw start?      uint64
+      |                    |     |  +--rw end?        uint64
+      |                    |     +--rw register-ref* [agency id version]
+      |                    |     |  +--rw agency             NcnameType
+      |                    |     |  +--rw id                 NcnameType
+      |                    |     |  +--rw version            VersionType
+      |                    |     |  +--rw library_id?        NcnameType
+      |                    |     |  +--rw library_agency?    NcnameType
+      |                    |     |  +--rw library_version?   NcnameType
+      |                    |     +--rw prepare
+      |                    |        +--rw reset?       boolean
+      |                    |        +--rw qubit-set* [yang-key]
+      |                    |           +--rw yang-key       string
+      |                    |           +--rw (qubits)?
+      |                    |           |  +--:(qubit-index)
+      |                    |           |  |  +--rw qubit-index?   uint64
+      |                    |           |  +--:(qubit-range)
+      |                    |           |     +--rw qubit-range
+      |                    |           |        +--rw start?   uint64
+      |                    |           |        +--rw end?     uint64
+      |                    |           +--rw value
+      |                    |              +--rw r?          decimal64
+      |                    |              +--rw i?          decimal64
+      |                    |              +--rw symbolic* [syntax]
+      |                    |                 +--rw value     string
+      |                    |                 +--rw syntax    string
+      |                    +--:(external-register)
+      |                       +--rw register-ref
+      |                          +--rw agency?            NcnameType
+      |                          +--rw id                 NcnameType
+      |                          +--rw version?           VersionType
+      |                          +--rw library_id?        NcnameType
+      |                          +--rw library_agency?    NcnameType
+      |                          +--rw library_version?   NcnameType
+      +--rw memory
+         +--rw size?                 uint64
+         +--rw agency?               NcnameType
          +--rw id                    NcnameType
-         +--rw version               VersionType
+         +--rw version?              VersionType
          +--rw versionDescription?   string
          +--rw name?                 string
          +--rw description?          string
-         +--rw circuit* [agency id version]
-            +--rw agency                NcnameType
-            +--rw id                    NcnameType
-            +--rw version               VersionType
-            +--rw versionDescription?   string
-            +--rw name                  string
-            +--rw description?          string
-            +--rw size?                 uint32
-            +--rw input* [number]
-            |  +--rw number         uint16
-            |  +--rw name           string
-            |  +--rw description?   string
-            +--rw output* [number]
-            |  +--rw number         uint16
-            |  +--rw name           string
-            |  +--rw description?   string
-            +--rw step* [yang-key]
-               +--rw yang-key       string
-               +--rw name?          string
-               +--rw description?   string
-               +--rw operation* [yang-key]
-                  +--rw yang-key       string
-                  +--rw reverse?       boolean
-                  +--rw map* [yang-key]
-                  |  +--rw yang-key    string
-                  |  +--rw qubit?      uint32
-                  |  +--rw input?      uint32
-                  |  +--rw value       boolean
-                  +--rw (transform)?
-                     +--:(gate-ref)
-                     |  +--rw gate-ref
-                     |     +--rw agency?            NcnameType
-                     |     +--rw id                 NcnameType
-                     |     +--rw version?           VersionType
-                     |     +--rw library_id?        NcnameType
-                     |     +--rw library_agency?    NcnameType
-                     |     +--rw library_version?   NcnameType
-                     +--:(circuit-ref)
-                     |  +--rw circuit-ref
-                     |     +--rw agency?            NcnameType
-                     |     +--rw id                 NcnameType
-                     |     +--rw version?           VersionType
-                     |     +--rw library_id?        NcnameType
-                     |     +--rw library_agency?    NcnameType
-                     |     +--rw library_version?   NcnameType
-                     +--:(measurement)
-                        +--rw measurement?   empty
+         +--rw reset?                boolean
+         +--rw qubit-set* [yang-key]
+         |  +--rw yang-key       string
+         |  +--rw (qubits)?
+         |  |  +--:(qubit-index)
+         |  |  |  +--rw qubit-index?   uint64
+         |  |  +--:(qubit-range)
+         |  |     +--rw qubit-range
+         |  |        +--rw start?   uint64
+         |  |        +--rw end?     uint64
+         |  +--rw value
+         |     +--rw r?          decimal64
+         |     +--rw i?          decimal64
+         |     +--rw symbolic* [syntax]
+         |        +--rw value     string
+         |        +--rw syntax    string
+         +--rw qubit* [yang-key]
+            +--rw yang-key    string
+            +--rw index?      uint64
+            +--rw value
+               +--rw r?          decimal64
+               +--rw i?          decimal64
+               +--rw symbolic* [syntax]
+                  +--rw value     string
+                  +--rw syntax    string
