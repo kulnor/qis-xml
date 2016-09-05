@@ -23,7 +23,12 @@ module plgah-qis {
         list gate-library {
             key "agency id version";
             uses qist:GateLibrary;
-            description "Gate libraries deployed on this device";
+            description "Gate libraries available on this device";
+        }
+        list circuit-library {
+            key "agency id version";
+            uses qist:CircuitLibrary;
+            description "Circuit libraries available on this device";
         }
     }
 }

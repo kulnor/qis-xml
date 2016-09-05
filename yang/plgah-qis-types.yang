@@ -17,9 +17,9 @@ module plgah-qis-types {
          description "Draft/Development version";
     }
 
-    /***********************************************************************
-    * REUSABLE TYPES & ELEMENTS
-    ***********************************************************************/
+     /***********************************************************************
+      * REUSABLE TYPES
+      ***********************************************************************/
 
     grouping ComplexNumberType {
         description "A complex number";
@@ -52,11 +52,14 @@ module plgah-qis-types {
             refine name { mandatory true; }
         }
     }
-    
     grouping IdentificationType {
         description "An entity identifier";
+        leaf agency {
+            type NcnameType;
+            description "A unique identifier for the agency maintaining this entity. Can be inherioted from parent.";
+        }
         leaf id {
-            type string;
+            type NcnameType;
             mandatory true;
             description "A unique identifier within the container/agency";
         }
@@ -64,12 +67,19 @@ module plgah-qis-types {
             type VersionType;
             description "The entity version number. Can be inherited from parent.";
         }
-        leaf agency {
+        leaf versionDescription {
             type string;
-            description "A unique identifier for the agency maintaining this entity. Can be inherioted from parent.";
+            description "Version rationale / narrative";
         }
     }
 
+    typedef NcnameType {
+        type string {
+            pattern "[_A-Za-z][_\-A-Za-z0-9.]*";
+	}
+        description "A resource identifier";
+    }
+    
     grouping MatrixCellType {
         leaf row {
             type uint32;
@@ -136,6 +146,36 @@ module plgah-qis-types {
         description "A Quantum Bit";
     }
 
+    grouping ReferenceType {
+        leaf agency {
+            type NcnameType;
+            description "The referred resource agency.";
+        }
+        leaf id {
+            type NcnameType;
+            mandatory true;
+            description "Thr resource identifier within the library/agency";
+        }
+        leaf version {
+            type VersionType;
+            description "The resource version number. Can be inherited from parent.";
+        }
+        leaf library_id {
+            type NcnameType;
+            description "The indentifier of the library containining the resource";
+        }
+        leaf library_agency {
+            type NcnameType;
+            description "The library agency, if different from the resource";
+        }
+        leaf library_version {
+            type NcnameType;
+            description "The library version, if different from the resource";
+        }
+        description "A reference to an Identifiable resource";
+    }
+
+
     grouping SymbolicExpressionType {
         description "Can be used to describe a symbolic expression in various syntaxes";
         leaf value {
@@ -174,42 +214,42 @@ module plgah-qis-types {
     }
 
     /***********************************************************************
-    * GATE TYPES & ELEMENTS
+    * GATE
     ***********************************************************************/
 
     grouping GateType {
         description "A quantum gate";
         uses IdentificationType;
         uses NameDescType {
-	    refine name { mandatory true; }
-	}
-	leaf-list nickname {
-	    type string;
-	    description "Short/altername names";
-	}
-	list input {
-	    key "number"; 
-	    uses InputType;
-	    description "Description of the gate input";
-	}
-	list output {
-	    key "number"; 
-	    uses OutputType;
-	    description "Description of the gate output";
-	}
-	list parameter {
-	    key name;
-	    uses NameDescType;
-	    container value {
-	        uses ComplexNumberType;
-	        description "The parameter value";
-	    }
-	    description "Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix.";
-	}
-	container transformation { /* required */
-	    uses TransformationType;
-	    description "The unitary transformation the gate performs";
-	}
+            refine name { mandatory true; }
+        }
+        leaf-list nickname {
+            type string;
+            description "Short/altername names";
+        }
+        list input {
+            key "number"; 
+            uses InputType;
+            description "Description of the gate input";
+        }
+        list output {
+            key "number"; 
+            uses OutputType;
+            description "Description of the gate output";
+        }
+        list parameter {
+            key name;
+            uses NameDescType;
+            container value {
+                uses ComplexNumberType;
+                description "The parameter value";
+            }
+            description "Allows for parameters to be passed to the gate for use in the computation of the Transformation matrix.";
+        }
+        container transformation { /* required */
+            uses TransformationType;
+            description "The unitary transformation the gate performs";
+        }
     }
 
     grouping GateLibrary {
@@ -223,4 +263,140 @@ module plgah-qis-types {
         }
     }
     
+    /***********************************************************************
+     * CIRCUIT
+     ***********************************************************************/
+
+    grouping CircuitType {
+        description "A quantum circuit";
+        uses IdentificationType;
+        uses NameDescType {
+            refine name { mandatory true; }
+        }
+        leaf size {
+            type uint32;
+            description "The circuit size (number if inputs/outputs)";
+        }
+        list input {
+            key "number"; 
+            uses InputType;
+            description "Description of the gate input";
+        }
+        list output {
+            key "number"; 
+            uses OutputType;
+            description "Description of the gate output";
+        }
+        list step {
+            uses StepType;
+	    description "Sequence of steps in this circuit";
+        }
+    }
+
+    grouping CircuitLibrary {
+        description "A collection of quantum circuits";
+        uses IdentificationType;
+        uses NameDescType;
+        list circuit {
+            key "agency id version";
+            uses CircuitType;
+            description "The collection of circuits in this library";
+        }
+    }
+
+    grouping MapType {
+        leaf qubit {
+	    type uint32;
+	    description "Maps a wire/qubit/cbit to a circuit/gate input number (one based index)";
+	}
+	leaf input {
+	    type uint32;
+	    description "The input number (one based index)";
+	}
+	leaf value {
+	    type boolean;
+	    mandatory true;
+	    description "If specified, set the input to a fixed value 0 or 1.";
+	}
+        description "Maps circuit wires to gate inputs. If not specified use natural order.";
+    }
+    
+    grouping OperationType {
+        leaf key {
+	    type string;
+	    description "An optional key. Necessary for reuse in YANG list.";
+	}
+        leaf reverse {
+	    type boolean;
+	    description "If true, indicates that the unitary transformation for this operation should be reversed (dagger/complex conjugate transform)";
+	}
+	list map {
+	    key "key";
+	    description "Collection of maps for this Operation";
+	    uses MapType;
+	}
+	choice transform {
+	    description "The trasnformation for this operation. Can be a gate, a circuit, or a measurement.";
+	    case gate-ref {
+	        container gate-ref {
+   	            uses ReferenceType;
+		    description "A reference to the Gate implementing this Operation";
+		}
+	    }
+	    case circuit-ref {
+	        container circuit-ref {
+	            uses ReferenceType;
+		    description "A reference to the Gate implementing this Operation";
+		}
+	    }
+	    case measurement {
+	        leaf measurement {
+		    type empty;
+	    	    description "Applies a Measurement on mapped wire(s)";
+		}
+	    }
+	}
+        description "An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gat or Circuit inputs";
+    }
+
+    grouping StepType {
+        description "A execution step in a Circuit";
+        leaf number {
+            /* note: this is not in QIS-XML as element order is used instead. Necessary in YANG for key */
+            type uint32;
+            description "The step sequence number. This is optional and should not be used for execution. Necessary for reuse in YANG list.";
+        }
+	uses NameDescType;
+	list operation {
+	    description "The collection of operations for this step";
+	}
+    }
+    
+    /***********************************************************************
+     * PROGRAM
+     ***********************************************************************/
+/*
+    grouping ProgramType {
+        description "A quantum program";
+        uses IdentificationType;
+        uses NameDescType {
+            refine name { mandatory true; }
+        }
+	container register {
+	    uses RegisterType;
+	    description "A global register that can be refered from Execute elements. If is hightly recommended for such register to contain an Indentification element (but it could also be referred to by index value). This is a bit equivalent of a global variable."
+	}
+    }
+
+    grouping ProgramLibrary {
+        description "A collection of Programs";
+        uses IdentificationType;
+        uses NameDescType;
+        list program {
+            key "agency id version";
+            uses ProgramType;
+            description "The collection of programs in this library";
+        }
+    }
+*/ 
 }

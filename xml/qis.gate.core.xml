@@ -1,261 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<g:GateLibrary
-	xmlns:i="qis:instance:1_1" 
-	xmlns:g="qis:gate:1_1"
-	xmlns:c="qis:circuit:1_1"
-	xmlns:r="qis:reusable:1_1"
-	xsi:schemaLocation="qis:gate:1_1 ../schema/qis.gate.xsd" 
+<GateLibrary
+	xmlns="qis:1_1"
+	xsi:schemaLocation="qis:gate:1_1 ../xsd/qis.xsd" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	>
-	<r:Identification>
-		<r:ID>CoreGateLibrary</r:ID>
-		<r:Agency>Pascal_Heus</r:Agency>
-		<r:Version>1.0</r:Version>
-	</r:Identification>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>C-NOT</r:ID>
-		</r:Identification>
-		<g:Name>Controlled-NOT</g:Name>
-		<g:Nickname>C-NOT</g:Nickname>
-		<r:Transformation size="2">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="4" r="1"/>
-			<r:Cell row="4" col="3" r="1"/>
-		</r:Transformation>
-	</g:Gate>
+	<Identification>
+		<ID>CoreGateLibrary</ID>
+		<Agency>Pascal_Heus</Agency>
+		<Version>1.0</Version>
+	</Identification>
+	<Gate>
+		<Identification>
+			<ID>C-NOT</ID>
+		</Identification>
+		<Name>Controlled-NOT</Name>
+		<Nickname>C-NOT</Nickname>
+		<Transformation size="2">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="4" r="1"/>
+			<Cell row="4" col="3" r="1"/>
+		</Transformation>
+	</Gate>
 	
-	<g:Gate>
-		<r:Identification>
-			<r:ID>C-T</r:ID>
-		</r:Identification>
-		<g:Name>Controlled &#960;/8</g:Name>
-		<r:Transformation size="2">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="3" r="1"/>
-			<r:Cell row="4" col="4" i="2.19328005">
-				<r:Symbolic syntax="odf">e^{i %PI/4 }</r:Symbolic>
-				<r:Symbolic syntax="html">e^(i &#960;/4)</r:Symbolic>
-			</r:Cell>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>C-S</r:ID>
-		</r:Identification>
-		<g:Name>Controlled Phase</g:Name>
-		<r:Transformation size="2">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="3" r="1"/>
-			<r:Cell row="4" col="4" i="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>C-Z</r:ID>
-		</r:Identification>
-		<g:Name>Controlled-Z</g:Name>
-		<r:Transformation size="2">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="3" r="1"/>
-			<r:Cell row="4" col="4" r="-1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>DEUTSCH</r:ID>
-		</r:Identification>
-		<g:Name>Deutsch Gate</g:Name>
-		<g:Description>The Deutsch gate is a quantum gate, which is based on the idea of a Toffoli gate. It is a 3 input gate where the two top inputs control the action of the bottom line. But this time the action is not a toggle. Instead it is a spin rotation by angle &#952; about the x axis. See also http://beige.ucs.indiana.edu/M743/node95.html.</g:Description>
-		<g:Parameter>
-			<g:Name>theta</g:Name>
-		</g:Parameter>
-		<r:Transformation size="3">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="3" r="1"/>
-			<r:Cell row="4" col="4" r="1"/>
-			<r:Cell row="5" col="5" r="1"/>
-			<r:Cell row="6" col="6" r="1"/>
-			<r:Cell row="7" col="7">
-				<r:Symbolic syntax="html">cos(&#952;)</r:Symbolic>
-			</r:Cell>
-			<r:Cell row="7" col="8">
-				<r:Symbolic syntax="html">i sin(&#952;)</r:Symbolic>
-			</r:Cell>
-			<r:Cell row="8" col="7">
-				<r:Symbolic syntax="html">i sin(&#952;)</r:Symbolic>
-			</r:Cell>
-			<r:Cell row="8" col="8">
-				<r:Symbolic syntax="html">cos(&#952;)</r:Symbolic>
-			</r:Cell>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>FREDKIN</r:ID>
-		</r:Identification>
-		<g:Name>Fredkin</g:Name>
-		<g:Nickname>Controlled Swap</g:Nickname>
-		<g:Description>
+	<Gate>
+		<Identification>
+			<ID>C-T</ID>
+		</Identification>
+		<Name>Controlled &#960;/8</Name>
+		<Transformation size="2">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="3" r="1"/>
+			<Cell row="4" col="4" i="2.19328005">
+				<Symbolic syntax="odf">e^{i %PI/4 }</Symbolic>
+				<Symbolic syntax="html">e^(i &#960;/4)</Symbolic>
+			</Cell>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>C-S</ID>
+		</Identification>
+		<Name>Controlled Phase</Name>
+		<Transformation size="2">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="3" r="1"/>
+			<Cell row="4" col="4" i="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>C-Z</ID>
+		</Identification>
+		<Name>Controlled-Z</Name>
+		<Transformation size="2">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="3" r="1"/>
+			<Cell row="4" col="4" r="-1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>DEUTSCH</ID>
+		</Identification>
+		<Name>Deutsch Gate</Name>
+		<Description>The Deutsch gate is a quantum gate, which is based on the idea of a Toffoli gate. It is a 3 input gate where the two top inputs control the action of the bottom line. But this time the action is not a toggle. Instead it is a spin rotation by angle &#952; about the x axis. See also http://beige.ucs.indiana.edu/M743/node95.html.</Description>
+		<Parameter>
+			<Name>theta</Name>
+		</Parameter>
+		<Transformation size="3">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="3" r="1"/>
+			<Cell row="4" col="4" r="1"/>
+			<Cell row="5" col="5" r="1"/>
+			<Cell row="6" col="6" r="1"/>
+			<Cell row="7" col="7">
+				<Symbolic syntax="html">cos(&#952;)</Symbolic>
+			</Cell>
+			<Cell row="7" col="8">
+				<Symbolic syntax="html">i sin(&#952;)</Symbolic>
+			</Cell>
+			<Cell row="8" col="7">
+				<Symbolic syntax="html">i sin(&#952;)</Symbolic>
+			</Cell>
+			<Cell row="8" col="8">
+				<Symbolic syntax="html">cos(&#952;)</Symbolic>
+			</Cell>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>FREDKIN</ID>
+		</Identification>
+		<Name>Fredkin</Name>
+		<Nickname>Controlled Swap</Nickname>
+		<Description>
 			The basic Fredkin gate is a controlled swap gate that maps three inputs (C, I1, I2) onto three outputs (C, O1, O2). 
 			The C input is mapped directly to the C output. 
 			If C=0, no swap is performed; I1 maps to O1, and I2 maps to O2. 
 			Otherwise, the two outputs are swapped so that I1 maps to O2, and I2 maps to O1.		
-		</g:Description>
-		<r:Transformation size="3">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-			<r:Cell row="3" col="3" r="1"/>
-			<r:Cell row="4" col="4" r="1"/>
-			<r:Cell row="5" col="5" r="1"/>
-			<r:Cell row="6" col="7" r="1"/>
-			<r:Cell row="7" col="6" r="1"/>
-			<r:Cell row="8" col="8" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>H</r:ID>
-		</r:Identification>
-		<g:Name>Hadamard</g:Name>
-		<r:Transformation size="1">
-			<r:Multiplier r="0.707106781">
-				<r:Symbolic syntax="odf">1/sqrt(2)</r:Symbolic>
-				<r:Symbolic syntax="html">1/sqrt(2)</r:Symbolic>
-			</r:Multiplier>
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="1" col="2" r="1"/>
-			<r:Cell row="2" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="-1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>I</r:ID>
-		</r:Identification>
-		<g:Name>Identity</g:Name>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>X</r:ID>
-		</r:Identification>
-		<g:Name>Pauli-X</g:Name>
-		<g:Nickname>NOT</g:Nickname>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="2" r="1"/>
-			<r:Cell row="2" col="1" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>SQRT-NOT</r:ID>
-		</r:Identification>
-		<g:Name>Square Root of Not</g:Name>
-		<r:Transformation size="1">
-			<r:Multiplier r="0.707106781">
-				<r:Symbolic syntax="odf">1/sqrt(2)</r:Symbolic>
-				<r:Symbolic syntax="html">1/sqrt(2)</r:Symbolic>
-			</r:Multiplier>
-			<r:Cell row="1" col="2" r="1"/>
-			<r:Cell row="2" col="1" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>Y</r:ID>
-		</r:Identification>
-		<g:Name>Pauli-Y</g:Name>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="2" i="-1"/>
-			<r:Cell row="2" col="1" i="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>Z</r:ID>
-		</r:Identification>
-		<g:Name>Pauli-Z</g:Name>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" r="-1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>S</r:ID>
-		</r:Identification>
-		<g:Name>Phase</g:Name>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" i="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>SHIFT</r:ID>
-		</r:Identification>
-		<g:Name>Phase Shift</g:Name>
-		<g:Parameter>
-			<g:Name>&#952;</g:Name>
-		</g:Parameter>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2">
-				<r:Symbolic syntax="html">e^(2&#960;i&#952;)</r:Symbolic>
-			</r:Cell>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>SWAP</r:ID>
-		</r:Identification>
-		<g:Name>Swap</g:Name>
-		<r:Transformation size="2">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="3" r="1"/>
-			<r:Cell row="3" col="2" r="1"/>
-			<r:Cell row="4" col="4" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>TOFFOLI</r:ID>
-		</r:Identification>
-		<g:Name>Toffoli</g:Name>
-		<g:Nickname>controlled-controlled-not</g:Nickname>
-		<g:Description>The Toffoli gate is a reversible gate that takes three bits as input. The first two are control bits and are left unchanged by the gate. The third bit is flipped  if both control bits are equal to 1. It is also known as the “controlled-controlled-not” gate</g:Description>
-		<r:Transformation size="3">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="3" r="1"/>
-			<r:Cell row="3" col="2" r="1"/>
-			<r:Cell row="4" col="4" r="1"/>
-			<r:Cell row="5" col="5" r="1"/>
-			<r:Cell row="6" col="6" r="1"/>
-			<r:Cell row="7" col="8" r="1"/>
-			<r:Cell row="8" col="7" r="1"/>
-		</r:Transformation>
-	</g:Gate>
-	<g:Gate>
-		<r:Identification>
-			<r:ID>T</r:ID>
-		</r:Identification>
-		<g:Name>&#960;/8</g:Name>
-		<r:Transformation size="1">
-			<r:Cell row="1" col="1" r="1"/>
-			<r:Cell row="2" col="2" i="2.19328005">
-				<r:Symbolic syntax="odf">e^{i %PI/4 }</r:Symbolic>
-				<r:Symbolic syntax="html">e^(i &#960;/4)</r:Symbolic>
-			</r:Cell>
-		</r:Transformation>
-	</g:Gate>
-</g:GateLibrary>
+		</Description>
+		<Transformation size="3">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+			<Cell row="3" col="3" r="1"/>
+			<Cell row="4" col="4" r="1"/>
+			<Cell row="5" col="5" r="1"/>
+			<Cell row="6" col="7" r="1"/>
+			<Cell row="7" col="6" r="1"/>
+			<Cell row="8" col="8" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>H</ID>
+		</Identification>
+		<Name>Hadamard</Name>
+		<Transformation size="1">
+			<Multiplier r="0.707106781">
+				<Symbolic syntax="odf">1/sqrt(2)</Symbolic>
+				<Symbolic syntax="html">1/sqrt(2)</Symbolic>
+			</Multiplier>
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="1" col="2" r="1"/>
+			<Cell row="2" col="1" r="1"/>
+			<Cell row="2" col="2" r="-1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>I</ID>
+		</Identification>
+		<Name>Identity</Name>
+		<Transformation size="1">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>X</ID>
+		</Identification>
+		<Name>Pauli-X</Name>
+		<Nickname>NOT</Nickname>
+		<Transformation size="1">
+			<Cell row="1" col="2" r="1"/>
+			<Cell row="2" col="1" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>SQRT-NOT</ID>
+		</Identification>
+		<Name>Square Root of Not</Name>
+		<Transformation size="1">
+			<Multiplier r="0.707106781">
+				<Symbolic syntax="odf">1/sqrt(2)</Symbolic>
+				<Symbolic syntax="html">1/sqrt(2)</Symbolic>
+			</Multiplier>
+			<Cell row="1" col="2" r="1"/>
+			<Cell row="2" col="1" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>Y</ID>
+		</Identification>
+		<Name>Pauli-Y</Name>
+		<Transformation size="1">
+			<Cell row="1" col="2" i="-1"/>
+			<Cell row="2" col="1" i="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>Z</ID>
+		</Identification>
+		<Name>Pauli-Z</Name>
+		<Transformation size="1">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" r="-1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>S</ID>
+		</Identification>
+		<Name>Phase</Name>
+		<Transformation size="1">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" i="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>SHIFT</ID>
+		</Identification>
+		<Name>Phase Shift</Name>
+		<Parameter>
+			<Name>&#952;</Name>
+		</Parameter>
+		<Transformation size="1">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2">
+				<Symbolic syntax="html">e^(2&#960;i&#952;)</Symbolic>
+			</Cell>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>SWAP</ID>
+		</Identification>
+		<Name>Swap</Name>
+		<Transformation size="2">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="3" r="1"/>
+			<Cell row="3" col="2" r="1"/>
+			<Cell row="4" col="4" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>TOFFOLI</ID>
+		</Identification>
+		<Name>Toffoli</Name>
+		<Nickname>controlled-controlled-not</Nickname>
+		<Description>The Toffoli gate is a reversible gate that takes three bits as input. The first two are control bits and are left unchanged by the gate. The third bit is flipped  if both control bits are equal to 1. It is also known as the “controlled-controlled-not” gate</Description>
+		<Transformation size="3">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="3" r="1"/>
+			<Cell row="3" col="2" r="1"/>
+			<Cell row="4" col="4" r="1"/>
+			<Cell row="5" col="5" r="1"/>
+			<Cell row="6" col="6" r="1"/>
+			<Cell row="7" col="8" r="1"/>
+			<Cell row="8" col="7" r="1"/>
+		</Transformation>
+	</Gate>
+	<Gate>
+		<Identification>
+			<ID>T</ID>
+		</Identification>
+		<Name>&#960;/8</Name>
+		<Transformation size="1">
+			<Cell row="1" col="1" r="1"/>
+			<Cell row="2" col="2" i="2.19328005">
+				<Symbolic syntax="odf">e^{i %PI/4 }</Symbolic>
+				<Symbolic syntax="html">e^(i &#960;/4)</Symbolic>
+			</Cell>
+		</Transformation>
+	</Gate>
+</GateLibrary>
 

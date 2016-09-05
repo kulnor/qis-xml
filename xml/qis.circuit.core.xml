@@ -4,7 +4,7 @@
 	xmlns:g="qis:gate:1_1"
 	xmlns:c="qis:circuit:1_1"
 	xmlns:r="qis:reusable:1_1"
-	xsi:schemaLocation="qis:circuit:1_1 ../schema/qis.circuit.xsd" 
+	xsi:schemaLocation="qis:circuit:1_1 ../xsd/qis.circuit.xsd" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	>
 	<r:Identification>

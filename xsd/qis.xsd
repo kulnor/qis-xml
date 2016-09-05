@@ -353,7 +353,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:element name="Description" type="xs:string" minOccurs="0"/>
 			<xs:element name="Operation" type="OperationType" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gat or Circuit inputs</xs:documentation>
+					<xs:documentation>An operation is a Gate with information mapping qubits or a fixed 0/1 value with the Gate or Circuit inputs</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="ProprietaryData" minOccurs="0" maxOccurs="unbounded"/>
