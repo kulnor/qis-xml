@@ -18,10 +18,10 @@ Version 1.0 of QIS-XML was originally published at [qisxml.org](http://www.qisxm
 This version aims at:
 
 * Generally improving / enhancing version 1.0
-* Adding features to descibe quantum device capabilities
+* Adding features to describe quantum device capabilities
 * Adding a [YANG](https://en.wikipedia.org/wiki/YANG) version of the model to enable integration with [NETCONF](https://en.wikipedia.org/wiki/NETCONF)
-* Collapsing the specificaton in a single namespace to simplify usage and adoption *[completed]*
-* Potentially adding support for [QMI](http://www.dwavesys.com/software) programmin model used by D-Wave
+* Collapsing the specification in a single namespace to simplify usage and adoption *[completed]*
+* Potentially adding support for [QMI](http://www.dwavesys.com/software) programming model used by D-Wave (annealing)
 
 # How to navigate
 * High level background and project overview is provided below
@@ -31,7 +31,7 @@ This version aims at:
 
 #QIS-XML Overview
 * [Background](#background)
-* [What is antum Information Science?](#about-qis)
+* [What is Quantum Information Science?](#about-qis)
 * [What is XML?](#about-qis)
 * [What is QIS?](#about-qis)
 * [What is QIS-XML?](#about-qisxml)
@@ -43,7 +43,7 @@ While Quantum Information Science (QIS) is still in its infancy, the ability for
 
 <a name="about-qis"></a>
 ## What is Quantum Information Science?
-Qantum Information Science (QIS) concerns information science that depends on quantum effects in physics. QIS technology differentiates itself from classic computers by building upon quantum physics and quantum mechanical effects such as entanglement, interference, superposition, non-clonability and non-determinism. Quantum based computing can in some case provide tremendous boost in performance and solve problems that otherwise could take a very long time to compute (only a few such algorithms however have been designed to date). In QIS, many concepts familiar to the Classic Information Science (CIS) get transformed to their quantum equivalent. A classic bit for example becomes a qubit (and can behave quit differently). Instead of using logical electronic gates, quantum gates are assembled to form quantum circuits and execute quantum algorithms.
+Quantum Information Science (QIS) concerns information science that depends on quantum effects in physics. QIS technology differentiates itself from classic computers by building upon quantum physics and quantum mechanical effects such as entanglement, interference, superposition, and and non-determinism. Quantum based computing can in some case provide tremendous boost in performance and solve problems that otherwise could take a very long time to compute (only a few such algorithms however have been designed to date). In QIS, many concepts familiar to the Classic Information Science (CIS) get transformed to their quantum equivalent. A classic bit for example becomes a qubit (and can behave quit differently). Instead of using logical electronic gates, quantum gates are assembled to form quantum circuits and execute quantum algorithms.
 
 Quantum computers are currently at a very experimental stage. No production system is in existence and, while small prototypes are being tested in the laboratories (using a few qubits), we may not see such reality before 10,20 or even more. The main challenge is that, while we do understand the underlying physics, the engineering to build such systems is not available. Nevertheless, quantum hardware is an unavoidable outcome. According to Moore's law, we double the number of transistors that can be place in a processor every couple of year. This shrinking process cannot continue indefinitely and we will in the next 10 to 20 year read the size a single atoms at which level quantum mechanical effects can no longer be ignored. While we may therefore not immediately take advantage quantum algorithm, classic computers will soon have to operate on quantum hardware.
 
@@ -98,15 +98,15 @@ If you are an ICT expert, QIS-XML will help you understand the foundation of Qua
 <a name="about-qisxml-manufacturer"></a>
 ### QIS-XML for Quantum equipment manufacturers
 
-If you are producing quantum hardware (circuits, co-processors, computers), adopting QIS-XML will facilitate the integration of your product with other systems (classic or quantum) and ensure compatibility with QIS-XML based tools. Note that this does not precludes the use of proprietary solutions but mainly provides a generic abstratcion layer to exchnange information with other systems or tools.
+If you are producing quantum hardware (circuits, co-processors, computers), adopting QIS-XML will facilitate the integration of your product with other systems (classic or quantum) and ensure compatibility with QIS-XML based tools. Note that this does not precludes the use of proprietary solutions but mainly provides a generic abstraction layer to exchange information with other systems or tools.
 
 <a name="qisxml-status"></a>
 ## QIS-XML Status and Timeline?
-QIS-XML 1.0 was initially release in June of 2011 at the conclusion of my MS thesis. It has been farily dormant since. 
+QIS-XML 1.0 was initially release in June of 2011 at the conclusion of my MS thesis. It has been fairly dormant since. 
 
-The specification has in the summer of 2016 received attention from the [IEEE working group P1913](https://standards.ieee.org/develop/project/1913.html) focusing on Software Defined Quantum Commmunication. This has lead to the current effort towards producing version 1.1 including a YANG version of the model to facilitate configuration and eventually operations of quantum devices using NETCONF. 
+The specification has in the summer of 2016 received attention from the [IEEE working group P1913](https://standards.ieee.org/develop/project/1913.html) focusing on Software Defined Quantum Communication. This has lead to the current effort towards producing version 1.1 including a YANG version of the model to facilitate configuration and eventually operations of quantum devices using NETCONF. 
 
-The future of QIS-XML greatly depends on its adoption and the establishment of a well supported community. An XML specification cannot be lead by individual effort and, without institutional support and adoption, such specification is not sustainable. If you are interested in the QIS-XML initiave and can potentially support to its adoption, maintenance and development, we encourage you to ontact us to discuss possible collaboration options.
+The future of QIS-XML greatly depends on its adoption and the establishment of a well supported community. An XML specification cannot be lead by individual effort and, without institutional support and adoption, such specification is not sustainable. If you are interested in the QIS-XML initiative and can potentially support to its adoption, maintenance and development, we encourage you to contact us to discuss possible collaboration options.
 
 
 

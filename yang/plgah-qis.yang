@@ -26,7 +26,8 @@ module plgah-qis {
         uses qist:IdentificationType;
         list gate-library {
             key "agency id version";
-            uses qist:GateLibrary;
+            uses qist:Gat
+	    eLibrary;
             description "Gate libraries available on this device";
         }
         list circuit-library {
