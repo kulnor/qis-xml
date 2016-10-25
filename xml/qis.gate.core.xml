@@ -6,8 +6,8 @@
 	>
 	<Identification>
 		<ID>CoreGateLibrary</ID>
-		<Agency>Pascal_Heus</Agency>
-		<Version>1.0</Version>
+		<Agency>PLGAH</Agency>
+		<Version>1.0.0</Version>
 	</Identification>
 	<Gate>
 		<Identification>
@@ -124,6 +124,7 @@
 			<Multiplier r="0.707106781">
 				<Symbolic syntax="odf">1/sqrt(2)</Symbolic>
 				<Symbolic syntax="html">1/sqrt(2)</Symbolic>
+				<Symbolic syntax="QuTiP">snot()</Symbolic>
 			</Multiplier>
 			<Cell row="1" col="1" r="1"/>
 			<Cell row="1" col="2" r="1"/>
@@ -146,7 +147,6 @@
 			<ID>X</ID>
 		</Identification>
 		<Name>Pauli-X</Name>
-		<Nickname>NOT</Nickname>
 		<Transformation size="1">
 			<Cell row="1" col="2" r="1"/>
 			<Cell row="2" col="1" r="1"/>
