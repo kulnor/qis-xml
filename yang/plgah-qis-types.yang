@@ -6,8 +6,6 @@ module plgah-qis-types {
 
     prefix qis;
 
-    //import ietf-inet-types { prefix "inet";  }
-
     organization "Pascal L.G.A. Heus";
 
     contact “pascal.heus@gmail.com”;
@@ -20,9 +18,9 @@ module plgah-qis-types {
          reference "QIS-XML: A metadata specification for Quantum Information Science";
     }
 
-     /***********************************************************************
-      * REUSABLE TYPES
-      ***********************************************************************/
+    /***********************************************************************
+    * REUSABLE TYPES
+    ***********************************************************************/
 
     grouping ComplexNumberType {
         description "A complex number";
@@ -55,6 +53,7 @@ module plgah-qis-types {
             refine name { mandatory true; }
         }
     }
+
     grouping IdentificationType {
         description "An entity identifier";
         leaf agency {
@@ -98,6 +97,14 @@ module plgah-qis-types {
     
     grouping MatrixType {
         description "A matrix";
+        leaf rows {
+            type uint32;
+            description "The matrix number of rows";
+        }
+        leaf cols {
+            type uint32;
+            description "The matrix number of columns";
+        }
         list cell {
             key "row col";
             uses MatrixCellType;
@@ -165,7 +172,7 @@ module plgah-qis-types {
         }
         leaf library_id {
             type NcnameType;
-            description "The indentifier of the library containining the resource";
+            description "The identifier of the library containing the resource";
         }
         leaf library_agency {
             type NcnameType;
@@ -193,7 +200,7 @@ module plgah-qis-types {
     }
 
     grouping TransformationType {
-        description "A unitary transormation represented as a square matrix of complex number";
+        description "A unitary transformation represented as a square matrix of complex number";
         leaf size {
             type uint32;
             description "The matrix n x n size";
@@ -322,15 +329,20 @@ module plgah-qis-types {
             uses ReferenceType;
             description "A reference to the Gate the circuit is equivalent to";
         }
+        list map {
+            key "yang-key";
+            description "Collection of maps for this equivalence";
+            uses MapType;
+        }
         container circuit {
             uses CircuitType;
-            description "The circuit equivalent to this Gate";
+            description "The circuit equivalent to the Gate/Circuit";
         }
     }
     
     grouping MapType {
         uses YangDummyKey;
-        leaf qubit {
+        leaf number {
             type uint32;
             description "Maps a wire/qubit/cbit to a circuit/gate input number (one based index)";
         }
@@ -341,7 +353,7 @@ module plgah-qis-types {
         leaf value {
             type boolean;
             mandatory true;
-            description "If specified, set the input to a fixed value 0 or 1.";
+            description "If specified, set the input to a fixed value |0> or |1>.";
         }
         description "Maps circuit wires to gate inputs. If not specified use natural order.";
     }
@@ -358,7 +370,7 @@ module plgah-qis-types {
             uses MapType;
         }
         choice transform {
-            description "The trasnformation for this operation. Can be a gate, a circuit, or a measurement.";
+            description "The transformation for this operation. Can be a gate, a circuit, or a measurement.";
             case gate-ref {
                 container gate-ref {
                     uses ReferenceType;
@@ -563,7 +575,7 @@ module plgah-qis-types {
             description "If not using a Program local memory, a reference theto an external memory (global or from another program)";
         }
         /** THIS SECTION NEEDS WORK ***/
-        // Not sure how to reflect the XM model. A repeatable choice mixing different element type 
+        // Not sure how to reflect the XML model. A repeatable choice mixing different element type 
         leaf-list qubit-index {
             type uint64;
             description "Selects a specific qubit in memory";
@@ -586,7 +598,7 @@ module plgah-qis-types {
             uses ReferenceType;
             description "Include another Register qubits";
         }
-        /** ========== ***/
+
         container prepare {
             uses PrepareType;
             description "Prepares/initializes this register";
