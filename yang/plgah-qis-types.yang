@@ -11,7 +11,7 @@ module plgah-qis-types {
     contact “pascal.heus@gmail.com”;
 
     description
-      "This module contains a YANG groupings and data types mirroring the QIS-XML 1.1 specification elements.";
+      "This module contains YANG groupings and data types mirroring the QIS-XML 1.1 specification elements.";
 
     revision 2016-09-05 {
          description "Draft/Development version";
@@ -125,7 +125,7 @@ module plgah-qis-types {
     }
 
     grouping OutputType {
-        description "Descripiton of a gate/circuit output";
+        description "Description of a gate/circuit output";
         leaf number {
             type uint16;
             description "The output number (one based index)";
@@ -200,7 +200,7 @@ module plgah-qis-types {
     }
 
     grouping TransformationType {
-        description "A unitary transformation represented as a square matrix of complex number";
+        description "A unitary transformation represented as a square matrix of complex numbers";
         leaf size {
             type uint32;
             description "The matrix n x n size";
@@ -212,7 +212,7 @@ module plgah-qis-types {
         list cell {
             key "row col";
             uses MatrixCellType;
-            description "A cell im this matrix. Zero valued cells are optional. ";
+            description "A cell in this matrix. Zero valued cells are optional. ";
         }       
     }
 
@@ -243,7 +243,7 @@ module plgah-qis-types {
         }
         leaf-list nickname {
             type string;
-            description "Short/altername names";
+            description "Short/alternate names";
         }
         list input {
             key "number"; 
@@ -489,7 +489,9 @@ module plgah-qis-types {
         list statement {
             key "yang-key";
             uses YangDummyKey;
+            description "The collection of statements";
             choice statement-type {
+                description "The choice of statements";
                 /* execute statememt */
                 case execute {
                     container execute {

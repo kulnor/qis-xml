@@ -84,7 +84,7 @@ module: plgah-qis
       |           +--rw reverse?       boolean
       |           +--rw map* [yang-key]
       |           |  +--rw yang-key    string
-      |           |  +--rw qubit?      uint32
+      |           |  +--rw number?     uint32
       |           |  +--rw input?      uint32
       |           |  +--rw value       boolean
       |           +--rw (transform)?
@@ -283,7 +283,7 @@ module: plgah-qis
       |           |        |           +--rw reverse?       boolean
       |           |        |           +--rw map* [yang-key]
       |           |        |           |  +--rw yang-key    string
-      |           |        |           |  +--rw qubit?      uint32
+      |           |        |           |  +--rw number?     uint32
       |           |        |           |  +--rw input?      uint32
       |           |        |           |  +--rw value       boolean
       |           |        |           +--rw (transform)?
