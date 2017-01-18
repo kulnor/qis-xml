@@ -217,15 +217,15 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:documentation>A quantum gate</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="GateLibrary">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="Identification"/>
-				<xs:element name="Name" type="xs:string" minOccurs="0"/>
-				<xs:element maxOccurs="unbounded" minOccurs="0" ref="Gate"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
+	<xs:complexType name="GateLibraryType">
+		<xs:sequence>
+			<xs:element ref="Identification"/>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="Gate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GateLibrary" type="GateLibraryType"> </xs:element>
 	<!-- CIRCUIT -->
 	<xs:complexType name="CircuitType">
 		<xs:choice>
@@ -324,6 +324,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 		<xs:sequence>
 			<xs:element ref="Identification"/>
 			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
 			<xs:element name="Circuit" type="CircuitType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="GateEquivalentCircuit" type="GateEquivalentCircuitType" minOccurs="0"
 				maxOccurs="unbounded"/>
