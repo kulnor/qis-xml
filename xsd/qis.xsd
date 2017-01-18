@@ -448,6 +448,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 		<xs:sequence>
 			<xs:element ref="Identification"/>
 			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
 			<xs:element minOccurs="0" maxOccurs="unbounded" ref="Program"/>
 		</xs:sequence>
 	</xs:complexType>
