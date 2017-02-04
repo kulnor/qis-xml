@@ -136,8 +136,8 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:choice maxOccurs="2">
 				<xs:element ref="URN"/>
 				<xs:sequence>
-					<xs:element name="ID" type="xs:NCName"/>
 					<xs:element name="Agency" type="xs:NCName" minOccurs="0"/>
+					<xs:element name="ID" type="xs:NCName"/>
 					<xs:element name="Version" type="VersionType" minOccurs="0"/>
 					<xs:element name="VersionDescription" type="xs:string" minOccurs="0"/>
 				</xs:sequence>
@@ -145,7 +145,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 			<xs:sequence minOccurs="0">
 				<xs:element maxOccurs="unbounded" minOccurs="1" name="UserID">
 					<xs:complexType>
-						<xs:attribute name="agency" type="xs:string" use="required"/>
+						<xs:attribute name="context" type="xs:string" use="required"/>
 						<xs:attribute name="type" type="xs:string" use="required"/>
 					</xs:complexType>
 				</xs:element>
@@ -155,18 +155,23 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 	<xs:element name="Identification" type="IdentificationType"/>
 	<xs:complexType name="ReferenceType">
 		<xs:sequence>
-			<xs:element name="ID" type="xs:NCName">
-				<xs:annotation>
-					<xs:documentation>Object identifier</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="LibraryID" type="xs:NCName" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Library identifier</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="AgencyID" minOccurs="0"/>
-			<xs:element name="Version" minOccurs="0"/>
+			<xs:choice maxOccurs="2">
+				<xs:element ref="URN"/>
+				<xs:sequence>
+					<xs:element name="AgencyID" minOccurs="0"/>
+					<xs:element name="ID" type="xs:NCName">
+						<xs:annotation>
+							<xs:documentation>Object identifier</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Version" minOccurs="0"/>
+					<xs:element name="LibraryReference" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Library identifier</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="URI" type="xs:anyURI"/>
 	</xs:complexType>
@@ -244,7 +249,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 	<xs:complexType name="CircuitType">
 		<xs:choice>
 			<xs:sequence>
-				<xs:element ref="Identification" minOccurs="0"/>
+				<xs:element ref="Identification" minOccurs="1"/>
 				<xs:element name="Name" type="xs:string" minOccurs="0"/>
 				<xs:element name="Description" type="xs:string" minOccurs="0"/>
 				<xs:element ref="Input" minOccurs="0" maxOccurs="unbounded"/>
