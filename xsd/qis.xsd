@@ -133,7 +133,7 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 	<xs:element name="URN" type="xs:string"/>
 	<xs:complexType name="IdentificationType">
 		<xs:sequence>
-			<xs:choice>
+			<xs:choice maxOccurs="2">
 				<xs:element ref="URN"/>
 				<xs:sequence>
 					<xs:element name="ID" type="xs:NCName"/>
@@ -143,10 +143,10 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 				</xs:sequence>
 			</xs:choice>
 			<xs:sequence>
-				<xs:element name="UserID">
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="UserID">
 					<xs:complexType>
-						<xs:attribute name="agency" type="xs:string"/>
-						<xs:attribute name="type" type="xs:string"/>
+						<xs:attribute name="agency" type="xs:string" use="required"/>
+						<xs:attribute name="type" type="xs:string" use="required"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
