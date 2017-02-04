@@ -142,8 +142,8 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 					<xs:element name="VersionDescription" type="xs:string" minOccurs="0"/>
 				</xs:sequence>
 			</xs:choice>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0" name="UserID">
+			<xs:sequence minOccurs="0">
+				<xs:element maxOccurs="unbounded" minOccurs="1" name="UserID">
 					<xs:complexType>
 						<xs:attribute name="agency" type="xs:string" use="required"/>
 						<xs:attribute name="type" type="xs:string" use="required"/>
