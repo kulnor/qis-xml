@@ -130,12 +130,26 @@ To indicate a call to an xpath function, set the syntax attribute to 'xpath'</xs
 		</xs:annotation>
 	</xs:element>
 	<!--Common elements-->
+	<xs:element name="URN" type="xs:string"/>
 	<xs:complexType name="IdentificationType">
 		<xs:sequence>
-			<xs:element name="ID" type="xs:NCName"/>
-			<xs:element name="Agency" type="xs:NCName" minOccurs="0"/>
-			<xs:element name="Version" type="VersionType" minOccurs="0"/>
-			<xs:element name="VersionDescription" type="xs:string" minOccurs="0"/>
+			<xs:choice>
+				<xs:element ref="URN"/>
+				<xs:sequence>
+					<xs:element name="ID" type="xs:NCName"/>
+					<xs:element name="Agency" type="xs:NCName" minOccurs="0"/>
+					<xs:element name="Version" type="VersionType" minOccurs="0"/>
+					<xs:element name="VersionDescription" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:sequence>
+				<xs:element name="UserID">
+					<xs:complexType>
+						<xs:attribute name="agency" type="xs:string"/>
+						<xs:attribute name="type" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="Identification" type="IdentificationType"/>

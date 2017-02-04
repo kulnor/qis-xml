@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GateLibrary
 	xmlns="qis:1_1"
-	xsi:schemaLocation="qis:gate:1_1 ../xsd/qis.xsd" 
+	xsi:schemaLocation="qis:gate:1_1 https://raw.githubusercontent.com/kulnor/qis-xml_1_1/master/xsd/qis.xsd" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	>
 	<Identification>

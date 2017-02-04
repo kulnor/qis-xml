@@ -108,7 +108,7 @@ module plgah-qis-types {
         list cell {
             key "row col";
             uses MatrixCellType;
-            description "A cell im this matrix. Zero valued cells are optional. ";
+            description "A cell in this matrix. Zero valued cells are optional. ";
         }
     }
    
@@ -293,7 +293,7 @@ module plgah-qis-types {
         }
         leaf size {
             type uint32;
-            description "The circuit size (number if inputs/outputs)";
+            description "The circuit size (number of inputs/outputs)";
         }
         list input {
             key "number"; 

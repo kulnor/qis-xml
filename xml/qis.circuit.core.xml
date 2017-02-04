@@ -9,8 +9,8 @@
 	>
 	<r:Identification>
 		<r:ID>CoreGateLibrary</r:ID>
-		<r:Agency>Pascal_Heus</r:Agency>
-		<r:Version>1.0</r:Version>
+		<r:Agency>IEEE</r:Agency>
+		<r:Version>1.0.0</r:Version>
 	</r:Identification>
 
 	<c:Circuit size="3">
